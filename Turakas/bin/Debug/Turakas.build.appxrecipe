@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>KATRE</Machine>
+    <WindowsUser>katrepaabo</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Turakas.exe">
+      <PackagePath>Turakas.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Turakas.pdb">
+      <PackagePath>Turakas.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\bin\Debug\TurakasLibrary.pdb">
+      <PackagePath>TurakasLibrary.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\bin\Debug\TurakasLibrary.dll">
+      <PackagePath>TurakasLibrary.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\help.png">
+      <PackagePath>Assets\help.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1fh.png">
+      <PackagePath>Assets\images\b1fh.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1fv.png">
+      <PackagePath>Assets\images\b1fv.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1pb.png">
+      <PackagePath>Assets\images\b1pb.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1pl.png">
+      <PackagePath>Assets\images\b1pl.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1pr.png">
+      <PackagePath>Assets\images\b1pr.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b1pt.png">
+      <PackagePath>Assets\images\b1pt.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2fh.png">
+      <PackagePath>Assets\images\b2fh.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2fv.png">
+      <PackagePath>Assets\images\b2fv.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2pb.png">
+      <PackagePath>Assets\images\b2pb.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2pl.png">
+      <PackagePath>Assets\images\b2pl.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2pr.png">
+      <PackagePath>Assets\images\b2pr.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\b2pt.png">
+      <PackagePath>Assets\images\b2pt.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c10.png">
+      <PackagePath>Assets\images\c10.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c11.png">
+      <PackagePath>Assets\images\c11.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c12.png">
+      <PackagePath>Assets\images\c12.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c13.png">
+      <PackagePath>Assets\images\c13.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c14.png">
+      <PackagePath>Assets\images\c14.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c6.png">
+      <PackagePath>Assets\images\c6.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c7.png">
+      <PackagePath>Assets\images\c7.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c8.png">
+      <PackagePath>Assets\images\c8.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\c9.png">
+      <PackagePath>Assets\images\c9.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d10.png">
+      <PackagePath>Assets\images\d10.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d11.png">
+      <PackagePath>Assets\images\d11.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d12.png">
+      <PackagePath>Assets\images\d12.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d13.png">
+      <PackagePath>Assets\images\d13.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d14.png">
+      <PackagePath>Assets\images\d14.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d6.png">
+      <PackagePath>Assets\images\d6.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d7.png">
+      <PackagePath>Assets\images\d7.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d8.png">
+      <PackagePath>Assets\images\d8.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\d9.png">
+      <PackagePath>Assets\images\d9.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h10.png">
+      <PackagePath>Assets\images\h10.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h11.png">
+      <PackagePath>Assets\images\h11.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h12.png">
+      <PackagePath>Assets\images\h12.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h13.png">
+      <PackagePath>Assets\images\h13.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h14.png">
+      <PackagePath>Assets\images\h14.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h6.png">
+      <PackagePath>Assets\images\h6.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h7.png">
+      <PackagePath>Assets\images\h7.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h8.png">
+      <PackagePath>Assets\images\h8.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\h9.png">
+      <PackagePath>Assets\images\h9.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\join.png">
+      <PackagePath>Assets\join.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\start.png">
+      <PackagePath>Assets\start.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\jb.png">
+      <PackagePath>Assets\images\jb.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\jr.png">
+      <PackagePath>Assets\images\jr.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s10.png">
+      <PackagePath>Assets\images\s10.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s11.png">
+      <PackagePath>Assets\images\s11.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s12.png">
+      <PackagePath>Assets\images\s12.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s13.png">
+      <PackagePath>Assets\images\s13.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s14.png">
+      <PackagePath>Assets\images\s14.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s6.png">
+      <PackagePath>Assets\images\s6.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s7.png">
+      <PackagePath>Assets\images\s7.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s8.png">
+      <PackagePath>Assets\images\s8.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\images\s9.png">
+      <PackagePath>Assets\images\s9.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Assets\texts\help.txt">
+      <PackagePath>Assets\texts\help.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Common\ReadMe.txt">
+      <PackagePath>Common\ReadMe.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Views\HelpPage.xaml">
+      <PackagePath>Views\HelpPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Views\MainPage.xaml">
+      <PackagePath>Views\MainPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\Views\StartPage.xaml">
+      <PackagePath>Views\StartPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

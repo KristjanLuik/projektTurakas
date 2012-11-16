@@ -1,0 +1,14 @@
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\bin\Debug\TurakasLibrary.dll
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\bin\Debug\TurakasLibrary.pdb
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\bin\Debug\TurakasLibrary.pri
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\TurakasLibrary.dll
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\TurakasLibrary.pdb
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\priconfig.xml.intermediate
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\layout.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\resources.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\pri.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\priconfig.xml
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\layout.resfiles
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\resources.resfiles
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\pri.resfiles
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\obj\Debug\LanguageQualifiers.txt

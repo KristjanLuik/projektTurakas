@@ -1,0 +1,2 @@
+C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\Turakas.csproj;neutral
+C:\Users\katrepaabo\Desktop\TurakasLibrary\TurakasLibrary\TurakasLibrary.csproj;neutral
