@@ -15,28 +15,41 @@ namespace TurakasServiceLibrary
         ServicePlayer[] getSubscribers(ServiceGame game);
 
         [OperationContract]
-        int getNewGameId(ServicePlayer p);
+        int[] getNewGameAndPlayerId(ServicePlayer p);
 
         [OperationContract]
-        void addPlayerToGame(ServiceGame game);
+        void addPlayerToGame(ServiceGame game, string newPlayer);
 
         [OperationContract]
         ServiceCard hit(ServiceCard target, ServiceCard hit);
 
         [OperationContract]
-        ServiceCard move(ServiceCard card);
+        ServiceCard move(int card_rank, int card_kind);
 
         [OperationContract]
         ServiceCard subscribeTogame(int game, string name);
-    }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
+        [OperationContract]
+        void sendChatMessage(string message, int gameId, int fromID);
+
+        [OperationContract]
+        void Subscribe(string user);
+
+        [OperationContract]
+        void Unsubscribe();
+
+        [OperationContract]
+        void gameEnded();
+    }
+    #region  data contract
+
     [DataContract]
     public class ServiceGame
     {
         private int _ID;
         private ServicePlayer[] _players;
         private int _count;
+        private Subscriber[] _subscribers;
 
         [DataMember]
         public int Count
@@ -97,6 +110,8 @@ namespace TurakasServiceLibrary
           set { _kind = value; }
         }
     }
+
+    #endregion
 
     public interface ITeenusCallback
     {

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ServiceGame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Players" nillable="true" type="tns:ArrayOfServicePlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceGame" nillable="true" type="tns:ServiceGame" />
+  <xs:complexType name="ArrayOfServicePlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServicePlayer" nillable="true" type="tns:ServicePlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServicePlayer" nillable="true" type="tns:ArrayOfServicePlayer" />
+  <xs:complexType name="ServicePlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServicePlayer" nillable="true" type="tns:ServicePlayer" />
+  <xs:complexType name="ServiceCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Kind" type="xs:int" />
+      <xs:element minOccurs="0" name="Rank" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceCard" nillable="true" type="tns:ServiceCard" />
+</xs:schema>

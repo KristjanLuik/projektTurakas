@@ -1,0 +1,83 @@
+<configuration>
+    <configSections>
+      <appSettings>
+        <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+        <add key="ClientSettingsProvider.ServiceUri" value="" />
+        <add key="ClientSettingsProvider.ConnectionStringName" value="DefaultConnection" />
+      </appSettings>
+      <system.web>
+        <compilation debug="true" />
+        <membership defaultProvider="ClientAuthenticationMembershipProvider">
+          <providers>
+            <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientWindowsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" connectionStringName="DefaultConnection" credentialsProvider="" />
+          </providers>
+        </membership>
+        <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+          <providers>
+            <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" connectionStringName="DefaultConnection" />
+          </providers>
+        </roleManager>
+      </system.web>
+      <!-- When deploying the service library project, the content of the config file must be added to the host's 
+  app.config file. System.Configuration does not support config files for libraries. -->
+      <system.serviceModel>
+        <services>
+          <service name="TurakasServiceLibrary.Teenus">
+            <host>
+              <baseAddresses>
+                <add baseAddress="net.tcp://localhost:11/Service1.svc" />
+              </baseAddresses>
+            </host>
+            <!-- Service Endpoints -->
+            <!-- Unless fully qualified, address is relative to base address supplied above -->
+            <!--endpoint address="" binding="netTcpBinding" bindingConfiguration="Binding1" contract="MessageServiceLibrary.IMessage"-->
+            <endpoint address="" binding="netTcpBinding" bindingConfiguration="TestNetTcpBinding" contract="TurakasServiceLibrary.ITeenus">
+              <!-- 
+              Upon deployment, the following identity element should be removed or replaced to reflect the 
+              identity under which the deployed service runs.  If removed, WCF will infer an appropriate identity 
+              automatically.
+          -->
+              <identity>
+                <dns value="localhost" />
+              </identity>
+            </endpoint>
+            <endpoint address="net.tcp://localhost:9001/mex" binding="customBinding" bindingConfiguration="TestMexBinding" contract="IMetadataExchange" />
+            <!-- Metadata Endpoints -->
+            <!-- The Metadata Exchange endpoint is used by the service to describe itself to clients. -->
+            <!-- This endpoint does not use a secure binding and should be secured or removed before deployment -->
+          </service>
+        </services>
+        <bindings>
+          <customBinding>
+            <binding name="TestMexBinding">
+              <tcpTransport maxPendingConnections="20">
+                <connectionPoolSettings groupName="default" maxOutboundConnectionsPerEndpoint="20" />
+              </tcpTransport>
+              <!--<ecurity mode="None"></security>-->
+            </binding>
+          </customBinding>
+          <netTcpBinding>
+            <binding name="TestNetTcpBinding" maxConnections="20">
+              <!--<security mode="None"></security>-->
+            </binding>
+          </netTcpBinding>
+        </bindings>
+        <behaviors>
+          <serviceBehaviors>
+            <behavior>
+              <!-- To avoid disclosing metadata information, 
+          set the values below to false before deployment -->
+              <serviceMetadata httpGetEnabled="false" httpsGetEnabled="false" />
+              <!-- To receive exception details in faults for debugging purposes, 
+          set the value below to true.  Set to false before deployment 
+          to avoid disclosing exception information -->
+              <serviceDebug includeExceptionDetailInFaults="False" />
+            </behavior>
+          </serviceBehaviors>
+        </behaviors>
+      </system.serviceModel>
+      <connectionStrings>
+        <add name="DefaultConnection" connectionString="Data Source = |SQL/CE|" />
+      </connectionStrings>
+    </configSections>
+</configuration>

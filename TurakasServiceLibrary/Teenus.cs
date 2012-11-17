@@ -39,8 +39,13 @@ namespace TurakasServiceLibrary
         {
             throw new NotImplementedException();
         }
-
-        public int getNewGameId(ServicePlayer p)
+  
+        /// <summary>
+        /// returns both, players id and new games id
+        /// </summary>
+        /// <param name="p"> player that initiates the game gets id 1 </param>
+        /// <returns>Returns array id where id[0]= game id and id[1] = player id</returns>
+        public int[] getNewGameId(ServicePlayer p)
         {
             ServiceGame g = new ServiceGame();
             g.Players = new ServicePlayer[6];
@@ -48,12 +53,14 @@ namespace TurakasServiceLibrary
             g.Count = 1;
             g.ID = games.Count + 1;
             games.Add(g);
-            return g.ID;
+            int[] id = { g.ID, 1};
+            return id;
         }
 
-        public void addPlayerToGame(ServiceGame game)
+        public void addPlayerToGame(ServiceGame game, string newPlayer)
         {
-            throw new NotImplementedException();
+            
+
         }
 
         public ServiceCard hit(ServiceCard target, ServiceCard hit)
@@ -62,12 +69,43 @@ namespace TurakasServiceLibrary
         }
 
 
-        public ServiceCard move(ServiceCard card)
+        public ServiceCard move(int card_rank, int card_kind)
         {
             throw new NotImplementedException();
         }
 
-        
+
+
+
+        public int[] getNewGameAndPlayerId(ServicePlayer p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ServiceCard subscribeTogame(int game, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void sendChatMessage(string message, int gameId, int fromID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Subscribe(string user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Unsubscribe()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void gameEnded()
+        {
+            throw new NotImplementedException();
+        }
     }
     public class Subscriber
     {
