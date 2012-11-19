@@ -197,9 +197,10 @@ namespace Turakas.classes
         {
             Game g = listOfGames.ElementAt(gameId - 1);
             //valib juhusliku mängija, kes soovib muudab koodi nõnda, et käib väiksema trumbi omanik
-            Random random = new Random();
-            int playerId = random.Next(0, g.Count);
-            _callbackInterface.OnNotifyFirstMove(playerId);
+            //Random random = new Random();
+            //int playerId = random.Next(0, g.Count);
+            //_callbackInterface.OnNotifyFirstMove(playerId);
+            _callbackInterface.OnNotifyFirstMove(0);
         }
     }
 

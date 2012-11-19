@@ -37,6 +37,7 @@ namespace Turakas.ViewModel
         public PlayerView(string viewerName) {
             this._currentPlayer = new Player(viewerName);
             this._otherPlayers = new List<Player>();
+            this._cardsOnTable = new ObservableCollection<Card>();
             this._interfaceUsed = new MockService();
             this._interfaceUsed.setCallbackInterface(this);
         }
@@ -65,7 +66,14 @@ namespace Turakas.ViewModel
         public Card Trump
         {
             get { return _trump; }
-            set { _trump = value; }
+            set
+            {
+                if (value != this._trump)
+                {
+                    this._trump = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         public ObservableCollection<Card> CardsOnTable
@@ -115,6 +123,7 @@ namespace Turakas.ViewModel
 
         public void addNewPlayer(List<ServiceUser> players)
         {
+            this._currentPlayer.Id = 0;
             if (players == null)
                 return;
             if (_otherPlayers.Count + players.Count <= 5)
@@ -213,5 +222,7 @@ namespace Turakas.ViewModel
         {
             _moveIndex = id;
         }
+
+        
     }
 }

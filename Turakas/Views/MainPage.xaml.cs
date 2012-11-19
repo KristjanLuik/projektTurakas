@@ -36,6 +36,41 @@ namespace Turakas.Views
             
            
         }
+        /// <summary>
+        /// In idea int move should correspond to cards on table (cards on table +1)
+        /// </summary>
+        /// <param name="move"></param>
+        public void setGameArea(int move) {
+            GameAreaGrid.DataContext = _view.CardsOnTable;
+            GameAreaGrid.IsTapEnabled = true;
+            GameAreaGrid.AllowDrop = true;
+            //switch (move) { 
+            //    case 1:
+            //        stkpMove1.AllowDrop = true; break;
+            //    case 2:
+            //        stkpMove11.AllowDrop = true; break;
+            //    case 3:
+            //        stkpMove2.AllowDrop = true; break;
+            //    case 4:
+            //        stkpMove21.AllowDrop = true; break;
+            //    case 5:
+            //        stkpMove3.AllowDrop = true; break;
+            //    case 6:
+            //        stkpMove31.AllowDrop = true; break;
+            //    case 7:
+            //        stkpMove4.AllowDrop = true; break;
+            //    case 8:
+            //        stkpMove41.AllowDrop = true; break;
+            //    case 9:
+            //        stkpMove5.AllowDrop = true; break;
+            //    case 10:
+            //        stkpMove51.AllowDrop = true; break;
+            //    case 11:
+            //        stkpMove6.AllowDrop = true; break;
+            //    case 12:
+            //        stkpMove61.AllowDrop = true; break;
+            //}
+        }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -45,6 +80,8 @@ namespace Turakas.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _view = e.Parameter as PlayerView;
+            setGameArea(_view.CardsOnTable.Count +1);
+            //setCurrentPlayersSettings();
             gridPlayer1.DataContext = _view.CurrentPlayer;
             player1name.Text = _view.CurrentPlayer.Name;
             addImagesToCards();
@@ -52,15 +89,22 @@ namespace Turakas.Views
             {
                 gwPl1Hand.Items.Add(kaart.Image);
             }
+            //////////////////////////////////////////////////////////////////////////////////7
             gwPl1Hand.CanDragItems = true;
             gwPl1Hand.CanReorderItems = true;
+            gwPl1Hand.IsHitTestVisible = true;
             gwPl1Hand.AllowDrop = true;
+            ///////////////////////////////////////////////////////////////////////////////////
             if (_view.MoveIndex == _view.CurrentPlayer.Id)
                 rect1Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
             else
                 rect1Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             //display trump
-            imgTrump.DataContext = _view.Trump.Image;
+            addImageToCard(_view.Trump);
+            vbxTrump.DataContext = _view.Trump;
+            imgTrump.Source = _view.Trump.Image.Source;
+            
+            
             if (_view.OtherPlayers.Count >= 1)
             {
                 gridPlayer2.DataContext = _view.OtherPlayers.ElementAt(0);
@@ -155,13 +199,7 @@ namespace Turakas.Views
         {
             foreach (Card kaart in _view.CurrentPlayer.Hand)
             {
-                StringBuilder fileName = new StringBuilder();
-                fileName.Append(@"/Assets/images/");
-                fileName.Append(kaart.Kind.ToString());
-                fileName.Append(((int)kaart.Rank).ToString());
-                fileName.Append(".png");
-                string fn = fileName.ToString();
-                kaart.Image.Source = ImageFromRelativePath(this, fn);
+                addImageToCard(kaart);
             }
 
         }
@@ -199,5 +237,45 @@ namespace Turakas.Views
                 return;
         }
 
+        public void setCurrentPlayersSettings()
+        {
+            if (_view.CurrentPlayer.Id == _view.MoveIndex)
+            {
+                gwPl1Hand.IsEnabled = true;
+                gwPl1Hand.IsRightTapEnabled = true;
+                gwPl1Hand.IsItemClickEnabled = true;
+                gwPl1Hand.IsTapEnabled = true;
+                gwPl1Hand.SelectionMode = Windows.UI.Xaml.Controls.ListViewSelectionMode.Single;
+                gwPl1Hand.CanDragItems = true;
+                gwPl1Hand.CanReorderItems = true;
+            }
+            else {
+                //gwPl1Hand.IsEnabled = false;
+                gwPl1Hand.IsRightTapEnabled = false;
+                gwPl1Hand.IsItemClickEnabled = false;
+                gwPl1Hand.IsTapEnabled = false;
+                gwPl1Hand.CanDragItems = true;
+                gwPl1Hand.CanReorderItems = true;
+            }
+        }
+
+        private void dragEnter_GameArea(object sender, Windows.UI.Xaml.DragEventArgs e)
+        {
+            //TODO
+        }
+       
+     
+
+        private void cardTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (_view.CardsOnTable.Count % 2 == 0)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
     }
 }
