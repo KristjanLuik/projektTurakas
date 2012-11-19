@@ -11,10 +11,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 
-namespace TurakasLibrary
+namespace Turakas.classes
 {
     public enum CardRank {six=6, seven, eight, nine, ten, jack, queen, king, ace}
-    public enum Kind {c, s, d, h}
+    public enum Kind {c=1, s, d, h}
 
     public class Card
     {
@@ -58,6 +58,13 @@ namespace TurakasLibrary
             //System.Diagnostics.Debug.WriteLine(uri);
             //_image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(uri);
                 //"images/"+_kind.ToString()+_rank.ToString()+".png", UriKind.Relative)); ;
+        }
+        public Card(int kind, int rank)
+        {
+            _kind = (Kind)kind;
+            _rank = (CardRank)rank;
+            _image = new Image();
+            _image.Stretch = Stretch.Fill;
         }
 
         

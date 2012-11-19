@@ -105,11 +105,12 @@
     </Compile>
     <Compile Include="classes\Card.cs" />
     <Compile Include="classes\Deck.cs" />
-    <Compile Include="classes\Game.cs" />
+    <Compile Include="classes\MockService.cs" />
     <Compile Include="classes\GameLogic.cs" />
     <Compile Include="classes\IGameLogic.cs" />
     <Compile Include="classes\IPlayer.cs" />
     <Compile Include="classes\Player.cs" />
+    <Compile Include="classes\ServiceInterface.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
@@ -121,6 +122,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\PlayerView.cs" />
     <Compile Include="Views\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
@@ -255,9 +257,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

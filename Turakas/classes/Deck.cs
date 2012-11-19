@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TurakasLibrary
+namespace Turakas.classes
 {
     class Deck
     {
@@ -37,11 +37,11 @@ namespace TurakasLibrary
             int i = r.Next(4);
             switch (i)
             {
-                case 0:
-                    _trump = Kind.c; break;
                 case 1:
-                    _trump = Kind.d; break;
+                    _trump = Kind.c; break;
                 case 2:
+                    _trump = Kind.d; break;
+                case 3:
                     _trump = Kind.h; break;
                 default:
                     _trump = Kind.s; break;

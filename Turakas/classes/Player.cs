@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Turakas.ServiceReference1;
-
-namespace TurakasLibrary
+namespace Turakas.classes
 {
-    public class Player: IPlayer, ITeenusCallback
+    public class Player : IPlayer
     {
         private List<Card> _hand;
         private string _name;
 
-       
+
         private int _id;
         private string _message;
-        
+
+
         #region propertid
 
         public string Name
@@ -43,10 +42,18 @@ namespace TurakasLibrary
         }
         #endregion
         public Player() { }
-        public Player(string name, int id)
+        public Player(string name)
         {
             _name = name;
-            _id = id;
+            _hand = new List<Card>();
+        }
+
+        public Player(string p1, int p2)
+        {
+            // TODO: Complete member initialization
+            this.Name = p1;
+            this.Id = p2;
+            _hand = new List<Card>();
         }
         /// <summary>
         /// If  allowed moves one card to gameArea and updates Hand property 
@@ -87,30 +94,10 @@ namespace TurakasLibrary
         /// Checks wether player has cards left
         /// </summary>
         /// <returns>true, if player has at least 1 card; false otherwise</returns>
-        public bool hasCards() {
+        public bool hasCards()
+        {
             return false;
         }
-        #region callback implementation
 
-        public void onChatMessage(string from, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void onGetContacts(ObservableCollection<string> contacts)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void onHit(ServiceCard hit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void onMove(ServiceCard card)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
     }
 }

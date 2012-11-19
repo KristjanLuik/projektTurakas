@@ -112,11 +112,15 @@ namespace Turakas.Turakas_XamlTypeInfo
             }
         }
 
-        private object Activate_0_MainPage() { return new global::Turakas.Views.MainPage(); }
+        private object Activate_0_LayoutAwarePage() { return new global::Turakas.Common.LayoutAwarePage(); }
 
-        private object Activate_1_LayoutAwarePage() { return new global::Turakas.Common.LayoutAwarePage(); }
+        private object Activate_1_HelpPage() { return new global::Turakas.Views.HelpPage(); }
 
-        private object Activate_2_StartPage() { return new global::Turakas.Views.StartPage(); }
+        private object Activate_2_MainPage() { return new global::Turakas.Views.MainPage(); }
+
+        private object Activate_3_OptionsPage() { return new global::Turakas.Views.OptionsPage(); }
+
+        private object Activate_4_StartPage() { return new global::Turakas.Views.StartPage(); }
 
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(string typeName)
@@ -134,21 +138,33 @@ namespace Turakas.Turakas_XamlTypeInfo
                 xamlType = new global::Turakas.Turakas_XamlTypeInfo.XamlSystemBaseType(typeName, typeof(global::Windows.UI.Xaml.Controls.UserControl));
                 break;
 
-            case "Turakas.Views.MainPage":
-                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.MainPage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_MainPage;
+            case "Turakas.Common.LayoutAwarePage":
+                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Common.LayoutAwarePage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_0_LayoutAwarePage;
                 xamlType = userType;
                 break;
 
-            case "Turakas.Common.LayoutAwarePage":
-                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Common.LayoutAwarePage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_1_LayoutAwarePage;
+            case "Turakas.Views.HelpPage":
+                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.HelpPage), GetXamlTypeByName("Turakas.Common.LayoutAwarePage"));
+                userType.Activator = Activate_1_HelpPage;
+                xamlType = userType;
+                break;
+
+            case "Turakas.Views.MainPage":
+                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.MainPage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_2_MainPage;
+                xamlType = userType;
+                break;
+
+            case "Turakas.Views.OptionsPage":
+                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.OptionsPage), GetXamlTypeByName("Turakas.Common.LayoutAwarePage"));
+                userType.Activator = Activate_3_OptionsPage;
                 xamlType = userType;
                 break;
 
             case "Turakas.Views.StartPage":
-                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.StartPage), GetXamlTypeByName("Turakas.Common.LayoutAwarePage"));
-                userType.Activator = Activate_2_StartPage;
+                userType = new global::Turakas.Turakas_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::Turakas.Views.StartPage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_4_StartPage;
                 xamlType = userType;
                 break;
 

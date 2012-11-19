@@ -91,6 +91,7 @@ namespace TurakasServiceLibrary
             get { return _nickName; }
             set { _nickName = value; }
         }
+
     }
     [DataContract]
     public class ServiceCard{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TurakasLibrary;
+using Turakas.classes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,6 +22,8 @@ namespace Turakas.Views
     /// </summary>
     public sealed partial class StartPage : Page
     {
+        public  String _playerName;
+
         public StartPage()
         {
             this.InitializeComponent();
@@ -41,10 +43,9 @@ namespace Turakas.Views
             if (inputName.Text == "")
                 return;
             else {
-                Player current = new Player();
-                current.Name = inputName.Text;
-                Game.setCurrentPlayer(current);
-                Frame.Navigate(typeof(OptionsPage));
+                _playerName = inputName.Text;
+                
+                Frame.Navigate(typeof(OptionsPage), _playerName);
             }
         }
 
@@ -56,10 +57,8 @@ namespace Turakas.Views
                     return;
                 else
                 {
-                    Player current = new Player();
-                    current.Name = inputName.Text;
-                    Game.setCurrentPlayer(current);
-                    Frame.Navigate(typeof(OptionsPage));
+                    _playerName = inputName.Text;
+                    Frame.Navigate(typeof(OptionsPage), _playerName);
                 }
             }
             else { return; }

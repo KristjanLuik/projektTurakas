@@ -32,9 +32,10 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:ConnectionId='4' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <Button x:ConnectionId='6' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
-       
+            <TextBlock x:Name="username" Grid.Column="1" HorizontalAlignment="Left" Margin="723,10,0,0" TextWrapping="Wrap" Text="TextBlock" FontSize="36" Height="120" Width="513" FontWeight="Bold" VerticalAlignment="Center"/>
+
         </Grid>
     <Grid  x:Name="lobby" Grid.Column="1" Grid.Row="1" >
             <Grid.Background>
@@ -61,7 +62,7 @@
                 <Button x:ConnectionId='3' x:Name="stkJoin" Grid.Column="0" Grid.Row="2" Style="{StaticResource StartButton}"                      >
                 <Image Source="ms-appx:///Assets/join.png" Stretch="fill" />
                 </Button>
-            <Frame x:Name="frameMain" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Visibility="Visible">
+            <Frame x:Name="frameMain" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed">
             <StackPanel x:Name="stkPicture" >
                 <Viewbox x:Name="vbxPicture" Height="419">
                     <Image Source="ms-appx:///Assets/images/jr.png" Stretch="None"/>
@@ -69,22 +70,47 @@
             </StackPanel>
             </Frame>
             <Frame x:Name="frameStart" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Collapsed" Margin="0,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-               
-                </Grid>
+                <StackPanel>
+                <ListBox x:Name="lbxAddToGame" SelectionMode="Multiple"  ItemsSource="{Binding}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                    <Button x:ConnectionId='5' x:Name="btnPick" Content="Choose"                      />
+                    <!--<ListBox x:Name="lbxAdded" SelectionMode="Multiple"  ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox >-->
+                </StackPanel>
             </Frame>
-                
+            <Frame x:Name="frameJoin" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Visible" Margin="0,0,0,10">
+                <StackPanel>
+                <ListBox x:Name="lbxJoinGame" ItemsSource="{Binding}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Owner}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button x:ConnectionId='4' x:Name="btnPickGame" Content="Choose"                           />
+                </StackPanel>
+            </Frame>
+            <Frame x:Name="frameWait" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Visible" Margin="0,0,0,10">
+                <StackPanel>
+                    <ListBox x:Name="lbxWait" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Frame>
 
         </Grid>
 

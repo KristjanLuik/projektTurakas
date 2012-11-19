@@ -17,7 +17,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock HorizontalAlignment="Left" Margin="58,450,0,0"  TextWrapping="Wrap" Text="Insert youre very cool and unique username" VerticalAlignment="Top" Height="94" Width="469" Foreground="#FFFEFEFE" FontSize="36" FontWeight="Bold"/>
-        <TextBox x:ConnectionId='1' x:Name="inputName" HorizontalAlignment="Left" Margin="776,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Height="94"                                                    />
+        <TextBox x:ConnectionId='1' x:Name="inputName" HorizontalAlignment="Left" Margin="776,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Height="94"                                                     />
 
     </Grid>
 </Page>

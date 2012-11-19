@@ -1,4 +1,7 @@
 ﻿using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,9 +14,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using TurakasLibrary;
 using System.Text;
 using Windows.UI.Xaml.Media.Animation;
+using Turakas.classes;
+using Turakas.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,13 +28,13 @@ namespace Turakas.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        Player pl;
+        public PlayerView _view;
 
         public MainPage()
         {
             this.InitializeComponent();
-            pl = new Player();
-
+            
+           
         }
 
         /// <summary>
@@ -40,13 +44,67 @@ namespace Turakas.Views
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _view = e.Parameter as PlayerView;
+            gridPlayer1.DataContext = _view.CurrentPlayer;
+            player1name.Text = _view.CurrentPlayer.Name;
+            if (_view.OtherPlayers.Count >= 1)
+            {
+                gridPlayer2.DataContext = _view.OtherPlayers.ElementAt(0);
+                player2_name.Text = _view.OtherPlayers.ElementAt(0).Name;
+            }
+            else
+            {
+                gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer4.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer3.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer2.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            if (_view.OtherPlayers.Count >= 2)
+            {
+                gridPlayer3.DataContext = _view.OtherPlayers.ElementAt(1);
+                player3_name.Text = _view.OtherPlayers.ElementAt(1).Name;
+            }
+            else
+            {
+                gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer4.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer3.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            if (_view.OtherPlayers.Count >= 3)
+            {
+                gridPlayer4.DataContext = _view.OtherPlayers.ElementAt(2);
+                player4name.Text = _view.OtherPlayers.ElementAt(2).Name;
+            }
+            else
+            {
+                gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer4.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            if (_view.OtherPlayers.Count >= 4)
+            {
+                gridPlayer5.DataContext = _view.OtherPlayers.ElementAt(3);
+                player5name.Text = _view.OtherPlayers.ElementAt(3).Name;
+            }
+            else { 
+                gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridPlayer5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            if (_view.OtherPlayers.Count >= 5)
+            {
+                gridPlayer6.DataContext = _view.OtherPlayers.ElementAt(4);
+                player6name.Text = _view.OtherPlayers.ElementAt(4).Name;
+            }
+            else { gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed; }
         }
 
         private void btnDisplay_Click(object sender, RoutedEventArgs e)
         {
+            _view.deal();
             addImagesToCards();
-
-            foreach (Card kaart in pl.Hand)
+            foreach (Card kaart in _view.CurrentPlayer.Hand)
             {
                 gwPl1Hand.Items.Add(kaart.Image);
             }
@@ -60,7 +118,7 @@ namespace Turakas.Views
         /// </summary>
         public void addImagesToCards()
         {
-            foreach (Card kaart in pl.Hand)
+            foreach (Card kaart in _view.CurrentPlayer.Hand)
             {
                 StringBuilder fileName = new StringBuilder();
                 fileName.Append(@"/Assets/images/");

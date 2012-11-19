@@ -32,7 +32,6 @@ C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\obj\Debug\ProjectArchitecture
 C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\obj\Debug\Views\HelpPage.g.i.cs
 C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\obj\Debug\Views\HelpPage.g.cs
 C:\Users\katrepaabo\Desktop\TurakasLibrary\MinuApp\obj\Debug\Views\HelpPage.xaml
-C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Turakas.csprojResolveAssemblyReference.cache
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\App.g.i.cs
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\App.g.cs
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Common\StandardStyles.g.i.cs
@@ -58,11 +57,7 @@ C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\resources.pri
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\AppxManifest.xml
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.build.appxrecipe
-C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.dll
-C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.pdb
-C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.pri
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Turakas.pdb
-C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Turakas.csproj.GenerateResource.Cache
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\priconfig.xml.intermediate
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\layout.resfiles.intermediate
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\resources.resfiles.intermediate

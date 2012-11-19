@@ -14,7 +14,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
-using TurakasLibrary;
+using Turakas.classes;
+using Turakas.ViewModel;
+using System.Collections.ObjectModel;
 
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -26,39 +28,28 @@ namespace Turakas.Views
     /// </summary>
     public sealed partial class OptionsPage : Turakas.Common.LayoutAwarePage
     {
-        string connectionProfileList;
-        private Game _game;
-
-        public Game Game
-        {
-            get { return _game; }
-            set { _game = value; }
-        }
+        string _playerName;
+        public PlayerView view;
 
         public OptionsPage()
         {
             this.InitializeComponent();
         }
 
-        /// <summary>
-        /// Populates the page with content passed during navigation.  Any saved state is also
-        /// provided when recreating a page from a prior session.
-        /// </summary>
-        /// <param name="navigationParameter">The parameter value passed to
-        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
-        /// </param>
-        /// <param name="pageState">A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
+            _playerName = e.Parameter as string;
 
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
+            if (!string.IsNullOrWhiteSpace(_playerName))
+            {
+                username.Text = "Hello, " + _playerName;
+            }
+            else
+            {
+                username.Text = "Name is required.  Go back and enter a name.";
+            }
+        }
+      
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
@@ -68,18 +59,37 @@ namespace Turakas.Views
             Frame.Navigate(typeof(HelpPage));
         }
 
-        private void stkStart_Click(object sender, RoutedEventArgs e)
+        private async void stkStart_Click(object sender, RoutedEventArgs e)
         {
             frameMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             frameStart.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            frameJoin.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            //Frame.Navigate(typeof(MainPage), _playerName);
+            view = new PlayerView(_playerName);
+            ObservableCollection<ServiceUser> joiners = new ObservableCollection<ServiceUser>();
+            List<ServiceUser> listJoin = view.getJoiners();
+            foreach (ServiceUser p in listJoin)
+            {
+                joiners.Add(p);
+            }
+            lbxAddToGame.DataContext =joiners;
             //populate joiners list
-            //Game.getCurrentPlayer().
+            
         }
         
 
         private void stkJoin_Click(object sender, RoutedEventArgs e)
         {
-            //TODO display all initiated games (not yet started)
+            frameMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            frameStart.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            frameJoin.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            //Frame.Navigate(typeof(MainPage), _playerName);
+            if (view == null || !view.CurrentPlayer.Name.Equals(_playerName))
+            {
+                view = new PlayerView(_playerName);
+            }
+            ObservableCollection<Game> games = view.getGames();
+            lbxJoinGame.DataContext = games;
         }
 
        
@@ -116,6 +126,45 @@ namespace Turakas.Views
         private void stkStart_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
 
+        }
+        private void btnPick_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbxAddToGame.SelectedItems.Count != 0)
+            {
+                List<ServiceUser> selected = new List<ServiceUser>();
+                for (int i = lbxAddToGame.SelectedItems.Count - 1; i >= 0; i--)
+                {
+                    selected.Add(lbxAddToGame.SelectedItems[i] as ServiceUser);
+                }
+                view.addNewPlayer(selected);
+                // lbxAdded.DataContext = view.OtherPlayers;
+                view.initGame();
+                Frame.Navigate(typeof(MainPage), view);
+            }
+            else {
+                /////////////////////////////////////////////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //DELETE IF PROJECT IS FINISHED!
+                throw new ArgumentException("For some reason listbox items did not get selected");
+            }
+
+        }
+
+        private void btnPickGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbxJoinGame.SelectedItems.Count != 0)
+            {
+                Game game = (Game) lbxJoinGame.SelectedItem;
+                view.applyForSelectedGame(_playerName, game);
+                frameWait.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                frameJoin.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                lbxWait.DataContext = view.getOtherApplyers(game);
+            }
+            else
+            {
+                /////////////////////////////////////////////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //DELETE IF PROJECT IS FINISHED!
+                throw new ArgumentException("For some reason listbox items did not get selected");
+            }
         }
 
         

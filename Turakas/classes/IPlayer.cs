@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TurakasLibrary
+namespace Turakas.classes
 {
     /// <summary>
     /// Interface for descibing players actions
