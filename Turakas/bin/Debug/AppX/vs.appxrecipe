@@ -22,11 +22,11 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.exe">
       <PackagePath>Turakas.exe</PackagePath>
-      <Modified>2012-11-19T11:17:23.494</Modified>
+      <Modified>2012-11-19T16:15:27.404</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb">
       <PackagePath>Turakas.pdb</PackagePath>
-      <Modified>2012-11-19T11:17:23.475</Modified>
+      <Modified>2012-11-19T16:15:27.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
@@ -282,7 +282,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\MainPage.xaml">
       <PackagePath>Views\MainPage.xaml</PackagePath>
-      <Modified>2012-11-19T11:17:18.722</Modified>
+      <Modified>2012-11-19T13:44:34.939</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\OptionsPage.xaml">
       <PackagePath>Views\OptionsPage.xaml</PackagePath>

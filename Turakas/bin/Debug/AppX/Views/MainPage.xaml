@@ -30,8 +30,8 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         
-        <Button x:ConnectionId='1' Name ="btnDisplay" Content="Deal" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top"                          Grid.Row="0" />
-
+        <!--Button Name ="btnDisplay" Content="Deal" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Click="btnDisplay_Click" Grid.Row="0" Visibility="Collapsed" /-->
+        <Button x:ConnectionId='1' Name ="btnEndGame" Content="End" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top"                          Grid.Row="0" />
         <Grid x:Name="gridPlayer4"
                 Width="auto"
                 Height="auto"
@@ -43,9 +43,9 @@
                 <RowDefinition
                         Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="player4name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 4             " VerticalAlignment="Top" FontSize="36" LineHeight="6"/>
+            <TextBlock Name="player4name"   Grid.Row="0" HorizontalAlignment="Right" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 4             " VerticalAlignment="Top" FontSize="36" LineHeight="6"/>
             <Rectangle x:Name="rect2Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl4CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Left" ></Image>    
+            <Image x:Name="pl4CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Left" ></Image>
         </Grid>
                 <Grid x:Name="gridPlayer3"
                 Width="auto"
@@ -58,7 +58,7 @@
                     <RowDefinition
                         Height="1*" />
                 </Grid.RowDefinitions>
-            <TextBlock Name="player3_name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 3" VerticalAlignment="Top" FontSize="36"/>
+            <TextBlock Name="player3_name"   Grid.Row="0" HorizontalAlignment="Right" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 3" VerticalAlignment="Top" FontSize="36"/>
             <Rectangle x:Name="rect3Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
             <Image x:Name="pl3CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Left" ></Image>
         </Grid>
@@ -66,17 +66,23 @@
         <Grid x:Name="gridPlayer2"
                 Width="auto"
                 Height="auto"
-                Grid.Column="1"
-                Grid.Row="0" HorizontalAlignment="Center">
+                Grid.Row="0" HorizontalAlignment="Center"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                        Width="1*" />
+                <ColumnDefinition
+                        Width="1*" />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition
                         Height="5*" />
                 <RowDefinition
                         Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="player2_name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 2" VerticalAlignment="Top" FontSize="36"/>
-            <Rectangle x:Name="rect4Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl2CardImage" Source="ms-appx:///Assets/images/b2fv.png" Stretch="None" HorizontalAlignment="Right" ></Image>
+            <TextBlock Name="player2_name"   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="player 2" VerticalAlignment="Center" FontSize="36"/>
+            <Rectangle x:Name="rect4Action"  Grid.Row="1" Grid.ColumnSpan="2" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
+            <Image x:Name="pl2CardImage" Grid.Row="0" Grid.Column="2" Source="ms-appx:///Assets/images/b2fv.png" Stretch="None" HorizontalAlignment="Right" ></Image>
         </Grid>
         <Grid x:Name="gridPlayer5"
                 Width="auto"
@@ -172,11 +178,13 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="player1name" Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
-            <Rectangle x:Name="rect1Action" Grid.Row="0"  Grid.Column="1"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646" Margin="0,0,273,0"  ></Rectangle>
-            <GridView x:Name="gwPl1Hand" Grid.Row="1"  Grid.ColumnSpan="2" ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch">
+            <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
+            <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646" Margin="0,0,273,0"  ></Rectangle>
+            
+            <GridView x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2" ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch">
                 <GridView.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>
@@ -192,7 +200,7 @@
                 </GridView.ItemsPanel>
             </GridView>
         </Grid>
-            
+        <Image x:Name="imgTrump" Source="{Binding}" Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Right" ></Image>
 
     </Grid>
 </Page>

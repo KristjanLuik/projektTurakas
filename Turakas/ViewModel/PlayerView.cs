@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Turakas.classes;
@@ -10,16 +12,26 @@ namespace Turakas.ViewModel
 {
     //public delegate List<string> generateJoinersList();
 
-    public class PlayerView:IServiceCallbackInterface
+    public class PlayerView:IServiceCallbackInterface, INotifyPropertyChanged
     {
         private ObservableCollection<Card> _cardsOnTable;
         private List<Player> _otherPlayers;
         private Player _currentPlayer;
         public IServiceInterface _interfaceUsed;
         private int _gameId;
-        private Kind _trump;
+        private Card _trump;
+        private int _moveIndex;
+        private int _hitIndex;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         #region constructors
 
         public PlayerView(string viewerName) {
@@ -32,8 +44,25 @@ namespace Turakas.ViewModel
         #endregion
 
         #region propertid
+       
+        public int HitIndex
+        {
+            get { return _hitIndex; }
+            set { _hitIndex = value; }
+        }
 
-        public Kind Trump
+        public int MoveIndex
+        {
+            get { return _moveIndex; }
+            set {
+                if (value != this._moveIndex)
+                {
+                    this._moveIndex = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        public Card Trump
         {
             get { return _trump; }
             set { _trump = value; }
@@ -136,14 +165,21 @@ namespace Turakas.ViewModel
         public void initGame() {
             _interfaceUsed.initGameDeck(_gameId);
             _interfaceUsed.shuffle(_gameId);
+            deal();
         }
 
         public void deal() {
             _interfaceUsed.dealCards(_gameId);
+            _interfaceUsed.notifyFirstMove(_gameId);
         }
-        public void doSomething(string parameter)
+        public int endPressed()
         {
-            // Do someting
+           int id = _interfaceUsed.removeFromGame(_gameId,new ServiceUser(_currentPlayer.Name, _currentPlayer.Id)) ;
+           if (id != 0)
+           {
+               _otherPlayers.RemoveAt(id-1);
+           }
+           return id;
         }
         public Card serviseCardToCard(ServiceCard arg) {
             Card card = new Card(arg.Kind, arg.Rank);
@@ -152,7 +188,7 @@ namespace Turakas.ViewModel
 
         public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId)
         {
-            _trump = serviseCardToCard(trump).Kind;
+            _trump = serviseCardToCard(trump);
             if (playerId == 0)
             {
                 foreach (ServiceCard sc in cards)
@@ -173,6 +209,9 @@ namespace Turakas.ViewModel
             }
         }
 
-
+        public void OnNotifyFirstMove(int id)
+        {
+            _moveIndex = id;
+        }
     }
 }

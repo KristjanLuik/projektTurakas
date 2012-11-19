@@ -47,10 +47,28 @@ namespace Turakas.Views
             _view = e.Parameter as PlayerView;
             gridPlayer1.DataContext = _view.CurrentPlayer;
             player1name.Text = _view.CurrentPlayer.Name;
+            addImagesToCards();
+            foreach (Card kaart in _view.CurrentPlayer.Hand)
+            {
+                gwPl1Hand.Items.Add(kaart.Image);
+            }
+            gwPl1Hand.CanDragItems = true;
+            gwPl1Hand.CanReorderItems = true;
+            gwPl1Hand.AllowDrop = true;
+            if (_view.MoveIndex == _view.CurrentPlayer.Id)
+                rect1Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            else
+                rect1Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            //display trump
+            imgTrump.DataContext = _view.Trump.Image;
             if (_view.OtherPlayers.Count >= 1)
             {
                 gridPlayer2.DataContext = _view.OtherPlayers.ElementAt(0);
                 player2_name.Text = _view.OtherPlayers.ElementAt(0).Name;
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(0).Id)
+                    rect2Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    rect2Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else
             {
@@ -64,6 +82,10 @@ namespace Turakas.Views
             {
                 gridPlayer3.DataContext = _view.OtherPlayers.ElementAt(1);
                 player3_name.Text = _view.OtherPlayers.ElementAt(1).Name;
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(1).Id)
+                    rect3Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    rect3Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else
             {
@@ -71,11 +93,16 @@ namespace Turakas.Views
                 gridPlayer5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 gridPlayer4.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 gridPlayer3.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
             }
             if (_view.OtherPlayers.Count >= 3)
             {
                 gridPlayer4.DataContext = _view.OtherPlayers.ElementAt(2);
                 player4name.Text = _view.OtherPlayers.ElementAt(2).Name;
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(2).Id)
+                    rect4Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    rect4Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else
             {
@@ -87,6 +114,10 @@ namespace Turakas.Views
             {
                 gridPlayer5.DataContext = _view.OtherPlayers.ElementAt(3);
                 player5name.Text = _view.OtherPlayers.ElementAt(3).Name;
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(3).Id)
+                    rect5Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    rect5Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else { 
                 gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -96,6 +127,10 @@ namespace Turakas.Views
             {
                 gridPlayer6.DataContext = _view.OtherPlayers.ElementAt(4);
                 player6name.Text = _view.OtherPlayers.ElementAt(4).Name;
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(4).Id)
+                    rect6Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    rect6Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else { gridPlayer6.Visibility = Windows.UI.Xaml.Visibility.Collapsed; }
         }
@@ -131,6 +166,16 @@ namespace Turakas.Views
 
         }
 
+        public void addImageToCard(Card c) {
+            StringBuilder fileName = new StringBuilder();
+            fileName.Append(@"/Assets/images/");
+            fileName.Append(c.Kind.ToString());
+            fileName.Append(((int)c.Rank).ToString());
+            fileName.Append(".png");
+            string fn = fileName.ToString();
+            c.Image.Source = ImageFromRelativePath(this, fn);
+        }
+
         /// <summary>
         /// Thank you StackOverFlow! Uses relative URI string to get the BitmapImage from file.
         /// </summary>
@@ -143,6 +188,15 @@ namespace Turakas.Views
             Windows.UI.Xaml.Media.Imaging.BitmapImage result = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
             result.UriSource = uri;
             return result;
+        }
+
+        private void btnEndGame_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            int id = _view.endPressed();
+            if (id == 0)
+                Frame.Navigate(typeof(OptionsPage), _view.CurrentPlayer.Name);
+            else
+                return;
         }
 
     }

@@ -48,6 +48,9 @@ namespace Turakas.Views
             {
                 username.Text = "Name is required.  Go back and enter a name.";
             }
+            frameMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            frameStart.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            frameJoin.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
       
         protected override void SaveState(Dictionary<String, Object> pageState)

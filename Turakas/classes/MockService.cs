@@ -139,7 +139,7 @@ namespace Turakas.classes
                 }
             }
             g.TopCardIndex = g.Deck.Length - 1;
-            
+            g.State = 1; //game has started
             //this._callbackInterface.doSomething("Plah!");
         }
 
@@ -166,6 +166,40 @@ namespace Turakas.classes
                 this._callbackInterface.OnDeal(cards, g.Deck[0], g.Players[i].Id);
             }
             g.TopCardIndex = deckIndex;
+        }
+
+
+        public int removeFromGame(int gameId, ServiceUser player)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            ServiceUser p;
+            if (player.Name.Equals(g.Players[0].Name) && player.Id.Equals(g.Players[0].Id))
+            {
+                listOfGames.Remove(g);
+                return 0;
+            }
+            else {
+                for(int i=0; i<6;i++)
+                {
+                    p = g.Players[i];
+                    if (p.Id.Equals(player.Id) && p.Name.Equals(player.Name))
+                    {
+                        g.Players[i] = null;
+                        g.Count = g.Count - 1;
+                        return p.Id;
+                    }
+                }
+            } return 0;
+        }
+
+
+        public void notifyFirstMove(int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            //valib juhusliku mängija, kes soovib muudab koodi nõnda, et käib väiksema trumbi omanik
+            Random random = new Random();
+            int playerId = random.Next(0, g.Count);
+            _callbackInterface.OnNotifyFirstMove(playerId);
         }
     }
 
