@@ -4,17 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 namespace Turakas.classes
 {
-    public class Player : IPlayer
+    public class Player : IPlayer, INotifyPropertyChanged
     {
-        private List<Card> _hand;
+        private ObservableCollection<Card> _hand;
         private string _name;
-
-
         private int _id;
         private string _message;
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         #region propertid
 
@@ -35,17 +43,22 @@ namespace Turakas.classes
             set { _id = value; }
         }
 
-        public List<Card> Hand
+        public ObservableCollection<Card> Hand
         {
             get { return _hand; }
-            set { _hand = value; }
+            set { 
+                if(!value.Equals(_hand)){
+                    _hand = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
         #endregion
         public Player() { }
         public Player(string name)
         {
             _name = name;
-            _hand = new List<Card>();
+            _hand = new ObservableCollection<Card>();
         }
 
         public Player(string p1, int p2)
@@ -53,22 +66,24 @@ namespace Turakas.classes
             // TODO: Complete member initialization
             this.Name = p1;
             this.Id = p2;
-            _hand = new List<Card>();
+            _hand = new ObservableCollection<Card>();
         }
-        /// <summary>
-        /// If  allowed moves one card to gameArea and updates Hand property 
-        /// </summary>
-        /// <returns>bool value indicateing wether the move is made</returns>
-        public bool makeMove(Card card)
+        
+        public void makeMove(Card card)
         {
-            //TODO:
-            return false;
+            foreach (Card c in _hand) {
+                if (card.Kind.Equals(c.Kind) && card.Rank.Equals(c.Rank))
+                {
+                    Hand.Remove(c);
+                    return;
+                }
+            }
         }
         /// <summary>
         /// Checks wether player is to hit and if so allowes to pick up by clearing the game area.
         /// </summary>
         /// <returns>List of picked up cards</returns>
-        public List<Card> pickUp()
+        public ObservableCollection<Card> pickUp()
         {
             //TODO:
             return this._hand;
@@ -86,7 +101,7 @@ namespace Turakas.classes
         /// removes cards from Hand or adds cards to it.
         /// </summary>
         /// <param name="arg">cards to add or remove </param>
-        public void updateHand(List<Card> arg)
+        public void updateHand(ObservableCollection<Card> arg)
         {
 
         }

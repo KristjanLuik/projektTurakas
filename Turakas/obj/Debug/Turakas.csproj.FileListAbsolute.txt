@@ -64,3 +64,7 @@ C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\resources.resfiles
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\pri.resfiles
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\LanguageQualifiers.txt
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\ProjectArchitectures.txt
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\priconfig.xml.intermediate
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\layout.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\resources.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\pri.resfiles.intermediate

@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-19T21:06:24.784</Modified>
+      <Modified>2012-11-20T11:15:29.496</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.exe">
       <PackagePath>Turakas.exe</PackagePath>
-      <Modified>2012-11-19T21:07:13.783</Modified>
+      <Modified>2012-11-20T15:05:16.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb">
       <PackagePath>Turakas.pdb</PackagePath>
-      <Modified>2012-11-19T21:07:13.764</Modified>
+      <Modified>2012-11-20T15:05:16.088</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
@@ -274,7 +274,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Common\StandardStyles.xaml">
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
-      <Modified>2012-11-04T22:48:17.884</Modified>
+      <Modified>2012-11-20T11:11:36.078</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\HelpPage.xaml">
       <PackagePath>Views\HelpPage.xaml</PackagePath>
@@ -282,7 +282,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\MainPage.xaml">
       <PackagePath>Views\MainPage.xaml</PackagePath>
-      <Modified>2012-11-19T21:01:53.521</Modified>
+      <Modified>2012-11-20T14:28:23.956</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\OptionsPage.xaml">
       <PackagePath>Views\OptionsPage.xaml</PackagePath>

@@ -22,6 +22,7 @@ namespace Turakas.ViewModel
         private Card _trump;
         private int _moveIndex;
         private int _hitIndex;
+        private int _moveNr;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -40,12 +41,19 @@ namespace Turakas.ViewModel
             this._cardsOnTable = new ObservableCollection<Card>();
             this._interfaceUsed = new MockService();
             this._interfaceUsed.setCallbackInterface(this);
+            this._moveNr = 1;
         }
 
         #endregion
 
         #region propertid
-       
+
+
+        public int MoveNr
+        {
+            get { return _moveNr; }
+            set { _moveNr = value; }
+        }
         public int HitIndex
         {
             get { return _hitIndex; }
@@ -56,7 +64,7 @@ namespace Turakas.ViewModel
         {
             get { return _moveIndex; }
             set {
-                if (value != this._moveIndex)
+                if (!value.Equals(this._moveIndex))
                 {
                     this._moveIndex = value;
                     NotifyPropertyChanged();
@@ -79,7 +87,12 @@ namespace Turakas.ViewModel
         public ObservableCollection<Card> CardsOnTable
         {
             get { return _cardsOnTable; }
-            set { _cardsOnTable = value; }
+            set {
+                if (value != _cardsOnTable)
+                {
+                    this._cardsOnTable = value;
+                    NotifyPropertyChanged();
+                }}
         }
         public int GameId
         {
@@ -89,7 +102,11 @@ namespace Turakas.ViewModel
         public Player CurrentPlayer
         {
             get { return _currentPlayer; }
-            set { _currentPlayer = value; }
+            set { 
+                if(value != _currentPlayer){
+                _currentPlayer = value;
+                NotifyPropertyChanged();
+            }}
         }
         public List<Player> OtherPlayers
         {

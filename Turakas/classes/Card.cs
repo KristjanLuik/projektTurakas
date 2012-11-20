@@ -66,7 +66,19 @@ namespace Turakas.classes
             _image = new Image();
             _image.Stretch = Stretch.Fill;
         }
-
+        public Card(Image im)
+        {
+            string name = im.Name;
+            name = name.Trim();
+            string kind = name.Substring(0, 1);
+            Kind kindVal = (Kind)Enum.Parse(typeof(Kind), kind);
+            string rank = name.Substring(1, name.Length - 1);
+            CardRank rankVal = (CardRank)Enum.Parse(typeof(CardRank), rank);
+            _kind = kindVal;
+            _rank = rankVal;
+            _image = new Image();
+            _image.Stretch = Stretch.Fill;
+        }
         
     }
 }

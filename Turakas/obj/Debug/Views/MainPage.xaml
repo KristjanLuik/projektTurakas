@@ -32,7 +32,7 @@
         
         <!--Button Name ="btnDisplay" Content="Deal" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Click="btnDisplay_Click" Grid.Row="0" Visibility="Collapsed" /-->
         <StackPanel  Grid.Row="0"  Grid.Column="0">
-        <Button x:ConnectionId='3' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
+        <Button x:ConnectionId='2' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
         <Viewbox x:Name="vbxTrump" Stretch="Uniform" >
             <Image x:Name="imgTrump"   HorizontalAlignment="Right" ></Image>
             </Viewbox>
@@ -120,12 +120,12 @@
             <Image x:Name="pl6CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Right" ></Image>
 
         </Grid>
-        <Grid x:ConnectionId='1' x:Name="GameAreaGrid"
+        <Grid x:Name="GameAreaGrid"
                 Width="auto"
                 Height="auto"
                 Background="YellowGreen"
                 Grid.Column="1"
-                Grid.Row="1" Grid.RowSpan="2"                               >
+                Grid.Row="1" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                         Width="1*" />
@@ -140,25 +140,82 @@
                 <ColumnDefinition
                         Width="1*" />
             </Grid.ColumnDefinitions>
-            
-            <ListView x:Name="move12" Grid.Column="0">
-                <ItemsPanelTemplate> </ItemsPanelTemplate>
-            </ListView>
-            <ListView x:Name="move34" Grid.Column="1">
-                <ItemsPanelTemplate></ItemsPanelTemplate>
-            </ListView>
-            <ListView x:Name="move56" Grid.Column="2">
-                <ItemsPanelTemplate></ItemsPanelTemplate>
-            </ListView>
-            <ListView x:Name="move78" Grid.Column="3">
-                <ItemsPanelTemplate></ItemsPanelTemplate>
-            </ListView>
-            <ListView x:Name="move910" Grid.Column="4">
-                <ItemsPanelTemplate></ItemsPanelTemplate>
-            </ListView>
-            <ListView x:Name="move1112" Grid.Column="5">
-                <ItemsPanelTemplate></ItemsPanelTemplate>
-            </ListView>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                    x:Name="stkpMove1"
+                    Grid.Column="0"
+                    Grid.Row="0" >
+                <Image x:Name="move1" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove11"
+                    Grid.Column="0"
+                    Grid.Row="1" >
+                <Image x:Name="hit1" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove2"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                <Image x:Name="move2" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove21"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                <Image x:Name="hit2" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove3"
+                    Grid.Column="2"
+                    Grid.Row="0" >
+                <Image x:Name="move3" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove31"
+                    Grid.Column="2"
+                    Grid.Row="1" >
+                <Image x:Name="hit3" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove4"
+                    Grid.Column="3"
+                    Grid.Row="0" >
+                <Image x:Name="move4" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove41"
+                    Grid.Column="3"
+                    Grid.Row="1" >
+                <Image x:Name="hit4" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove5"
+                    Grid.Column="4"
+                    Grid.Row="0" >
+                <Image x:Name="move5" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove51"
+                    Grid.Column="4"
+                    Grid.Row="1" >
+                <Image x:Name="hit5" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove6"
+                    Grid.Column="5"
+                    Grid.Row="0" >
+                <Image x:Name="move6" Source="{Binding}"></Image>
+            </StackPanel>
+            <StackPanel
+                    x:Name="stkpMove61"
+                    Grid.Column="5"
+                    Grid.Row="1" >
+                <Image x:Name="hit6" Source="{Binding}"></Image>
+            </StackPanel>
         </Grid>
 
         <Grid x:Name="gridPlayer1"
@@ -180,7 +237,9 @@
             <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
             <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646" ></Rectangle>
             
-            <GridView x:ConnectionId='2' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2" ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    >
+            <GridView x:ConnectionId='1' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2" ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
+                      AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center" 
+                                                                              >
                 <GridView.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>
@@ -190,8 +249,7 @@
                 <GridView.ItemsPanel>
 
                     <ItemsPanelTemplate >
-                        <WrapGrid Name="wrGrid"  Orientation="Horizontal"/>
-
+                        <WrapGrid Name="wrGrid" Orientation="Horizontal"  />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>

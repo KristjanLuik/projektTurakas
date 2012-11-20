@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,10 @@ namespace Turakas.classes
     /// </summary>
     interface IPlayer
     {
-        bool makeMove(Card card);
-        List<Card> pickUp();
+        void makeMove(Card card);
+        ObservableCollection<Card> pickUp();
         bool hit(Card target,Card hit);
-        void updateHand(List<Card> arg);
+        void updateHand(ObservableCollection<Card> arg);
         bool hasCards();
 
     }

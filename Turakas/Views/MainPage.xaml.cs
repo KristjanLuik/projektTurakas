@@ -7,13 +7,10 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using System.Text;
 using Windows.UI.Xaml.Media.Animation;
 using Turakas.classes;
@@ -44,6 +41,13 @@ namespace Turakas.Views
             GameAreaGrid.DataContext = _view.CardsOnTable;
             GameAreaGrid.IsTapEnabled = true;
             GameAreaGrid.AllowDrop = true;
+
+            
+            //move12.DataContext = _view.CardsOnTable;
+            //foreach (Card kaart in _view.CardsOnTable)
+            //{
+            //    move12.Items.Add(kaart.Image);
+            //}
             //switch (move) { 
             //    case 1:
             //        stkpMove1.AllowDrop = true; break;
@@ -85,6 +89,9 @@ namespace Turakas.Views
             gridPlayer1.DataContext = _view.CurrentPlayer;
             player1name.Text = _view.CurrentPlayer.Name;
             addImagesToCards();
+            gwPl1Hand.DataContext = _view.CurrentPlayer.Hand;
+
+            
             foreach (Card kaart in _view.CurrentPlayer.Hand)
             {
                 gwPl1Hand.Items.Add(kaart.Image);
@@ -206,12 +213,16 @@ namespace Turakas.Views
 
         public void addImageToCard(Card c) {
             StringBuilder fileName = new StringBuilder();
+            StringBuilder iName = new StringBuilder();
             fileName.Append(@"/Assets/images/");
             fileName.Append(c.Kind.ToString());
+            iName.Append(((int)c.Kind).ToString());
             fileName.Append(((int)c.Rank).ToString());
+            iName.Append(((int)c.Rank).ToString());
             fileName.Append(".png");
             string fn = fileName.ToString();
             c.Image.Source = ImageFromRelativePath(this, fn);
+            c.Image.Name = iName.ToString();
         }
 
         /// <summary>
@@ -263,14 +274,76 @@ namespace Turakas.Views
         {
             //TODO
         }
-       
-     
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private StackPanel getNextSlot(int move) {
+            switch (move) { 
+                case 1:
+                    return stkpMove1;
+                case 2:
+                    return stkpMove11;
+                case 3:
+                    return stkpMove2;
+                case 4:
+                    return stkpMove21;
+                case 5:
+                    return stkpMove3;
+                case 6:
+                    return stkpMove31;
+                case 7:
+                    return stkpMove4;
+                case 8:
+                    return stkpMove41;
+                case 9:
+                    return stkpMove5;
+                case 10:
+                    return stkpMove51;
+                case 11:
+                    return stkpMove6;
+                default:
+                    return stkpMove61;
+        }
+        }
+        private void GridViewDragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            var item = e.Items.FirstOrDefault();
+            if (item == null)
+                return;
+            var card = gwPl1Hand.SelectedItem;
+            e.Data.Properties.Add("item", item);
+            e.Data.Properties.Add("card", card);
+            e.Data.Properties.Add("gridSource", sender);
+        }
+
+        private void GridViewDrop(object sender, DragEventArgs e)
+        {
+            object gridSource;
+            e.Data.Properties.TryGetValue("gridSource", out gridSource);
+
+            //if (gridSource == sender)
+            //  return;
+
+            object sourceItem;
+            e.Data.Properties.TryGetValue("item", out sourceItem);
+            // if (sourceItem == null)
+            //   return;
+            object movedCard;
+            e.Data.Properties.TryGetValue("card", out movedCard);
+
+            _view.CardsOnTable.Add((Card)movedCard);
+        }
 
         private void cardTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (_view.CardsOnTable.Count % 2 == 0)
+            if (_view.CardsOnTable.Count % 2 == 0 || _view.CardsOnTable.Count % 2 == 1)
             {
-                
+                Card tappedCard = new Card(gwPl1Hand.SelectedItem as Image);
+                addImageToCard(tappedCard);
+                _view.CardsOnTable.Add(tappedCard);
+                StackPanel slot = getNextSlot(_view.MoveNr);
+                (slot.Children.FirstOrDefault() as Image).Source = (gwPl1Hand.SelectedItem as Image).Source;
+                _view.MoveNr += 1;
+                _view.CurrentPlayer.makeMove(tappedCard);
+                gwPl1Hand.Items.Remove(gwPl1Hand.SelectedItem);
             }
             else
             {
