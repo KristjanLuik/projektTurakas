@@ -121,11 +121,12 @@
 
         </Grid>
         <Grid x:Name="GameAreaGrid"
+              DataContext="{Binding}"
                 Width="auto"
                 Height="auto"
                 Background="YellowGreen"
                 Grid.Column="1"
-                Grid.Row="1" Grid.RowSpan="2">
+                Grid.Row="1" Grid.RowSpan="3" Margin="0,21,0,286">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                         Width="1*" />
@@ -237,7 +238,7 @@
             <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
             <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646" ></Rectangle>
             
-            <GridView x:ConnectionId='1' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2" ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
+            <GridView x:ConnectionId='1' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
                       AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center" 
                                                                               >
                 <GridView.Background>

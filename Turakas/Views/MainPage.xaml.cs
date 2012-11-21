@@ -15,6 +15,8 @@ using System.Text;
 using Windows.UI.Xaml.Media.Animation;
 using Turakas.classes;
 using Turakas.ViewModel;
+using System.ComponentModel;
+using System.Collections.Specialized;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +28,7 @@ namespace Turakas.Views
     public sealed partial class MainPage : Page
     {
         public PlayerView _view;
+        private IObservableVector<Card> cardsOnGameArea;
 
         public MainPage()
         {
@@ -88,14 +91,7 @@ namespace Turakas.Views
             //setCurrentPlayersSettings();
             gridPlayer1.DataContext = _view.CurrentPlayer;
             player1name.Text = _view.CurrentPlayer.Name;
-            addImagesToCards();
-            gwPl1Hand.DataContext = _view.CurrentPlayer.Hand;
-
-            
-            foreach (Card kaart in _view.CurrentPlayer.Hand)
-            {
-                gwPl1Hand.Items.Add(kaart.Image);
-            }
+            setHandDisplay();
             //////////////////////////////////////////////////////////////////////////////////7
             gwPl1Hand.CanDragItems = true;
             gwPl1Hand.CanReorderItems = true;
@@ -224,13 +220,26 @@ namespace Turakas.Views
             c.Image.Source = ImageFromRelativePath(this, fn);
             c.Image.Name = iName.ToString();
         }
+       
+        
+        /// <summary>
+        /// Ugly workaround
+        /// </summary>
+        private void setHandDisplay() {
+            gwPl1Hand.Items.Clear();
+            addImagesToCards();
+            gwPl1Hand.DataContext = _view.CurrentPlayer.Hand;
+            foreach (Card kaart in _view.CurrentPlayer.Hand)
+            {
+                gwPl1Hand.Items.Add(kaart.Image);
+            }
+        }
 
         /// <summary>
         /// Thank you StackOverFlow! Uses relative URI string to get the BitmapImage from file.
         /// </summary>
         /// <param name="parent">FrameworkElement assotiated with image</param>
         /// <param name="path">String representing relative URI</param>
-        /// <returns></returns>
         public static Windows.UI.Xaml.Media.Imaging.BitmapImage ImageFromRelativePath(FrameworkElement parent, string path)
         {
             var uri = new Uri(parent.BaseUri, path);
@@ -334,21 +343,53 @@ namespace Turakas.Views
 
         private void cardTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (_view.CardsOnTable.Count % 2 == 0 || _view.CardsOnTable.Count % 2 == 1)
+            if (_view.CardsOnTable.Count % 2 == 0 )
             {
                 Card tappedCard = new Card(gwPl1Hand.SelectedItem as Image);
                 addImageToCard(tappedCard);
-                _view.CardsOnTable.Add(tappedCard);
                 StackPanel slot = getNextSlot(_view.MoveNr);
                 (slot.Children.FirstOrDefault() as Image).Source = (gwPl1Hand.SelectedItem as Image).Source;
-                _view.MoveNr += 1;
-                _view.CurrentPlayer.makeMove(tappedCard);
-                gwPl1Hand.Items.Remove(gwPl1Hand.SelectedItem);
+                _view.moveMade(tappedCard);
+                setHandDisplay();
             }
             else
             {
 
             }
         }
+        void PropertyChangedInPlayerView(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "CardsOnTable":
+                    updateGameArea(_view.CardsOnTable);
+                    break;
+            }
+        }
+        private void Source_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    updateGameArea(e.NewItems);
+                    break;
+            }
+        }
+        private void updateGameArea(System.Collections.IList cards)
+        {
+            Card c = cards[0] as Card;
+            addImageToCard(c);
+            StackPanel slot = getNextSlot(_view.MoveNr);
+            (slot.Children.FirstOrDefault() as Image).Source = c.Image.Source;
+            //_view.teeMidagi(this);
+            
+        }
+
+        public static void respondToViewModel( Card c)
+        {
+           
+        }
+
+       
     }
 }

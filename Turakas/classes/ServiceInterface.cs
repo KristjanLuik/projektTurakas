@@ -20,12 +20,14 @@ namespace Turakas.classes
         void dealCards(int gameid);
         int removeFromGame(int gameId, ServiceUser player);
         void notifyFirstMove(int gameId);
+        void notifyMove(ServiceCard cardMoved, int playerId, int gameId);
 
     }
 
     public interface IServiceCallbackInterface
     {
-        void OnNotifyFirstMove(int id);
-        void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId);
+        void OnNotifyFirstMove(int id, int gameId);
+        void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int gameId);
+        void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, bool finished, int nextHit);
     }
 }

@@ -163,7 +163,8 @@ namespace Turakas.classes
                     deckIndex = deckIndex - 1;
                 }
                 g.Players[i].CardsInHand = 6;
-                this._callbackInterface.OnDeal(cards, g.Deck[0], g.Players[i].Id);
+                //TODO, LISA GAMEID KONTROLL
+                this._callbackInterface.OnDeal(cards, g.Deck[0], g.Players[i].Id, g.Id);
             }
             g.TopCardIndex = deckIndex;
         }
@@ -200,7 +201,25 @@ namespace Turakas.classes
             //Random random = new Random();
             //int playerId = random.Next(0, g.Count);
             //_callbackInterface.OnNotifyFirstMove(playerId);
-            _callbackInterface.OnNotifyFirstMove(0);
+            //TODO, LISA GAMEID KONTROLL
+            _callbackInterface.OnNotifyFirstMove(0,g.Id);
+        }
+
+
+        public void notifyMove(ServiceCard cardMoved, int playerId, int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            g.Players[playerId].CardsInHand -= 1;
+            if (g.Players[playerId].CardsInHand == 0 && g.TopCardIndex <= 0) {
+                g.Players[playerId].Finished = true;
+            }
+            int next;
+            if(playerId == g.Count-1)
+                next = 0;
+            else
+                next = playerId+1;
+            _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, g.Players[playerId].Finished, next);//seepärast peakski teenusele lisaks olema back endis veel üks klass
+            _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, g.Players[playerId].Finished, next);
         }
     }
 
@@ -281,6 +300,13 @@ namespace Turakas.classes
         private string _name;
         private int _id;
         private int _cardsInHand;
+        private bool _finished;
+
+        public bool Finished
+        {
+            get { return _finished; }
+            set { _finished = value; }
+        }
 
         public int CardsInHand
         {

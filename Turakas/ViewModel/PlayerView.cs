@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Turakas.classes;
+using Turakas.Views;
 
 namespace Turakas.ViewModel
 {
-    //public delegate List<string> generateJoinersList();
 
-    public class PlayerView:IServiceCallbackInterface, INotifyPropertyChanged
+    public class PlayerView:IServiceCallbackInterface, INotifyPropertyChanged, INotifyCollectionChanged
     {
         private ObservableCollection<Card> _cardsOnTable;
         private List<Player> _otherPlayers;
@@ -20,19 +21,32 @@ namespace Turakas.ViewModel
         public IServiceInterface _interfaceUsed;
         private int _gameId;
         private Card _trump;
-        private int _moveIndex;
-        private int _hitIndex;
-        private int _moveNr;
+        private int _moveIndex;//player to make next move
+        private int _hitIndex;//player to make hit
+        private int _moveNr; //move to be made in round
+
+        #region ProperyChangedEvent members
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private void NotifyPropertyChanged(String propertyName)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
+        #region INotifyCollectionChanged Members
 
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        private void RaiseCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            if (CollectionChanged != null)
+            {
+                CollectionChanged(this, e);
+            }
+        }
+        #endregion
         #region constructors
 
         public PlayerView(string viewerName) {
@@ -67,7 +81,7 @@ namespace Turakas.ViewModel
                 if (!value.Equals(this._moveIndex))
                 {
                     this._moveIndex = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("MoveIndex");
                 }
             }
         }
@@ -79,7 +93,7 @@ namespace Turakas.ViewModel
                 if (value != this._trump)
                 {
                     this._trump = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("Trump");
                 }
             }
         }
@@ -88,10 +102,10 @@ namespace Turakas.ViewModel
         {
             get { return _cardsOnTable; }
             set {
-                if (value != _cardsOnTable)
+                if (!value.Equals(_cardsOnTable))
                 {
                     this._cardsOnTable = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("CardsOnTable");
                 }}
         }
         public int GameId
@@ -105,7 +119,7 @@ namespace Turakas.ViewModel
             set { 
                 if(value != _currentPlayer){
                 _currentPlayer = value;
-                NotifyPropertyChanged();
+                NotifyPropertyChanged("CurrentPlayer");
             }}
         }
         public List<Player> OtherPlayers
@@ -207,39 +221,75 @@ namespace Turakas.ViewModel
            }
            return id;
         }
+
         public Card serviseCardToCard(ServiceCard arg) {
             Card card = new Card(arg.Kind, arg.Rank);
             return card;
         }
+        public ServiceCard cardToServiceCard(Card c) {
+            ServiceCard ret = new ServiceCard((int)c.Rank, (int)c.Kind);
+            return ret;
+        }
 
-        public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId)
+        public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int GameId)
         {
-            _trump = serviseCardToCard(trump);
-            if (playerId == 0)
+            if (_gameId == GameId)
             {
-                foreach (ServiceCard sc in cards)
+                _trump = serviseCardToCard(trump);
+                if (playerId == 0)
                 {
-                    _currentPlayer.Hand.Add(serviseCardToCard(sc));
+                    foreach (ServiceCard sc in cards)
+                    {
+                        _currentPlayer.Hand.Add(serviseCardToCard(sc));
+                    }
                 }
-            }
-            else {
-                foreach (Player p in _otherPlayers)
+                else
                 {
-                    if (p.Id == playerId) {
-                        foreach (ServiceCard sc in cards)
+                    foreach (Player p in _otherPlayers)
+                    {
+                        if (p.Id == playerId)
                         {
-                            p.Hand.Add(serviseCardToCard(sc));
+                            foreach (ServiceCard sc in cards)
+                            {
+                                p.Hand.Add(serviseCardToCard(sc));
+                            }
                         }
                     }
                 }
             }
         }
 
-        public void OnNotifyFirstMove(int id)
+        public void OnNotifyFirstMove(int id, int gameId)
         {
+            if(_gameId == gameId)
             _moveIndex = id;
         }
 
-        
+
+        public void moveMade(Card c) {
+            _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
+            //_moveNr += 1;
+            _currentPlayer.makeMove(c);
+            //_cardsOnTable.Add(c);
+        }
+
+        public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, bool finished, int nextHit)
+        {
+            
+            if (_gameId == gameId) {
+                Card c = serviseCardToCard(movedCard);
+                MoveNr += 1;
+                CardsOnTable.Add(c);
+                    NotifyPropertyChanged("CardsOnTable");
+                //NotifyCollectionChangedEventArgs E = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, CardsOnTable);
+                 //RaiseCollectionChanged(E);
+                HitIndex = nextHit;
+            }
+        }
+
+        //public void teeMidagi(MainPage pg)
+        //{
+        //  //  pg.
+        //}
     }
 }
