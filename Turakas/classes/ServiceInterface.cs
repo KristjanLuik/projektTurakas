@@ -28,6 +28,6 @@ namespace Turakas.classes
     {
         void OnNotifyFirstMove(int id, int gameId);
         void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int gameId);
-        void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, bool finished, int nextHit);
+        void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit);
     }
 }

@@ -212,14 +212,15 @@ namespace Turakas.classes
             g.Players[playerId].CardsInHand -= 1;
             if (g.Players[playerId].CardsInHand == 0 && g.TopCardIndex <= 0) {
                 g.Players[playerId].Finished = true;
+
             }
             int next;
             if(playerId == g.Count-1)
                 next = 0;
             else
                 next = playerId+1;
-            _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, g.Players[playerId].Finished, next);//seepärast peakski teenusele lisaks olema back endis veel üks klass
-            _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, g.Players[playerId].Finished, next);
+            _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, next);//seepärast peakski teenusele lisaks olema back endis veel üks klass
+            _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, next);
         }
     }
 
@@ -233,6 +234,13 @@ namespace Turakas.classes
         private string owner;
         private ServiceCard[] deck;
         private int _topCardIndex;
+        private int _activePlayer;
+
+        public int ActivePlayer
+        {
+            get { return _activePlayer; }
+            set { _activePlayer = value; }
+        }
 
         public int TopCardIndex
         {

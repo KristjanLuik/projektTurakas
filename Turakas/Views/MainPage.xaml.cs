@@ -28,7 +28,6 @@ namespace Turakas.Views
     public sealed partial class MainPage : Page
     {
         public PlayerView _view;
-        private IObservableVector<Card> cardsOnGameArea;
 
         public MainPage()
         {
@@ -36,6 +35,11 @@ namespace Turakas.Views
             
            
         }
+//        Style style = new Style {TargetType = typeof(Rectangle)};
+//style.Setters.Add(new Setter(Shape.FillProperty, Brushes.Red));
+//style.Setters.Add(new Setter(UIElement.VisibilityProperty, Visibility.Collapsed));
+
+//Application.Current.Resources["key1"] = style;
         /// <summary>
         /// In idea int move should correspond to cards on table (cards on table +1)
         /// </summary>
@@ -87,6 +91,7 @@ namespace Turakas.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _view = e.Parameter as PlayerView;
+            _view.setPageRef(this);
             setGameArea(_view.CardsOnTable.Count +1);
             //setCurrentPlayersSettings();
             gridPlayer1.DataContext = _view.CurrentPlayer;
@@ -343,7 +348,7 @@ namespace Turakas.Views
 
         private void cardTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (_view.CardsOnTable.Count % 2 == 0 )
+            if (_view.CardsOnTable.Count % 2 == 0 && _view.CurrentPlayer.Id == _view.MoveIndex)
             {
                 Card tappedCard = new Card(gwPl1Hand.SelectedItem as Image);
                 addImageToCard(tappedCard);
@@ -362,32 +367,22 @@ namespace Turakas.Views
             switch (e.PropertyName)
             {
                 case "CardsOnTable":
-                    updateGameArea(_view.CardsOnTable);
+                    //updateGameArea(_view.CardsOnTable);
                     break;
             }
         }
-        private void Source_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        
+        private void updateGameArea(Card c)
         {
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    updateGameArea(e.NewItems);
-                    break;
-            }
-        }
-        private void updateGameArea(System.Collections.IList cards)
-        {
-            Card c = cards[0] as Card;
+            
             addImageToCard(c);
             StackPanel slot = getNextSlot(_view.MoveNr);
             (slot.Children.FirstOrDefault() as Image).Source = c.Image.Source;
-            //_view.teeMidagi(this);
-            
         }
 
-        public static void respondToViewModel( Card c)
-        {
+        public static void notifyGameAreaUpdate(Card card, MainPage element){
            
+            element.updateGameArea(card);
         }
 
        

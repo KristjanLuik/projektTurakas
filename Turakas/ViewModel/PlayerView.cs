@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Turakas.classes;
 using Turakas.Views;
+using Windows.UI.Xaml;
 
 namespace Turakas.ViewModel
 {
@@ -24,7 +25,7 @@ namespace Turakas.ViewModel
         private int _moveIndex;//player to make next move
         private int _hitIndex;//player to make hit
         private int _moveNr; //move to be made in round
-
+        public MainPage pageRef;
         #region ProperyChangedEvent members
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -62,6 +63,9 @@ namespace Turakas.ViewModel
 
         #region propertid
 
+        public void setPageRef(MainPage element) {
+            this.pageRef = element;
+        }
 
         public int MoveNr
         {
@@ -273,23 +277,25 @@ namespace Turakas.ViewModel
             //_cardsOnTable.Add(c);
         }
 
-        public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, bool finished, int nextHit)
+        public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit)
         {
             
             if (_gameId == gameId) {
                 Card c = serviseCardToCard(movedCard);
+                referToView(c);
+                if (_moveNr == 6)
+                {
+                    _moveIndex = -1; //küsi järgmise käigu õigus
+                }
                 MoveNr += 1;
                 CardsOnTable.Add(c);
-                    NotifyPropertyChanged("CardsOnTable");
-                //NotifyCollectionChangedEventArgs E = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, CardsOnTable);
-                 //RaiseCollectionChanged(E);
                 HitIndex = nextHit;
             }
         }
 
-        //public void teeMidagi(MainPage pg)
-        //{
-        //  //  pg.
-        //}
+        public void referToView(Card c)
+        {
+            MainPage.notifyGameAreaUpdate(c, pageRef);
+        }
     }
 }

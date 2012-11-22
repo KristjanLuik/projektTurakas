@@ -22,7 +22,6 @@ namespace Turakas.classes
         private CardRank _rank;
         private bool _trump;
         private Windows.UI.Xaml.Controls.Image _image;
-        private FrameworkElement parent;
 
         public Windows.UI.Xaml.Controls.Image Image
         {
@@ -84,43 +83,6 @@ namespace Turakas.classes
             _image = new Image();
             _image.Stretch = Stretch.Fill;
         }
-
-        #region Add image
-        public void addImagesToCards()
-        {
-            foreach (Card kaart in _view.CurrentPlayer.Hand)
-            {
-                addImageToCard(kaart);
-            }
-
-        }
-
-        public void addImageToCard(Card c)
-        {
-            StringBuilder fileName = new StringBuilder();
-            StringBuilder iName = new StringBuilder();
-            fileName.Append(@"/Assets/images/");
-            fileName.Append(c.Kind.ToString());
-            iName.Append(((int)c.Kind).ToString());
-            fileName.Append(((int)c.Rank).ToString());
-            iName.Append(((int)c.Rank).ToString());
-            fileName.Append(".png");
-            string fn = fileName.ToString();
-            c.Image.Source = ImageFromRelativePath(this.parent, fn);
-            c.Image.Name = iName.ToString();
-        }
-        /// <summary>
-        /// Source StackOverFlow
-        /// </summary>
-        /// <param name="parent">FrameworkElement assotiated with image</param>
-        /// <param name="path">String representing relative URI</param>
-        public static Windows.UI.Xaml.Media.Imaging.BitmapImage ImageFromRelativePath(FrameworkElement parent, string path)
-        {
-            var uri = new Uri(parent.BaseUri, path);
-            Windows.UI.Xaml.Media.Imaging.BitmapImage result = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-            result.UriSource = uri;
-            return result;
-        }
-        #endregion
+        
     }
 }
