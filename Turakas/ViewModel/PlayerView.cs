@@ -7,9 +7,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Turakas.classes;
+using TurakasLibrary;
 using Turakas.Views;
 using Windows.UI.Xaml;
+using Turakas.classes;
+using Windows.UI;
 
 namespace Turakas.ViewModel
 {
@@ -17,6 +19,7 @@ namespace Turakas.ViewModel
     public class PlayerView:IServiceCallbackInterface, INotifyPropertyChanged, INotifyCollectionChanged
     {
         private ObservableCollection<Card> _cardsOnTable;
+        private ObservableCollection<string> _messages;
         private List<Player> _otherPlayers;
         private Player _currentPlayer;
         public IServiceInterface _interfaceUsed;
@@ -62,6 +65,11 @@ namespace Turakas.ViewModel
         #endregion
 
         #region propertid
+        public ObservableCollection<string> Messages
+        {
+            get { return _messages; }
+            set { _messages = value; }
+        }
 
         public void setPageRef(MainPage element) {
             this.pageRef = element;
@@ -174,35 +182,7 @@ namespace Turakas.ViewModel
             else { return; }
         }
 
-        public List<Player> serviceUserToPlayer(ServiceUser[] u)
-        {
-            List<Player> ret = new List<Player>();
-            ServiceUser s;
-            int i;
-            for (i = 0; i < u.Length; i++)
-            {   
-                s = u[i];
-                if (s != null)
-                {
-                    Player p = new Player(s.Name, s.Id);
-                    ret.Add(p);
-                }
-            }
-            return ret;
-        }
-        public ServiceUser[] playerToserviceUser(List<Player> u)
-        {
-            ServiceUser[] ret = new ServiceUser[u.Count];
-            Player s;
-            for (int i = 0; i < u.Count; i++)
-            {
-                s = u[i];
-                ServiceUser p = new ServiceUser(s.Name, s.Id);
-                ret[i] = p;
-            }
-            return ret;
-        }
-
+       
         public void applyForSelectedGame(string candidateName, Game g) {
             _interfaceUsed.registerPlayerCandidate(g.Id, candidateName);
         }
@@ -224,15 +204,6 @@ namespace Turakas.ViewModel
                _otherPlayers.RemoveAt(id-1);
            }
            return id;
-        }
-
-        public Card serviseCardToCard(ServiceCard arg) {
-            Card card = new Card(arg.Kind, arg.Rank);
-            return card;
-        }
-        public ServiceCard cardToServiceCard(Card c) {
-            ServiceCard ret = new ServiceCard((int)c.Rank, (int)c.Kind);
-            return ret;
         }
 
         public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int GameId)
@@ -263,18 +234,26 @@ namespace Turakas.ViewModel
             }
         }
 
-        public void OnNotifyFirstMove(int id, int gameId)
+        public void OnNotifyFirstMove(int firstId, int hitId ,int gameId)
         {
             if(_gameId == gameId)
-            _moveIndex = id;
+            _moveIndex = firstId;
+            _hitIndex = hitId;
+            setPlayerActionColor(_moveIndex, _hitIndex);
+            
         }
 
+        #region game logic
 
         public void moveMade(Card c) {
             _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
-            //_moveNr += 1;
             _currentPlayer.makeMove(c);
-            //_cardsOnTable.Add(c);
+        }
+
+        public void hitMade(Card c)
+        {
+            _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
+            _currentPlayer.makeMove(c);
         }
 
         public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit)
@@ -283,19 +262,110 @@ namespace Turakas.ViewModel
             if (_gameId == gameId) {
                 Card c = serviseCardToCard(movedCard);
                 referToView(c);
-                if (_moveNr == 6)
-                {
-                    _moveIndex = -1; //küsi järgmise käigu õigus
-                }
                 MoveNr += 1;
                 CardsOnTable.Add(c);
                 HitIndex = nextHit;
+                setPlayerActionColor(_moveIndex, _hitIndex);
             }
+        }
+
+       
+        #endregion
+
+        
+        public void OnPlayerFinished(int gameId, int playerId)
+        {
+            if (_moveNr % 2 == 0)
+                _cardsOnTable = new ObservableCollection<Card>();
+            Player p = getPlayerById(playerId);
+            p.Visible = Visibility.Collapsed;
+            p.Finished = Visibility.Visible;
+        }
+
+        public void OnGameOver(int gameId, int loserId)
+        {
+            throw new NotImplementedException();
+        }
+        #region helper methods
+        private Player getPlayerById(int id) {
+            if (id == _currentPlayer.Id)
+                return _currentPlayer;
+            else {
+                foreach (Player p in _otherPlayers) {
+                    if (p.Id == id)
+                        return p;
+                }
+            } return null;
         }
 
         public void referToView(Card c)
         {
             MainPage.notifyGameAreaUpdate(c, pageRef);
+        }
+
+        public Card serviseCardToCard(ServiceCard arg)
+        {
+            Card card = new Card(arg.Kind, arg.Rank);
+            return card;
+        }
+        public ServiceCard cardToServiceCard(Card c)
+        {
+            ServiceCard ret = new ServiceCard((int)c.Rank, (int)c.Kind);
+            return ret;
+        }
+        public List<Player> serviceUserToPlayer(ServiceUser[] u)
+        {
+            List<Player> ret = new List<Player>();
+            ServiceUser s;
+            int i;
+            for (i = 0; i < u.Length; i++)
+            {
+                s = u[i];
+                if (s != null)
+                {
+                    Player p = new Player(s.Name, s.Id);
+                    ret.Add(p);
+                }
+            }
+            return ret;
+        }
+        public ServiceUser[] playerToserviceUser(List<Player> u)
+        {
+            ServiceUser[] ret = new ServiceUser[u.Count];
+            Player s;
+            for (int i = 0; i < u.Count; i++)
+            {
+                s = u[i];
+                ServiceUser p = new ServiceUser(s.Name, s.Id);
+                ret[i] = p;
+            }
+            return ret;
+        }
+        private void setPlayerActionColor(int moveIndex, int hitIndex) {
+            foreach (Player p in _otherPlayers)
+            {
+                if (p.Id == moveIndex)
+                    p.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Green);
+                if (p.Id == hitIndex)
+                    p.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Red);
+            }
+            if (_currentPlayer.Id == moveIndex)
+                _currentPlayer.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Green);
+            if (_currentPlayer.Id == hitIndex)
+                _currentPlayer.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Red);
+        }
+
+        #endregion
+
+
+        public void OnHitMade(int gameId, int playerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnRoundOver(int gameId, int newMoveId, int newHitId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

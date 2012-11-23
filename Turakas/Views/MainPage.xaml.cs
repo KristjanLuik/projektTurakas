@@ -17,6 +17,7 @@ using Turakas.classes;
 using Turakas.ViewModel;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using TurakasLibrary;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -117,7 +118,7 @@ namespace Turakas.Views
             {
                 gridPlayer2.DataContext = _view.OtherPlayers.ElementAt(0);
                 player2_name.Text = _view.OtherPlayers.ElementAt(0).Name;
-                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(0).Id)
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(0).Id || _view.HitIndex == _view.OtherPlayers.ElementAt(0).Id)
                     rect2Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 else
                     rect2Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -134,7 +135,7 @@ namespace Turakas.Views
             {
                 gridPlayer3.DataContext = _view.OtherPlayers.ElementAt(1);
                 player3_name.Text = _view.OtherPlayers.ElementAt(1).Name;
-                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(1).Id)
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(1).Id || _view.HitIndex == _view.OtherPlayers.ElementAt(1).Id)
                     rect3Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 else
                     rect3Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -151,7 +152,7 @@ namespace Turakas.Views
             {
                 gridPlayer4.DataContext = _view.OtherPlayers.ElementAt(2);
                 player4name.Text = _view.OtherPlayers.ElementAt(2).Name;
-                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(2).Id)
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(2).Id || _view.HitIndex == _view.OtherPlayers.ElementAt(2).Id)
                     rect4Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 else
                     rect4Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -166,7 +167,7 @@ namespace Turakas.Views
             {
                 gridPlayer5.DataContext = _view.OtherPlayers.ElementAt(3);
                 player5name.Text = _view.OtherPlayers.ElementAt(3).Name;
-                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(3).Id)
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(3).Id || _view.HitIndex == _view.OtherPlayers.ElementAt(3).Id)
                     rect5Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 else
                     rect5Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -179,7 +180,7 @@ namespace Turakas.Views
             {
                 gridPlayer6.DataContext = _view.OtherPlayers.ElementAt(4);
                 player6name.Text = _view.OtherPlayers.ElementAt(4).Name;
-                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(4).Id)
+                if (_view.MoveIndex == _view.OtherPlayers.ElementAt(4).Id || _view.HitIndex == _view.OtherPlayers.ElementAt(4).Id)
                     rect6Action.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 else
                     rect6Action.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -359,6 +360,15 @@ namespace Turakas.Views
             }
             else
             {
+                if (_view.CardsOnTable.Count % 2 == 1 && _view.CurrentPlayer.Id == _view.HitIndex)
+                {
+                    Card tappedCard = new Card(gwPl1Hand.SelectedItem as Image);
+                    addImageToCard(tappedCard);
+                    StackPanel slot = getNextSlot(_view.MoveNr);
+                    (slot.Children.FirstOrDefault() as Image).Source = (gwPl1Hand.SelectedItem as Image).Source;
+                    _view.hitMade(tappedCard);
+                    setHandDisplay();
+                }
 
             }
         }

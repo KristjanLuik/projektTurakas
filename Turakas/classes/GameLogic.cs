@@ -4,12 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TurakasLibrary;
 
 namespace Turakas.classes
 {
-    class GameLogic:IGameLogic
+    public class GameLogic:IGameLogic
     {
         private Deck _deck;
+
+        public Deck Deck
+        {
+            get { return _deck; }
+            set { _deck = value; }
+        }
         private List<Player> _players;//ordered by id-s
         private List<Card> _cardsOnTable;
         public GameLogic()

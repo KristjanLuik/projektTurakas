@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TurakasLibrary;
 
 namespace Turakas.classes
 {
-    interface IGameLogic
+    public  interface IGameLogic
     {
         void deal();
         Player makesNextMove();

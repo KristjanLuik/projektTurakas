@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
 
 namespace Turakas.classes
 {
@@ -140,7 +141,6 @@ namespace Turakas.classes
             }
             g.TopCardIndex = g.Deck.Length - 1;
             g.State = 1; //game has started
-            //this._callbackInterface.doSomething("Plah!");
         }
 
 
@@ -198,29 +198,124 @@ namespace Turakas.classes
         {
             Game g = listOfGames.ElementAt(gameId - 1);
             //valib juhusliku mängija, kes soovib muudab koodi nõnda, et käib väiksema trumbi omanik
-            //Random random = new Random();
-            //int playerId = random.Next(0, g.Count);
-            //_callbackInterface.OnNotifyFirstMove(playerId);
+            Random random = new Random();
+            int playerId = random.Next(0, g.Count);
+            g.MovesIndex = playerId;
+            g.HitsIndex = playerId < g.Count-1 ? playerId +1 : 0;
+            _callbackInterface.OnNotifyFirstMove(playerId, g.HitsIndex,g.Id);
             //TODO, LISA GAMEID KONTROLL
-            _callbackInterface.OnNotifyFirstMove(0,g.Id);
+            _callbackInterface.OnNotifyFirstMove(0, g.HitsIndex,g.Id);
         }
 
-
+        /// <summary>
+        /// Sends card to the game.
+        /// </summary>
+        /// <param name="cardMoved">card moved</param>
+        /// <param name="playerId">playet that made the move</param>
+        /// <param name="gameId">game in view</param>
         public void notifyMove(ServiceCard cardMoved, int playerId, int gameId)
         {
             Game g = listOfGames.ElementAt(gameId - 1);
             g.Players[playerId].CardsInHand -= 1;
+            g.NrOfCardsOnTable += 1;
             if (g.Players[playerId].CardsInHand == 0 && g.TopCardIndex <= 0) {
                 g.Players[playerId].Finished = true;
-
+                if (isGameOver(gameId))
+                {
+                    _callbackInterface.OnGameOver(gameId, g.HitsIndex);
+                    return;
+                }
+                else
+                    _callbackInterface.OnPlayerFinished(gameId, playerId);
             }
-            int next;
-            if(playerId == g.Count-1)
-                next = 0;
-            else
-                next = playerId+1;
-            _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, next);//seepärast peakski teenusele lisaks olema back endis veel üks klass
-            _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, next);
+               
+            _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, g.HitsIndex);//seepärast peakski teenusele lisaks olema back endis veel üks klass
+            _callbackInterface.OnPlayerFinished(gameId, 3);
+           // _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, next);
+        }
+
+        
+        #region helper methods
+       
+        public List<ServiceUser> getPlayersNotFinished(int gameId) {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            List<ServiceUser> result = new List<ServiceUser>();
+            foreach (ServiceUser u in g.Players) {
+                if (u != null && u.Finished == false)
+                    result.Add(u);
+            }
+            return result;
+        }
+
+        public int getNextActivePlayer(Game g, int start)
+        {
+            int next = start;
+            for (int i = next; i < 6; i++ )
+            {
+                ServiceUser u = g.Players[i] != null ? g.Players[i] : g.Players[i - g.Count];
+                if (u.Finished == false)
+                    return u.Id;
+            }
+            return -1;
+        }
+
+       
+        public bool isGameOver(int gameId)
+        {
+            return getPlayersNotFinished(gameId).Count > 1;
+        }
+
+        /// <summary>
+        /// Method gets called at the end of the round
+        /// </summary>
+        /// <param name="gameId"></param>
+        public void setNextMoveAndHitId(int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            if (!g.PickedUp)
+            {
+                if (!g.Players[g.HitsIndex].Finished)
+                {
+                    g.MovesIndex = g.HitsIndex;
+                    g.HitsIndex = getNextActivePlayer(g, g.HitsIndex);
+                }
+                else
+                {
+                    g.MovesIndex = getNextActivePlayer(g, g.HitsIndex);
+                    g.HitsIndex = getNextActivePlayer(g, g.MovesIndex);
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        
+
+        public void notifyHitMade(int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            g.Players[g.HitsIndex].CardsInHand -= 1;
+            g.NrOfCardsOnTable += 1;
+            if (g.Players[g.HitsIndex].CardsInHand == 0 && g.TopCardIndex <= 0)
+            {
+                g.Players[g.HitsIndex].Finished = true;
+                if (isGameOver(gameId))
+                {
+                    _callbackInterface.OnGameOver(gameId, getNextActivePlayer(g, g.HitsIndex));
+                    return;
+                }else
+                    _callbackInterface.OnPlayerFinished(gameId, g.HitsIndex);
+            }
+            if (g.NrOfCardsOnTable == 12)
+            {
+                setNextMoveAndHitId(gameId);
+                _callbackInterface.OnRoundOver(gameId, g.MovesIndex, g.HitsIndex);
+            }
+            else {
+                _callbackInterface.OnHitMade(gameId, g.HitsIndex);
+            }
         }
     }
 
@@ -234,12 +329,32 @@ namespace Turakas.classes
         private string owner;
         private ServiceCard[] deck;
         private int _topCardIndex;
-        private int _activePlayer;
+        private int movesIndex;
+        private int hitsIndex;
+        private int _nrOfCardsOnTable = 0;
+        private bool _pickedUp = false;
 
-        public int ActivePlayer
+        public bool PickedUp
         {
-            get { return _activePlayer; }
-            set { _activePlayer = value; }
+            get { return _pickedUp; }
+            set { _pickedUp = value; }
+        }
+
+        public int NrOfCardsOnTable
+        {
+            get { return _nrOfCardsOnTable; }
+            set { _nrOfCardsOnTable = value; }
+        }
+        public int HitsIndex
+        {
+            get { return hitsIndex; }
+            set { hitsIndex = value; }
+        }
+
+        public int MovesIndex
+        {
+            get { return movesIndex; }
+            set { movesIndex = value; }
         }
 
         public int TopCardIndex
@@ -267,6 +382,7 @@ namespace Turakas.classes
             ServiceUser first = new ServiceUser(owner,0);
             players = new ServiceUser[6];
             deck = new ServiceCard[36];
+
         }
 
         public List<ServiceUser> Joiners
@@ -308,7 +424,7 @@ namespace Turakas.classes
         private string _name;
         private int _id;
         private int _cardsInHand;
-        private bool _finished;
+        private bool _finished = false;
 
         public bool Finished
         {

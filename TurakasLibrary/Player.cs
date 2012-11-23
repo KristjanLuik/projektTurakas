@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-namespace Turakas.classes
+using Windows.UI.Xaml.Media;
+
+namespace TurakasLibrary
 {
     public class Player : IPlayer, INotifyPropertyChanged
     {
@@ -15,6 +17,40 @@ namespace Turakas.classes
         private int _id;
         private string _message;
         public event PropertyChangedEventHandler PropertyChanged;
+        private SolidColorBrush _color;
+        private string _uri = "ms-appx:///Assets/images/b2fv.png";
+        private Windows.UI.Xaml.Visibility _visible = Windows.UI.Xaml.Visibility.Visible;
+        private Windows.UI.Xaml.Visibility _finished = Windows.UI.Xaml.Visibility.Collapsed;
+
+        public Windows.UI.Xaml.Visibility Finished
+        {
+            get { return _finished; }
+            set
+            {
+                if (!value.Equals(_finished)) {
+                    _finished = value;
+                    NotifyPropertyChanged();
+                }
+               }
+        }
+        public Windows.UI.Xaml.Visibility Visible
+        {
+            get { return _visible; }
+            set
+            {
+                if (!value.Equals(_visible))
+                {
+                    _visible = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public string Uri
+        {
+            get { return _uri; }
+            set { _uri = value; }
+        }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -25,6 +61,20 @@ namespace Turakas.classes
         }
 
         #region propertid
+
+        public SolidColorBrush Color
+        {
+            get { return _color; }
+            set
+            {
+                if (!value.Equals(_color))
+                {
+                    _color = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         public string Name
         {

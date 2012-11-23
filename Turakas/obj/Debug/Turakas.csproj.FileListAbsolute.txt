@@ -68,3 +68,8 @@ C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\priconfig.xml.intermediate
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\layout.resfiles.intermediate
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\resources.resfiles.intermediate
 C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\pri.resfiles.intermediate
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Turakas.csprojResolveAssemblyReference.cache
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.dll
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\TurakasLibrary.pri
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\obj\Debug\Turakas.csproj.GenerateResource.Cache

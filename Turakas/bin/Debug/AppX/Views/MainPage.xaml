@@ -8,7 +8,7 @@
     xmlns:TurakasLibrary="using:Turakas.classes"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" DataContext="{Binding _view}">
         <Grid.Resources>
             <Storyboard x:Name="downAnimation">
                 <PointerDownThemeAnimation TargetName="LayoutRoot"/>
@@ -37,6 +37,15 @@
             <Image x:Name="imgTrump"   HorizontalAlignment="Right" ></Image>
             </Viewbox>
         </StackPanel>
+        
+        <ListBox x:Name="lbxMsg" ItemsSource="{Binding Messages}" Grid.Column="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
         <Grid x:Name="gridPlayer4"
                 Width="auto"
                 Height="auto"
@@ -49,8 +58,12 @@
                         Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock Name="player4name"   Grid.Row="0" HorizontalAlignment="Right" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 4             " VerticalAlignment="Top" FontSize="36" LineHeight="6"/>
-            <Rectangle x:Name="rect2Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl4CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Left" ></Image>
+            <Rectangle x:Name="rect2Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}"  ></Rectangle>
+            <Image x:Name="pl4CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Left" ></Image>
+            
+            <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
+                <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
+            </StackPanel>
         </Grid>
                 <Grid x:Name="gridPlayer3"
                 Width="auto"
@@ -64,10 +77,10 @@
                         Height="1*" />
                 </Grid.RowDefinitions>
             <TextBlock Name="player3_name"   Grid.Row="0" HorizontalAlignment="Right" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 3" VerticalAlignment="Top" FontSize="36"/>
-            <Rectangle x:Name="rect3Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl3CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Left" ></Image>
+            <Rectangle x:Name="rect3Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}"  ></Rectangle>
+            <Image x:Name="pl3CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Left" ></Image>
         </Grid>
-
+       
         <Grid x:Name="gridPlayer2"
                 Width="auto"
                 Height="auto"
@@ -86,8 +99,8 @@
                         Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock Name="player2_name"   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="player 2" VerticalAlignment="Center" FontSize="36"/>
-            <Rectangle x:Name="rect4Action"  Grid.Row="1" Grid.ColumnSpan="2" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl2CardImage" Grid.Row="0" Grid.Column="2" Source="ms-appx:///Assets/images/b2fv.png" Stretch="None" HorizontalAlignment="Right" ></Image>
+            <Rectangle x:Name="rect4Action"  Grid.Row="1" Grid.ColumnSpan="2" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}"  ></Rectangle>
+            <Image x:Name="pl2CardImage" Grid.Row="0" Grid.Column="1" Source="{Binding Uri}" Visibility="{Binding Visible}" Stretch="None" HorizontalAlignment="Right" ></Image>
         </Grid>
         <Grid x:Name="gridPlayer5"
                 Width="auto"
@@ -101,8 +114,8 @@
                         Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock Name="player5name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 5" VerticalAlignment="Top" FontSize="36"/>
-            <Rectangle x:Name="rect5Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl5CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Right" ></Image>
+            <Rectangle x:Name="rect5Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" Fill="{Binding Color}" IsRightTapEnabled="False" IsTapEnabled="False"  ></Rectangle>
+            <Image x:Name="pl5CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Right" ></Image>
         </Grid>
         <Grid x:Name="gridPlayer6"
                 Width="auto"
@@ -116,8 +129,8 @@
                         Height="1*" />
             </Grid.RowDefinitions>
             <TextBlock Name="player6name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 6" VerticalAlignment="Top" FontSize="36"/>
-            <Rectangle x:Name="rect6Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646"  ></Rectangle>
-            <Image x:Name="pl6CardImage" Source="ms-appx:///Assets/images/b2fv.png" HorizontalAlignment="Right" ></Image>
+            <Rectangle x:Name="rect6Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" Fill="{Binding Color}" IsRightTapEnabled="False" IsTapEnabled="False" ></Rectangle>
+            <Image x:Name="pl6CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Right" ></Image>
 
         </Grid>
         <Grid x:Name="GameAreaGrid"
@@ -126,7 +139,7 @@
                 Height="auto"
                 Background="YellowGreen"
                 Grid.Column="1"
-                Grid.Row="1" Grid.RowSpan="3" Margin="0,21,0,286">
+                Grid.Row="1" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                         Width="1*" />
@@ -236,7 +249,7 @@
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
             <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
-            <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="#FFF10646" ></Rectangle>
+            <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}" ></Rectangle>
             
             <GridView x:ConnectionId='1' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
                       AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center" 

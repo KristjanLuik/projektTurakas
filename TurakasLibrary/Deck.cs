@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Turakas.classes
+namespace TurakasLibrary
 {
-    class Deck
+   public class Deck
     {
         private Card[] deck;
         Kind _trump;

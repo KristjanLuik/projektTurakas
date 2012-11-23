@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 
-namespace Turakas.classes
+namespace TurakasLibrary
 {
     public enum CardRank {six=6, seven, eight, nine, ten, jack, queen, king, ace}
     public enum Kind {c=1, s, d, h}

@@ -103,13 +103,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="classes\Card.cs" />
-    <Compile Include="classes\Deck.cs" />
     <Compile Include="classes\MockService.cs" />
     <Compile Include="classes\GameLogic.cs" />
     <Compile Include="classes\IGameLogic.cs" />
     <Compile Include="classes\IPlayer.cs" />
-    <Compile Include="classes\Player.cs" />
     <Compile Include="classes\ServiceInterface.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />
@@ -257,7 +254,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TurakasLibrary\TurakasLibrary.csproj">
+      <Project>{f907e3c9-1dc7-4084-9e95-686051b07ae7}</Project>
+      <Name>TurakasLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

@@ -19,6 +19,12 @@
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb">
       <PackagePath>Turakas.pdb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.pdb">
+      <PackagePath>TurakasLibrary.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.dll">
+      <PackagePath>TurakasLibrary.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
     </AppxPackagedFile>
