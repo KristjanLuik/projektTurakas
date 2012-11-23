@@ -258,9 +258,8 @@
                             </Bold>
                         </Paragraph>
                     </RichTextBlock>
-                <TextBlock x:Name="tbxEndLooser"  Text="{Binding Looser}" TextAlignment="Center" FontSize="46" FontFamily="Segoe UI" Foreground="#2a2a2a" Margin="20,0">
-                   
-                    </TextBlock>
+                <TextBlock x:Name="tbxEndLooser"  Text="{Binding Looser}" TextAlignment="Center" FontSize="46" FontFamily="Segoe UI" Foreground="#2a2a2a" Margin="20,0"/>
+                  
                 </StackPanel>
             </Frame>
         </Grid>
@@ -300,7 +299,20 @@
                 </GridView.ItemsPanel>
             </GridView>
         </Grid>
-        
+
+
+        <AppBar IsOpen="True" Grid.Row="3" Grid.ColumnSpan="3">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource MessageAppBarButtonStyle}" 
+                    />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+
+
+
+
     </Grid>
 </Page>
 

@@ -20,11 +20,7 @@ namespace Turakas.classes
         //private List<string> _cardKinds = new List<string>() {"c", "s", "d", "h"};
         private IServiceCallbackInterface _callbackInterface;
 
-        public void addToList()
-        {
-            listOfGames.Add(mock1);
-            listOfGames.Add(mock2);
-        }
+       
 
         public List<ServiceUser> getJoinersList(int gameid)
         {
@@ -202,7 +198,10 @@ namespace Turakas.classes
                     if (p.Id.Equals(player.Id) && p.Name.Equals(player.Name))
                     {
                         g.Players[i] = null;
-                        g.Count = g.Count - 1;
+                        for (int j = i + 1; j < g.Count; j++) {
+                            g.Players[j - 1] = g.Players[j];
+                        }
+                            g.Count = g.Count - 1;
                         return p.Id;
                     }
                 }
@@ -252,6 +251,11 @@ namespace Turakas.classes
 
         
         #region helper methods
+        public void addToList()
+        {
+            listOfGames.Add(mock1);
+            listOfGames.Add(mock2);
+        }
 
         public List<ServiceUser> getPlayersNotFinished(int gameId) {
             Game g = listOfGames.ElementAt(gameId - 1);

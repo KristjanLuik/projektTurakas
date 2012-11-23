@@ -1,5 +1,6 @@
 C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\bin\Debug\TurakasServiceLibrary.dll.config
 C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\bin\Debug\TurakasServiceLibrary.dll
 C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\bin\Debug\TurakasServiceLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\obj\Debug\TurakasServiceLibrary.csprojResolveAssemblyReference.cache
 C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\obj\Debug\TurakasServiceLibrary.dll
 C:\Users\katrepaabo\Desktop\Turakas\TurakasServiceLibrary\obj\Debug\TurakasServiceLibrary.pdb

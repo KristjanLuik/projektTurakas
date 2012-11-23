@@ -104,9 +104,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="classes\MockService.cs" />
-    <Compile Include="classes\GameLogic.cs" />
-    <Compile Include="classes\IGameLogic.cs" />
-    <Compile Include="classes\IPlayer.cs" />
     <Compile Include="classes\ServiceInterface.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />

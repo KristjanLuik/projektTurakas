@@ -51,37 +51,6 @@ namespace Turakas.Views
             GameAreaGrid.AllowDrop = true;
             frameGameEnd.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             
-            //move12.DataContext = _view.CardsOnTable;
-            //foreach (Card kaart in _view.CardsOnTable)
-            //{
-            //    move12.Items.Add(kaart.Image);
-            //}
-            //switch (move) { 
-            //    case 1:
-            //        stkpMove1.AllowDrop = true; break;
-            //    case 2:
-            //        stkpMove11.AllowDrop = true; break;
-            //    case 3:
-            //        stkpMove2.AllowDrop = true; break;
-            //    case 4:
-            //        stkpMove21.AllowDrop = true; break;
-            //    case 5:
-            //        stkpMove3.AllowDrop = true; break;
-            //    case 6:
-            //        stkpMove31.AllowDrop = true; break;
-            //    case 7:
-            //        stkpMove4.AllowDrop = true; break;
-            //    case 8:
-            //        stkpMove41.AllowDrop = true; break;
-            //    case 9:
-            //        stkpMove5.AllowDrop = true; break;
-            //    case 10:
-            //        stkpMove51.AllowDrop = true; break;
-            //    case 11:
-            //        stkpMove6.AllowDrop = true; break;
-            //    case 12:
-            //        stkpMove61.AllowDrop = true; break;
-            //}
         }
 
         /// <summary>

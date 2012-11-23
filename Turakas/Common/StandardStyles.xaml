@@ -405,7 +405,11 @@
         An AppBarButton Style is provided for each of the glyphs in the Segoe UI Symbol font.  
         Uncomment any style you reference (as not all may be required).
     -->
-
+    <Style x:Key="MessageAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="MessageAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Message"/>
+        <Setter Property="Content" Value="&#xE15F;"/>
+    </Style>
     <!--
     
     <Style x:Key="SkipBackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
@@ -1401,8 +1405,8 @@
     </Style>
 
     -->
-
-    <!-- Title area styles -->
+    
+        <!-- Title area styles -->
 
     <Style x:Key="PageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
         <Setter Property="TextWrapping" Value="NoWrap"/>
