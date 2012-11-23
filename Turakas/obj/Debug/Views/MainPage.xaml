@@ -32,7 +32,7 @@
         
         <!--Button Name ="btnDisplay" Content="Deal" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Click="btnDisplay_Click" Grid.Row="0" Visibility="Collapsed" /-->
         <StackPanel  Grid.Row="0"  Grid.Column="0">
-        <Button x:ConnectionId='2' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
+        <Button x:ConnectionId='3' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
         <Viewbox x:Name="vbxTrump" Stretch="Uniform" >
             <Image x:Name="imgTrump"   HorizontalAlignment="Right" ></Image>
             </Viewbox>
@@ -79,6 +79,9 @@
             <TextBlock Name="player3_name"   Grid.Row="0" HorizontalAlignment="Right" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 3" VerticalAlignment="Top" FontSize="36"/>
             <Rectangle x:Name="rect3Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}"  ></Rectangle>
             <Image x:Name="pl3CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Left" ></Image>
+            <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
+                <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
+            </StackPanel>
         </Grid>
        
         <Grid x:Name="gridPlayer2"
@@ -101,6 +104,9 @@
             <TextBlock Name="player2_name"   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="player 2" VerticalAlignment="Center" FontSize="36"/>
             <Rectangle x:Name="rect4Action"  Grid.Row="1" Grid.ColumnSpan="2" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}"  ></Rectangle>
             <Image x:Name="pl2CardImage" Grid.Row="0" Grid.Column="1" Source="{Binding Uri}" Visibility="{Binding Visible}" Stretch="None" HorizontalAlignment="Right" ></Image>
+            <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
+                <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
+            </StackPanel>
         </Grid>
         <Grid x:Name="gridPlayer5"
                 Width="auto"
@@ -116,6 +122,9 @@
             <TextBlock Name="player5name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 5" VerticalAlignment="Top" FontSize="36"/>
             <Rectangle x:Name="rect5Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" Fill="{Binding Color}" IsRightTapEnabled="False" IsTapEnabled="False"  ></Rectangle>
             <Image x:Name="pl5CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Right" ></Image>
+            <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
+                <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
+            </StackPanel>
         </Grid>
         <Grid x:Name="gridPlayer6"
                 Width="auto"
@@ -131,15 +140,18 @@
             <TextBlock Name="player6name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 6" VerticalAlignment="Top" FontSize="36"/>
             <Rectangle x:Name="rect6Action"  Grid.Row="1" IsDoubleTapEnabled="False" IsHoldingEnabled="False" Fill="{Binding Color}" IsRightTapEnabled="False" IsTapEnabled="False" ></Rectangle>
             <Image x:Name="pl6CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Right" ></Image>
+            <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
+                <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
+            </StackPanel>
 
         </Grid>
-        <Grid x:Name="GameAreaGrid"
-              DataContext="{Binding}"
+        <Grid x:ConnectionId='1' x:Name="GameAreaGrid"
+              DataContext="{Binding CardsOnTable}"
                 Width="auto"
                 Height="auto"
                 Background="YellowGreen"
                 Grid.Column="1"
-                Grid.Row="1" Grid.RowSpan="2" >
+                Grid.Row="1" Grid.RowSpan="2"                               >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                         Width="1*" />
@@ -230,6 +242,27 @@
                     Grid.Row="1" >
                 <Image x:Name="hit6" Source="{Binding}"></Image>
             </StackPanel>
+            
+            <!-- when the game ends this frame gets displayed-->
+            
+            <Frame x:Name="frameGameEnd" Grid.ColumnSpan="6" Grid.RowSpan="2"  DataContext="{Binding _view}" Visibility="{Binding Endframe}">
+                <StackPanel>
+                <RichTextBlock x:Name="tbxEndInfo" TextAlignment="Center" TextIndent="12" FontSize="12" FontFamily="Segoe UI" Foreground="#2a2a2a" Margin="20,0">
+                        <Paragraph>
+                            <Bold>
+                            <Span Foreground="DarkSlateBlue" FontSize="36">This game has ended, the looser is  </Span>
+                        </Bold> 
+                        </Paragraph>
+                        <Paragraph>
+                            <Bold>
+                            </Bold>
+                        </Paragraph>
+                    </RichTextBlock>
+                <TextBlock x:Name="tbxEndLooser"  Text="{Binding Looser}" TextAlignment="Center" FontSize="46" FontFamily="Segoe UI" Foreground="#2a2a2a" Margin="20,0">
+                   
+                    </TextBlock>
+                </StackPanel>
+            </Frame>
         </Grid>
 
         <Grid x:Name="gridPlayer1"
@@ -251,9 +284,8 @@
             <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
             <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}" ></Rectangle>
             
-            <GridView x:ConnectionId='1' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
-                      AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center" 
-                                                                              >
+            <GridView x:ConnectionId='2' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
+                      AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center"  >
                 <GridView.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>

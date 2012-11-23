@@ -29,6 +29,12 @@ namespace Turakas.ViewModel
         private int _hitIndex;//player to make hit
         private int _moveNr; //move to be made in round
         public MainPage pageRef;
+        private Windows.UI.Xaml.Visibility _endframe = Visibility.Collapsed;
+        private string _looser;
+
+       
+
+        
         #region ProperyChangedEvent members
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -65,6 +71,30 @@ namespace Turakas.ViewModel
         #endregion
 
         #region propertid
+        public string Looser
+        {
+            get { return _looser; }
+            set {
+                if (!value.Equals(_looser))
+                {
+                    _looser = value;
+                    NotifyPropertyChanged("Looser");
+                }
+            }
+        }
+
+        public Windows.UI.Xaml.Visibility Endframe
+        {
+            get { return _endframe; }
+            set
+            {
+                if (!value.Equals(_endframe)) {
+                    _endframe = value;
+                    NotifyPropertyChanged("Endframe");
+                } 
+            }
+        }
+
         public ObservableCollection<string> Messages
         {
             get { return _messages; }
@@ -141,6 +171,8 @@ namespace Turakas.ViewModel
         }
         #endregion
 
+        #region game logic
+
         public List<ServiceUser> getOtherApplyers(Game g)
         {
             List<ServiceUser> potentialPlayers = _interfaceUsed.getJoinCandidates(g.Id);
@@ -182,7 +214,6 @@ namespace Turakas.ViewModel
             else { return; }
         }
 
-       
         public void applyForSelectedGame(string candidateName, Game g) {
             _interfaceUsed.registerPlayerCandidate(g.Id, candidateName);
         }
@@ -206,45 +237,6 @@ namespace Turakas.ViewModel
            return id;
         }
 
-        public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int GameId)
-        {
-            if (_gameId == GameId)
-            {
-                _trump = serviseCardToCard(trump);
-                if (playerId == 0)
-                {
-                    foreach (ServiceCard sc in cards)
-                    {
-                        _currentPlayer.Hand.Add(serviseCardToCard(sc));
-                    }
-                }
-                else
-                {
-                    foreach (Player p in _otherPlayers)
-                    {
-                        if (p.Id == playerId)
-                        {
-                            foreach (ServiceCard sc in cards)
-                            {
-                                p.Hand.Add(serviseCardToCard(sc));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public void OnNotifyFirstMove(int firstId, int hitId ,int gameId)
-        {
-            if(_gameId == gameId)
-            _moveIndex = firstId;
-            _hitIndex = hitId;
-            setPlayerActionColor(_moveIndex, _hitIndex);
-            
-        }
-
-        #region game logic
-
         public void moveMade(Card c) {
             _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
             _currentPlayer.makeMove(c);
@@ -256,36 +248,14 @@ namespace Turakas.ViewModel
             _currentPlayer.makeMove(c);
         }
 
-        public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit)
-        {
+        public void pickUp() { 
             
-            if (_gameId == gameId) {
-                Card c = serviseCardToCard(movedCard);
-                referToView(c);
-                MoveNr += 1;
-                CardsOnTable.Add(c);
-                HitIndex = nextHit;
-                setPlayerActionColor(_moveIndex, _hitIndex);
-            }
         }
 
-       
         #endregion
 
         
-        public void OnPlayerFinished(int gameId, int playerId)
-        {
-            if (_moveNr % 2 == 0)
-                _cardsOnTable = new ObservableCollection<Card>();
-            Player p = getPlayerById(playerId);
-            p.Visible = Visibility.Collapsed;
-            p.Finished = Visibility.Visible;
-        }
-
-        public void OnGameOver(int gameId, int loserId)
-        {
-            throw new NotImplementedException();
-        }
+        
         #region helper methods
         private Player getPlayerById(int id) {
             if (id == _currentPlayer.Id)
@@ -297,12 +267,10 @@ namespace Turakas.ViewModel
                 }
             } return null;
         }
-
         public void referToView(Card c)
         {
             MainPage.notifyGameAreaUpdate(c, pageRef);
         }
-
         public Card serviseCardToCard(ServiceCard arg)
         {
             Card card = new Card(arg.Kind, arg.Rank);
@@ -341,31 +309,136 @@ namespace Turakas.ViewModel
             }
             return ret;
         }
-        private void setPlayerActionColor(int moveIndex, int hitIndex) {
+        private void setPlayerActionColor() {
             foreach (Player p in _otherPlayers)
             {
-                if (p.Id == moveIndex)
+                if (p.Id == _moveIndex)
                     p.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Green);
-                if (p.Id == hitIndex)
+                if (p.Id == _hitIndex)
                     p.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Red);
             }
-            if (_currentPlayer.Id == moveIndex)
+            if (_currentPlayer.Id == _moveIndex)
                 _currentPlayer.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Green);
-            if (_currentPlayer.Id == hitIndex)
+            if (_currentPlayer.Id == _hitIndex)
                 _currentPlayer.Color = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.Red);
         }
 
         #endregion
 
+        #region callback methods
 
-        public void OnHitMade(int gameId, int playerId)
+        public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int GameId)
         {
-            throw new NotImplementedException();
+            if (_gameId == GameId)
+            {
+                _trump = serviseCardToCard(trump);
+                if (playerId == 0)
+                {
+                    foreach (ServiceCard sc in cards)
+                    {
+                        _currentPlayer.Hand.Add(serviseCardToCard(sc));
+                    }
+                }
+                else
+                {
+                    foreach (Player p in _otherPlayers)
+                    {
+                        if (p.Id == playerId)
+                        {
+                            foreach (ServiceCard sc in cards)
+                            {
+                                p.Hand.Add(serviseCardToCard(sc));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void OnNotifyFirstMove(int firstId, int hitId, int gameId)
+        {
+            if (_gameId == gameId)
+            {
+                _moveIndex = firstId;
+                _hitIndex = hitId;
+                setPlayerActionColor();
+            }
+        }
+
+        public void OnHitMade(ServiceCard movedCard, int gameId, int playerId)
+        {
+            if (_gameId == gameId)
+            {
+                Card c = serviseCardToCard(movedCard);
+                referToView(c);
+                MoveNr += 1;
+                CardsOnTable.Add(c);
+                setPlayerActionColor();
+            }
         }
 
         public void OnRoundOver(int gameId, int newMoveId, int newHitId)
         {
-            throw new NotImplementedException();
+            if (gameId == _gameId)
+            {
+                _cardsOnTable = new ObservableCollection<Card>();
+                _moveNr = 1;
+                _moveIndex = newMoveId;
+                _hitIndex = newHitId;
+                setPlayerActionColor();
+                _interfaceUsed.dealRound(_gameId);
+            }
         }
+
+        public void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit)
+        {
+
+            if (_gameId == gameId)
+            {
+                Card c = serviseCardToCard(movedCard);
+                referToView(c);
+                MoveNr += 1;
+                CardsOnTable.Add(c);
+                HitIndex = nextHit;
+                setPlayerActionColor();
+            }
+        }
+
+        public void OnPlayerFinished(int gameId, int playerId)
+        {
+            if (_gameId == gameId)
+            {
+                if (_moveNr % 2 == 0)
+                    _cardsOnTable = new ObservableCollection<Card>();
+                Player p = getPlayerById(playerId);
+                p.Visible = Visibility.Collapsed;
+                p.Finished = Visibility.Visible;
+            }
+        }
+
+        public void OnGameOver(int gameId, int looserId)
+        {
+            if (gameId == _gameId) {
+                Player looser = getPlayerById(looserId);
+                Looser = looser.Name;
+                Endframe = Visibility.Visible;
+                
+                //SAVE LOOSERS IN DATABASE?????
+            }
+        }
+
+        public void OnPickUp(int gameId, int playerId)
+        {
+            if (gameId == _gameId) {
+                Player p = getPlayerById(playerId);
+                foreach (Card c in _cardsOnTable) {
+                    p.Hand.Add(c);
+                }
+                _cardsOnTable = new ObservableCollection<Card>();
+            }
+           
+        }
+        #endregion callback methods
+
     }
 }

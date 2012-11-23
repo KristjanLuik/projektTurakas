@@ -18,11 +18,13 @@ namespace Turakas.classes
         void initGameDeck(int gameid);
         void setCallbackInterface(IServiceCallbackInterface callbackInterface);
         void dealCards(int gameid);
+        void dealRound(int gameId);
         int removeFromGame(int gameId, ServiceUser player);
         void notifyFirstMove(int gameId);
         void notifyMove(ServiceCard cardMoved, int playerId, int gameId);
         void setNextMoveAndHitId(int gameId);
-        void notifyHitMade(int gameId);
+        void notifyHitMade(int gameId, ServiceCard movedCard);
+        void pickUp(int gameId);
         //void notifyGameOver(int gameId);
 
     }
@@ -34,7 +36,8 @@ namespace Turakas.classes
         void OnNotifyMove(ServiceCard movedCard, int gameId, int playerId, int nextHit);
         void OnPlayerFinished(int gameId, int playerId);
         void OnGameOver(int gameId, int loserId);
-        void OnHitMade(int gameId, int playerId);
+        void OnHitMade(ServiceCard movedCard, int gameId, int playerId);
         void OnRoundOver(int gameId, int newMoveId, int newHitId);
+        void OnPickUp(int gameId, int looserId);
     }
 }

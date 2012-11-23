@@ -169,6 +169,22 @@ namespace Turakas.classes
             g.TopCardIndex = deckIndex;
         }
 
+        public void dealRound(int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+           
+            for (int i = 0; i < g.Count; i++)
+            {
+                List<ServiceCard> cards = new List<ServiceCard>();
+                int index = (g.Count - g.MovesIndex -i) % g.Count;
+                ServiceUser u = g.Players[index];
+                while (u.CardsInHand < 6 && g.TopCardIndex >= 0) {
+                    cards.Add(g.Deck[g.TopCardIndex]);
+                    g.TopCardIndex -= 1;
+                }
+                _callbackInterface.OnDeal(cards.ToArray(), g.Deck[0], index, gameId);
+            }
+        }
 
         public int removeFromGame(int gameId, ServiceUser player)
         {
@@ -230,13 +246,13 @@ namespace Turakas.classes
             }
                
             _callbackInterface.OnNotifyMove(cardMoved, gameId, playerId, g.HitsIndex);//seepärast peakski teenusele lisaks olema back endis veel üks klass
-            _callbackInterface.OnPlayerFinished(gameId, 3);
+           // _callbackInterface.OnPlayerFinished(gameId, 3);
            // _callbackInterface.OnNotifyMove(new ServiceCard(10,1), 1, 1, next);
         }
 
         
         #region helper methods
-       
+
         public List<ServiceUser> getPlayersNotFinished(int gameId) {
             Game g = listOfGames.ElementAt(gameId - 1);
             List<ServiceUser> result = new List<ServiceUser>();
@@ -285,15 +301,16 @@ namespace Turakas.classes
                     g.HitsIndex = getNextActivePlayer(g, g.MovesIndex);
                 }
             }
+            g.PickedUp = false;
         }
 
 
         #endregion
 
 
-        
 
-        public void notifyHitMade(int gameId)
+
+        public void notifyHitMade(int gameId, ServiceCard movedCard)
         {
             Game g = listOfGames.ElementAt(gameId - 1);
             g.Players[g.HitsIndex].CardsInHand -= 1;
@@ -314,8 +331,25 @@ namespace Turakas.classes
                 _callbackInterface.OnRoundOver(gameId, g.MovesIndex, g.HitsIndex);
             }
             else {
-                _callbackInterface.OnHitMade(gameId, g.HitsIndex);
+                _callbackInterface.OnHitMade(movedCard, gameId, g.HitsIndex);
             }
+        }
+
+
+        public void pickUp(int gameId)
+        {
+            Game g = listOfGames.ElementAt(gameId - 1);
+            g.PickedUp = true;
+            g.Players[g.HitsIndex].CardsInHand += g.NrOfCardsOnTable;
+            g.NrOfCardsOnTable = 0;
+            setNextMoveAndHitId(gameId);
+            _callbackInterface.OnPickUp(gameId, g.HitsIndex);
+            if (!isGameOver(gameId))
+            {
+                _callbackInterface.OnRoundOver(gameId, g.MovesIndex, g.HitsIndex);
+            }
+            else
+                _callbackInterface.OnGameOver(gameId, g.HitsIndex);
         }
     }
 
@@ -460,9 +494,7 @@ namespace Turakas.classes
         }
     }
 
-
-    
-        public class ServiceCard
+   public class ServiceCard
         {
             private int _rank;
             private int _kind;

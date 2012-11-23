@@ -49,7 +49,7 @@ namespace Turakas.Views
             GameAreaGrid.DataContext = _view.CardsOnTable;
             GameAreaGrid.IsTapEnabled = true;
             GameAreaGrid.AllowDrop = true;
-
+            frameGameEnd.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             
             //move12.DataContext = _view.CardsOnTable;
             //foreach (Card kaart in _view.CardsOnTable)
@@ -318,34 +318,34 @@ namespace Turakas.Views
                     return stkpMove61;
         }
         }
-        private void GridViewDragItemsStarting(object sender, DragItemsStartingEventArgs e)
-        {
-            var item = e.Items.FirstOrDefault();
-            if (item == null)
-                return;
-            var card = gwPl1Hand.SelectedItem;
-            e.Data.Properties.Add("item", item);
-            e.Data.Properties.Add("card", card);
-            e.Data.Properties.Add("gridSource", sender);
-        }
+        //private void GridViewDragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        //{
+        //    var item = e.Items.FirstOrDefault();
+        //    if (item == null)
+        //        return;
+        //    var card = gwPl1Hand.SelectedItem;
+        //    e.Data.Properties.Add("item", item);
+        //    e.Data.Properties.Add("card", card);
+        //    e.Data.Properties.Add("gridSource", sender);
+        //}
 
-        private void GridViewDrop(object sender, DragEventArgs e)
-        {
-            object gridSource;
-            e.Data.Properties.TryGetValue("gridSource", out gridSource);
+        //private void GridViewDrop(object sender, DragEventArgs e)
+        //{
+        //    object gridSource;
+        //    e.Data.Properties.TryGetValue("gridSource", out gridSource);
 
-            //if (gridSource == sender)
-            //  return;
+        //    //if (gridSource == sender)
+        //    //  return;
 
-            object sourceItem;
-            e.Data.Properties.TryGetValue("item", out sourceItem);
-            // if (sourceItem == null)
-            //   return;
-            object movedCard;
-            e.Data.Properties.TryGetValue("card", out movedCard);
+        //    object sourceItem;
+        //    e.Data.Properties.TryGetValue("item", out sourceItem);
+        //    // if (sourceItem == null)
+        //    //   return;
+        //    object movedCard;
+        //    e.Data.Properties.TryGetValue("card", out movedCard);
 
-            _view.CardsOnTable.Add((Card)movedCard);
-        }
+        //    _view.CardsOnTable.Add((Card)movedCard);
+        //}
 
         private void cardTapped(object sender, TappedRoutedEventArgs e)
         {
@@ -393,6 +393,11 @@ namespace Turakas.Views
         public static void notifyGameAreaUpdate(Card card, MainPage element){
            
             element.updateGameArea(card);
+        }
+
+        private void gameAreaTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
         }
 
        

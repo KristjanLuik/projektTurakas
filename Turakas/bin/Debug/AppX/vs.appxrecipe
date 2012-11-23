@@ -16,25 +16,25 @@
     <AppXManifest Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-23T14:58:43.869</Modified>
+      <Modified>2012-11-23T20:58:34.975</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.exe">
       <PackagePath>Turakas.exe</PackagePath>
-      <Modified>2012-11-23T18:06:52.014</Modified>
+      <Modified>2012-11-23T21:06:37.696</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb">
       <PackagePath>Turakas.pdb</PackagePath>
-      <Modified>2012-11-23T18:06:51.997</Modified>
+      <Modified>2012-11-23T21:06:37.680</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.pdb">
       <PackagePath>TurakasLibrary.pdb</PackagePath>
-      <Modified>2012-11-23T17:51:48.260</Modified>
+      <Modified>2012-11-23T20:56:53.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.dll">
       <PackagePath>TurakasLibrary.dll</PackagePath>
-      <Modified>2012-11-23T17:51:48.278</Modified>
+      <Modified>2012-11-23T20:56:53.529</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
@@ -290,7 +290,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\MainPage.xaml">
       <PackagePath>Views\MainPage.xaml</PackagePath>
-      <Modified>2012-11-23T17:53:50.215</Modified>
+      <Modified>2012-11-23T21:05:34.342</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\OptionsPage.xaml">
       <PackagePath>Views\OptionsPage.xaml</PackagePath>
@@ -302,7 +302,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2012-11-23T14:58:43.477</Modified>
+      <Modified>2012-11-23T20:58:34.822</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
