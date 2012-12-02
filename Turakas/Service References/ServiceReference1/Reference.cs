@@ -17,72 +17,42 @@ namespace Turakas.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceGame", Namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary")]
-    public partial class ServiceGame : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceUser", Namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary")]
+    public partial class ServiceUser : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private int CountField;
+        private int CardsInHandField;
         
-        private int IDField;
-        
-        private System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServicePlayer> PlayersField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Count {
-            get {
-                return this.CountField;
-            }
-            set {
-                if ((this.CountField.Equals(value) != true)) {
-                    this.CountField = value;
-                    this.RaisePropertyChanged("Count");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServicePlayer> Players {
-            get {
-                return this.PlayersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
-                    this.PlayersField = value;
-                    this.RaisePropertyChanged("Players");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ServicePlayer", Namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary")]
-    public partial class ServicePlayer : object, System.ComponentModel.INotifyPropertyChanged {
+        private bool FinishedField;
         
         private int IdField;
         
         private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CardsInHand {
+            get {
+                return this.CardsInHandField;
+            }
+            set {
+                if ((this.CardsInHandField.Equals(value) != true)) {
+                    this.CardsInHandField = value;
+                    this.RaisePropertyChanged("CardsInHand");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Finished {
+            get {
+                return this.FinishedField;
+            }
+            set {
+                if ((this.FinishedField.Equals(value) != true)) {
+                    this.FinishedField = value;
+                    this.RaisePropertyChanged("Finished");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
@@ -106,6 +76,201 @@ namespace Turakas.ServiceReference1 {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Game", Namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary")]
+    public partial class Game : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int CountField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard> DeckField;
+        
+        private int HitsIndexField;
+        
+        private int IdField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> JoinersField;
+        
+        private int MovesIndexField;
+        
+        private int NrOfCardsOnTableField;
+        
+        private string OwnerField;
+        
+        private bool PickedUpField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> PlayersField;
+        
+        private int StateField;
+        
+        private int TopCardIndexField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Count {
+            get {
+                return this.CountField;
+            }
+            set {
+                if ((this.CountField.Equals(value) != true)) {
+                    this.CountField = value;
+                    this.RaisePropertyChanged("Count");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard> Deck {
+            get {
+                return this.DeckField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DeckField, value) != true)) {
+                    this.DeckField = value;
+                    this.RaisePropertyChanged("Deck");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int HitsIndex {
+            get {
+                return this.HitsIndexField;
+            }
+            set {
+                if ((this.HitsIndexField.Equals(value) != true)) {
+                    this.HitsIndexField = value;
+                    this.RaisePropertyChanged("HitsIndex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> Joiners {
+            get {
+                return this.JoinersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JoinersField, value) != true)) {
+                    this.JoinersField = value;
+                    this.RaisePropertyChanged("Joiners");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MovesIndex {
+            get {
+                return this.MovesIndexField;
+            }
+            set {
+                if ((this.MovesIndexField.Equals(value) != true)) {
+                    this.MovesIndexField = value;
+                    this.RaisePropertyChanged("MovesIndex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NrOfCardsOnTable {
+            get {
+                return this.NrOfCardsOnTableField;
+            }
+            set {
+                if ((this.NrOfCardsOnTableField.Equals(value) != true)) {
+                    this.NrOfCardsOnTableField = value;
+                    this.RaisePropertyChanged("NrOfCardsOnTable");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Owner {
+            get {
+                return this.OwnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool PickedUp {
+            get {
+                return this.PickedUpField;
+            }
+            set {
+                if ((this.PickedUpField.Equals(value) != true)) {
+                    this.PickedUpField = value;
+                    this.RaisePropertyChanged("PickedUp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> Players {
+            get {
+                return this.PlayersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
+                    this.PlayersField = value;
+                    this.RaisePropertyChanged("Players");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TopCardIndex {
+            get {
+                return this.TopCardIndexField;
+            }
+            set {
+                if ((this.TopCardIndexField.Equals(value) != true)) {
+                    this.TopCardIndexField = value;
+                    this.RaisePropertyChanged("TopCardIndex");
                 }
             }
         }
@@ -166,63 +331,102 @@ namespace Turakas.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ITeenus", CallbackContract=typeof(Turakas.ServiceReference1.ITeenusCallback))]
-    public interface ITeenus {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IServiceInterface", CallbackContract=typeof(Turakas.ServiceReference1.IServiceInterfaceCallback))]
+    public interface IServiceInterface {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/getSubscribers", ReplyAction="http://tempuri.org/ITeenus/getSubscribersResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServicePlayer>> getSubscribersAsync(Turakas.ServiceReference1.ServiceGame game);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/Subscribe", ReplyAction="http://tempuri.org/IServiceInterface/SubscribeResponse")]
+        System.Threading.Tasks.Task SubscribeAsync(string nickname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/getNewGameAndPlayerId", ReplyAction="http://tempuri.org/ITeenus/getNewGameAndPlayerIdResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> getNewGameAndPlayerIdAsync(Turakas.ServiceReference1.ServicePlayer p);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/setSubscriberGameRef", ReplyAction="http://tempuri.org/IServiceInterface/setSubscriberGameRefResponse")]
+        System.Threading.Tasks.Task setSubscriberGameRefAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/addPlayerToGame", ReplyAction="http://tempuri.org/ITeenus/addPlayerToGameResponse")]
-        System.Threading.Tasks.Task addPlayerToGameAsync(Turakas.ServiceReference1.ServiceGame game, string newPlayer);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/getJoinersList", ReplyAction="http://tempuri.org/IServiceInterface/getJoinersListResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> getJoinersListAsync(int gameid);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/hit", ReplyAction="http://tempuri.org/ITeenus/hitResponse")]
-        System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> hitAsync(Turakas.ServiceReference1.ServiceCard target, Turakas.ServiceReference1.ServiceCard hit);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/createGame", ReplyAction="http://tempuri.org/IServiceInterface/createGameResponse")]
+        System.Threading.Tasks.Task<int> createGameAsync(string gameOwner);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/move", ReplyAction="http://tempuri.org/ITeenus/moveResponse")]
-        System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> moveAsync(int card_rank, int card_kind);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/doesGameExist", ReplyAction="http://tempuri.org/IServiceInterface/doesGameExistResponse")]
+        System.Threading.Tasks.Task<bool> doesGameExistAsync(string gameOwner);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/subscribeTogame", ReplyAction="http://tempuri.org/ITeenus/subscribeTogameResponse")]
-        System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> subscribeTogameAsync(int game, string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/sendGameList", ReplyAction="http://tempuri.org/IServiceInterface/sendGameListResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.Game>> sendGameListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/sendChatMessage", ReplyAction="http://tempuri.org/ITeenus/sendChatMessageResponse")]
-        System.Threading.Tasks.Task sendChatMessageAsync(string message, int gameId, int fromID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/addPlayersToGame", ReplyAction="http://tempuri.org/IServiceInterface/addPlayersToGameResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> addPlayersToGameAsync(int gameid, System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> pl);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/Subscribe", ReplyAction="http://tempuri.org/ITeenus/SubscribeResponse")]
-        System.Threading.Tasks.Task SubscribeAsync(string user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/registerPlayerCandidate", ReplyAction="http://tempuri.org/IServiceInterface/registerPlayerCandidateResponse")]
+        System.Threading.Tasks.Task registerPlayerCandidateAsync(int Gameid, string candidateName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/Unsubscribe", ReplyAction="http://tempuri.org/ITeenus/UnsubscribeResponse")]
-        System.Threading.Tasks.Task UnsubscribeAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/getJoinCandidates", ReplyAction="http://tempuri.org/IServiceInterface/getJoinCandidatesResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> getJoinCandidatesAsync(int gameid);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITeenus/gameEnded", ReplyAction="http://tempuri.org/ITeenus/gameEndedResponse")]
-        System.Threading.Tasks.Task gameEndedAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/shuffle", ReplyAction="http://tempuri.org/IServiceInterface/shuffleResponse")]
+        System.Threading.Tasks.Task shuffleAsync(int gameid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/initGameDeck", ReplyAction="http://tempuri.org/IServiceInterface/initGameDeckResponse")]
+        System.Threading.Tasks.Task initGameDeckAsync(int gameid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/dealCards", ReplyAction="http://tempuri.org/IServiceInterface/dealCardsResponse")]
+        System.Threading.Tasks.Task dealCardsAsync(int gameid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/dealRound", ReplyAction="http://tempuri.org/IServiceInterface/dealRoundResponse")]
+        System.Threading.Tasks.Task dealRoundAsync(int gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/removeFromGame", ReplyAction="http://tempuri.org/IServiceInterface/removeFromGameResponse")]
+        System.Threading.Tasks.Task<int> removeFromGameAsync(int gameId, Turakas.ServiceReference1.ServiceUser player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/notifyFirstMove", ReplyAction="http://tempuri.org/IServiceInterface/notifyFirstMoveResponse")]
+        System.Threading.Tasks.Task notifyFirstMoveAsync(int gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/notifyMove", ReplyAction="http://tempuri.org/IServiceInterface/notifyMoveResponse")]
+        System.Threading.Tasks.Task notifyMoveAsync(Turakas.ServiceReference1.ServiceCard cardMoved, int playerId, int gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/setNextMoveAndHitId", ReplyAction="http://tempuri.org/IServiceInterface/setNextMoveAndHitIdResponse")]
+        System.Threading.Tasks.Task setNextMoveAndHitIdAsync(int gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/notifyHitMade", ReplyAction="http://tempuri.org/IServiceInterface/notifyHitMadeResponse")]
+        System.Threading.Tasks.Task notifyHitMadeAsync(int gameId, Turakas.ServiceReference1.ServiceCard movedCard);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInterface/pickUp", ReplyAction="http://tempuri.org/IServiceInterface/pickUpResponse")]
+        System.Threading.Tasks.Task pickUpAsync(int gameId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITeenusCallback {
+    public interface IServiceInterfaceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITeenus/onChatMessage")]
-        void onChatMessage(string from, string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnNotifyFirstMove")]
+        void OnNotifyFirstMove(int firstId, int hitId, int gameId);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITeenus/onGetContacts")]
-        void onGetContacts(System.Collections.ObjectModel.ObservableCollection<string> contacts);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnDeal")]
+        void OnDeal(System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard> cards, Turakas.ServiceReference1.ServiceCard trump, int playerId, int gameId);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITeenus/onHit")]
-        void onHit(Turakas.ServiceReference1.ServiceCard hit);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnNotifyMove")]
+        void OnNotifyMove(Turakas.ServiceReference1.ServiceCard movedCard, int gameId, int playerId, int nextHit);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITeenus/onMove")]
-        void onMove(Turakas.ServiceReference1.ServiceCard card);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnPlayerFinished")]
+        void OnPlayerFinished(int gameId, int playerId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnGameOver")]
+        void OnGameOver(int gameId, int loserId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnHitMade")]
+        void OnHitMade(Turakas.ServiceReference1.ServiceCard movedCard, int gameId, int playerId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnRoundOver")]
+        void OnRoundOver(int gameId, int newMoveId, int newHitId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceInterface/OnPickUp")]
+        void OnPickUp(int gameId, int looserId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITeenusChannel : Turakas.ServiceReference1.ITeenus, System.ServiceModel.IClientChannel {
+    public interface IServiceInterfaceChannel : Turakas.ServiceReference1.IServiceInterface, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TeenusClientBase : System.ServiceModel.DuplexClientBase<Turakas.ServiceReference1.ITeenus>, Turakas.ServiceReference1.ITeenus {
+    public partial class ServiceInterfaceClientBase : System.ServiceModel.DuplexClientBase<Turakas.ServiceReference1.IServiceInterface>, Turakas.ServiceReference1.IServiceInterface {
         
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
@@ -231,72 +435,108 @@ namespace Turakas.ServiceReference1 {
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public TeenusClientBase(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance, TeenusClientBase.GetDefaultBinding(), TeenusClientBase.GetDefaultEndpointAddress()) {
-            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_ITeenus.ToString();
+        public ServiceInterfaceClientBase(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance, ServiceInterfaceClientBase.GetDefaultBinding(), ServiceInterfaceClientBase.GetDefaultEndpointAddress()) {
+            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_IServiceInterface.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TeenusClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration) : 
-                base(callbackInstance, TeenusClientBase.GetBindingForEndpoint(endpointConfiguration), TeenusClientBase.GetEndpointAddress(endpointConfiguration)) {
+        public ServiceInterfaceClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration) : 
+                base(callbackInstance, ServiceInterfaceClientBase.GetBindingForEndpoint(endpointConfiguration), ServiceInterfaceClientBase.GetEndpointAddress(endpointConfiguration)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TeenusClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(callbackInstance, TeenusClientBase.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
+        public ServiceInterfaceClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(callbackInstance, ServiceInterfaceClientBase.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TeenusClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, TeenusClientBase.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
+        public ServiceInterfaceClientBase(System.ServiceModel.InstanceContext callbackInstance, EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, ServiceInterfaceClientBase.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TeenusClientBase(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServiceInterfaceClientBase(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServicePlayer>> getSubscribersAsync(Turakas.ServiceReference1.ServiceGame game) {
-            return base.Channel.getSubscribersAsync(game);
+        public System.Threading.Tasks.Task SubscribeAsync(string nickname) {
+            return base.Channel.SubscribeAsync(nickname);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<int>> getNewGameAndPlayerIdAsync(Turakas.ServiceReference1.ServicePlayer p) {
-            return base.Channel.getNewGameAndPlayerIdAsync(p);
+        public System.Threading.Tasks.Task setSubscriberGameRefAsync(int id) {
+            return base.Channel.setSubscriberGameRefAsync(id);
         }
         
-        public System.Threading.Tasks.Task addPlayerToGameAsync(Turakas.ServiceReference1.ServiceGame game, string newPlayer) {
-            return base.Channel.addPlayerToGameAsync(game, newPlayer);
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> getJoinersListAsync(int gameid) {
+            return base.Channel.getJoinersListAsync(gameid);
         }
         
-        public System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> hitAsync(Turakas.ServiceReference1.ServiceCard target, Turakas.ServiceReference1.ServiceCard hit) {
-            return base.Channel.hitAsync(target, hit);
+        public System.Threading.Tasks.Task<int> createGameAsync(string gameOwner) {
+            return base.Channel.createGameAsync(gameOwner);
         }
         
-        public System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> moveAsync(int card_rank, int card_kind) {
-            return base.Channel.moveAsync(card_rank, card_kind);
+        public System.Threading.Tasks.Task<bool> doesGameExistAsync(string gameOwner) {
+            return base.Channel.doesGameExistAsync(gameOwner);
         }
         
-        public System.Threading.Tasks.Task<Turakas.ServiceReference1.ServiceCard> subscribeTogameAsync(int game, string name) {
-            return base.Channel.subscribeTogameAsync(game, name);
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.Game>> sendGameListAsync() {
+            return base.Channel.sendGameListAsync();
         }
         
-        public System.Threading.Tasks.Task sendChatMessageAsync(string message, int gameId, int fromID) {
-            return base.Channel.sendChatMessageAsync(message, gameId, fromID);
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> addPlayersToGameAsync(int gameid, System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser> pl) {
+            return base.Channel.addPlayersToGameAsync(gameid, pl);
         }
         
-        public System.Threading.Tasks.Task SubscribeAsync(string user) {
-            return base.Channel.SubscribeAsync(user);
+        public System.Threading.Tasks.Task registerPlayerCandidateAsync(int Gameid, string candidateName) {
+            return base.Channel.registerPlayerCandidateAsync(Gameid, candidateName);
         }
         
-        public System.Threading.Tasks.Task UnsubscribeAsync() {
-            return base.Channel.UnsubscribeAsync();
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceUser>> getJoinCandidatesAsync(int gameid) {
+            return base.Channel.getJoinCandidatesAsync(gameid);
         }
         
-        public System.Threading.Tasks.Task gameEndedAsync() {
-            return base.Channel.gameEndedAsync();
+        public System.Threading.Tasks.Task shuffleAsync(int gameid) {
+            return base.Channel.shuffleAsync(gameid);
+        }
+        
+        public System.Threading.Tasks.Task initGameDeckAsync(int gameid) {
+            return base.Channel.initGameDeckAsync(gameid);
+        }
+        
+        public System.Threading.Tasks.Task dealCardsAsync(int gameid) {
+            return base.Channel.dealCardsAsync(gameid);
+        }
+        
+        public System.Threading.Tasks.Task dealRoundAsync(int gameId) {
+            return base.Channel.dealRoundAsync(gameId);
+        }
+        
+        public System.Threading.Tasks.Task<int> removeFromGameAsync(int gameId, Turakas.ServiceReference1.ServiceUser player) {
+            return base.Channel.removeFromGameAsync(gameId, player);
+        }
+        
+        public System.Threading.Tasks.Task notifyFirstMoveAsync(int gameId) {
+            return base.Channel.notifyFirstMoveAsync(gameId);
+        }
+        
+        public System.Threading.Tasks.Task notifyMoveAsync(Turakas.ServiceReference1.ServiceCard cardMoved, int playerId, int gameId) {
+            return base.Channel.notifyMoveAsync(cardMoved, playerId, gameId);
+        }
+        
+        public System.Threading.Tasks.Task setNextMoveAndHitIdAsync(int gameId) {
+            return base.Channel.setNextMoveAndHitIdAsync(gameId);
+        }
+        
+        public System.Threading.Tasks.Task notifyHitMadeAsync(int gameId, Turakas.ServiceReference1.ServiceCard movedCard) {
+            return base.Channel.notifyHitMadeAsync(gameId, movedCard);
+        }
+        
+        public System.Threading.Tasks.Task pickUpAsync(int gameId) {
+            return base.Channel.pickUpAsync(gameId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -308,7 +548,7 @@ namespace Turakas.ServiceReference1 {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_ITeenus)) {
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IServiceInterface)) {
                 System.ServiceModel.NetTcpBinding result = new System.ServiceModel.NetTcpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
@@ -319,193 +559,429 @@ namespace Turakas.ServiceReference1 {
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_ITeenus)) {
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IServiceInterface)) {
                 return new System.ServiceModel.EndpointAddress(new System.Uri("net.tcp://localhost:11/Service1.svc"), new System.ServiceModel.DnsEndpointIdentity("localhost"));
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
-            return TeenusClientBase.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_ITeenus);
+            return ServiceInterfaceClientBase.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_IServiceInterface);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
-            return TeenusClientBase.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_ITeenus);
+            return ServiceInterfaceClientBase.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_IServiceInterface);
         }
         
         public enum EndpointConfiguration {
             
-            NetTcpBinding_ITeenus,
+            NetTcpBinding_IServiceInterface,
         }
     }
     
-    public class onChatMessageReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public class OnNotifyFirstMoveReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public onChatMessageReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public OnNotifyFirstMoveReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public string from {
+        public int firstId {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
         
-        public string message {
+        public int hitId {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[1]));
+                return ((int)(this.results[1]));
             }
         }
-    }
-    
-    public class onGetContactsReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
-        private object[] results;
-        
-        public onGetContactsReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public System.Collections.ObjectModel.ObservableCollection<string> contacts {
+        public int gameId {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<string>)(this.results[0]));
+                return ((int)(this.results[2]));
             }
         }
     }
     
-    public class onHitReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public class OnDealReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public onHitReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public OnDealReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public Turakas.ServiceReference1.ServiceCard hit {
+        public System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard> cards {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard>)(this.results[0]));
+            }
+        }
+        
+        public Turakas.ServiceReference1.ServiceCard trump {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Turakas.ServiceReference1.ServiceCard)(this.results[1]));
+            }
+        }
+        
+        public int playerId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[2]));
+            }
+        }
+        
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[3]));
+            }
+        }
+    }
+    
+    public class OnNotifyMoveReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public OnNotifyMoveReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Turakas.ServiceReference1.ServiceCard movedCard {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((Turakas.ServiceReference1.ServiceCard)(this.results[0]));
             }
         }
+        
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+        
+        public int playerId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[2]));
+            }
+        }
+        
+        public int nextHit {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[3]));
+            }
+        }
     }
     
-    public class onMoveReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public class OnPlayerFinishedReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public onMoveReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public OnPlayerFinishedReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public Turakas.ServiceReference1.ServiceCard card {
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+        
+        public int playerId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+    }
+    
+    public class OnGameOverReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public OnGameOverReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+        
+        public int loserId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+    }
+    
+    public class OnHitMadeReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public OnHitMadeReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Turakas.ServiceReference1.ServiceCard movedCard {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((Turakas.ServiceReference1.ServiceCard)(this.results[0]));
             }
         }
-    }
-    
-    public partial class TeenusClient : TeenusClientBase {
         
-        public TeenusClient(EndpointConfiguration endpointConfiguration) : 
-                this(new TeenusClientCallback(), endpointConfiguration) {
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
         }
         
-        private TeenusClient(TeenusClientCallback callbackImpl, EndpointConfiguration endpointConfiguration) : 
+        public int playerId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[2]));
+            }
+        }
+    }
+    
+    public class OnRoundOverReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public OnRoundOverReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+        
+        public int newMoveId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+        
+        public int newHitId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[2]));
+            }
+        }
+    }
+    
+    public class OnPickUpReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public OnPickUpReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int gameId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+        
+        public int looserId {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[1]));
+            }
+        }
+    }
+    
+    public partial class ServiceInterfaceClient : ServiceInterfaceClientBase {
+        
+        public ServiceInterfaceClient(EndpointConfiguration endpointConfiguration) : 
+                this(new ServiceInterfaceClientCallback(), endpointConfiguration) {
+        }
+        
+        private ServiceInterfaceClient(ServiceInterfaceClientCallback callbackImpl, EndpointConfiguration endpointConfiguration) : 
                 base(new System.ServiceModel.InstanceContext(callbackImpl), endpointConfiguration) {
             callbackImpl.Initialize(this);
         }
         
-        public TeenusClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                this(new TeenusClientCallback(), binding, remoteAddress) {
+        public ServiceInterfaceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                this(new ServiceInterfaceClientCallback(), binding, remoteAddress) {
         }
         
-        private TeenusClient(TeenusClientCallback callbackImpl, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        private ServiceInterfaceClient(ServiceInterfaceClientCallback callbackImpl, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(new System.ServiceModel.InstanceContext(callbackImpl), binding, remoteAddress) {
             callbackImpl.Initialize(this);
         }
         
-        public TeenusClient() : 
-                this(new TeenusClientCallback()) {
+        public ServiceInterfaceClient() : 
+                this(new ServiceInterfaceClientCallback()) {
         }
         
-        private TeenusClient(TeenusClientCallback callbackImpl) : 
+        private ServiceInterfaceClient(ServiceInterfaceClientCallback callbackImpl) : 
                 base(new System.ServiceModel.InstanceContext(callbackImpl)) {
             callbackImpl.Initialize(this);
         }
         
-        public event System.EventHandler<onChatMessageReceivedEventArgs> onChatMessageReceived;
+        public event System.EventHandler<OnNotifyFirstMoveReceivedEventArgs> OnNotifyFirstMoveReceived;
         
-        public event System.EventHandler<onGetContactsReceivedEventArgs> onGetContactsReceived;
+        public event System.EventHandler<OnDealReceivedEventArgs> OnDealReceived;
         
-        public event System.EventHandler<onHitReceivedEventArgs> onHitReceived;
+        public event System.EventHandler<OnNotifyMoveReceivedEventArgs> OnNotifyMoveReceived;
         
-        public event System.EventHandler<onMoveReceivedEventArgs> onMoveReceived;
+        public event System.EventHandler<OnPlayerFinishedReceivedEventArgs> OnPlayerFinishedReceived;
         
-        private void OnonChatMessageReceived(object state) {
-            if ((this.onChatMessageReceived != null)) {
+        public event System.EventHandler<OnGameOverReceivedEventArgs> OnGameOverReceived;
+        
+        public event System.EventHandler<OnHitMadeReceivedEventArgs> OnHitMadeReceived;
+        
+        public event System.EventHandler<OnRoundOverReceivedEventArgs> OnRoundOverReceived;
+        
+        public event System.EventHandler<OnPickUpReceivedEventArgs> OnPickUpReceived;
+        
+        private void OnOnNotifyFirstMoveReceived(object state) {
+            if ((this.OnNotifyFirstMoveReceived != null)) {
                 object[] results = ((object[])(state));
-                this.onChatMessageReceived(this, new onChatMessageReceivedEventArgs(results, null, false, null));
+                this.OnNotifyFirstMoveReceived(this, new OnNotifyFirstMoveReceivedEventArgs(results, null, false, null));
             }
         }
         
-        private void OnonGetContactsReceived(object state) {
-            if ((this.onGetContactsReceived != null)) {
+        private void OnOnDealReceived(object state) {
+            if ((this.OnDealReceived != null)) {
                 object[] results = ((object[])(state));
-                this.onGetContactsReceived(this, new onGetContactsReceivedEventArgs(results, null, false, null));
+                this.OnDealReceived(this, new OnDealReceivedEventArgs(results, null, false, null));
             }
         }
         
-        private void OnonHitReceived(object state) {
-            if ((this.onHitReceived != null)) {
+        private void OnOnNotifyMoveReceived(object state) {
+            if ((this.OnNotifyMoveReceived != null)) {
                 object[] results = ((object[])(state));
-                this.onHitReceived(this, new onHitReceivedEventArgs(results, null, false, null));
+                this.OnNotifyMoveReceived(this, new OnNotifyMoveReceivedEventArgs(results, null, false, null));
             }
         }
         
-        private void OnonMoveReceived(object state) {
-            if ((this.onMoveReceived != null)) {
+        private void OnOnPlayerFinishedReceived(object state) {
+            if ((this.OnPlayerFinishedReceived != null)) {
                 object[] results = ((object[])(state));
-                this.onMoveReceived(this, new onMoveReceivedEventArgs(results, null, false, null));
+                this.OnPlayerFinishedReceived(this, new OnPlayerFinishedReceivedEventArgs(results, null, false, null));
             }
         }
         
-        private class TeenusClientCallback : object, ITeenusCallback {
+        private void OnOnGameOverReceived(object state) {
+            if ((this.OnGameOverReceived != null)) {
+                object[] results = ((object[])(state));
+                this.OnGameOverReceived(this, new OnGameOverReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnOnHitMadeReceived(object state) {
+            if ((this.OnHitMadeReceived != null)) {
+                object[] results = ((object[])(state));
+                this.OnHitMadeReceived(this, new OnHitMadeReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnOnRoundOverReceived(object state) {
+            if ((this.OnRoundOverReceived != null)) {
+                object[] results = ((object[])(state));
+                this.OnRoundOverReceived(this, new OnRoundOverReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnOnPickUpReceived(object state) {
+            if ((this.OnPickUpReceived != null)) {
+                object[] results = ((object[])(state));
+                this.OnPickUpReceived(this, new OnPickUpReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private class ServiceInterfaceClientCallback : object, IServiceInterfaceCallback {
             
-            private TeenusClient proxy;
+            private ServiceInterfaceClient proxy;
             
-            public void Initialize(TeenusClient proxy) {
+            public void Initialize(ServiceInterfaceClient proxy) {
                 this.proxy = proxy;
             }
             
-            public void onChatMessage(string from, string message) {
-                this.proxy.OnonChatMessageReceived(new object[] {
-                            from,
-                            message});
+            public void OnNotifyFirstMove(int firstId, int hitId, int gameId) {
+                this.proxy.OnOnNotifyFirstMoveReceived(new object[] {
+                            firstId,
+                            hitId,
+                            gameId});
             }
             
-            public void onGetContacts(System.Collections.ObjectModel.ObservableCollection<string> contacts) {
-                this.proxy.OnonGetContactsReceived(new object[] {
-                            contacts});
+            public void OnDeal(System.Collections.ObjectModel.ObservableCollection<Turakas.ServiceReference1.ServiceCard> cards, Turakas.ServiceReference1.ServiceCard trump, int playerId, int gameId) {
+                this.proxy.OnOnDealReceived(new object[] {
+                            cards,
+                            trump,
+                            playerId,
+                            gameId});
             }
             
-            public void onHit(Turakas.ServiceReference1.ServiceCard hit) {
-                this.proxy.OnonHitReceived(new object[] {
-                            hit});
+            public void OnNotifyMove(Turakas.ServiceReference1.ServiceCard movedCard, int gameId, int playerId, int nextHit) {
+                this.proxy.OnOnNotifyMoveReceived(new object[] {
+                            movedCard,
+                            gameId,
+                            playerId,
+                            nextHit});
             }
             
-            public void onMove(Turakas.ServiceReference1.ServiceCard card) {
-                this.proxy.OnonMoveReceived(new object[] {
-                            card});
+            public void OnPlayerFinished(int gameId, int playerId) {
+                this.proxy.OnOnPlayerFinishedReceived(new object[] {
+                            gameId,
+                            playerId});
+            }
+            
+            public void OnGameOver(int gameId, int loserId) {
+                this.proxy.OnOnGameOverReceived(new object[] {
+                            gameId,
+                            loserId});
+            }
+            
+            public void OnHitMade(Turakas.ServiceReference1.ServiceCard movedCard, int gameId, int playerId) {
+                this.proxy.OnOnHitMadeReceived(new object[] {
+                            movedCard,
+                            gameId,
+                            playerId});
+            }
+            
+            public void OnRoundOver(int gameId, int newMoveId, int newHitId) {
+                this.proxy.OnOnRoundOverReceived(new object[] {
+                            gameId,
+                            newMoveId,
+                            newHitId});
+            }
+            
+            public void OnPickUp(int gameId, int looserId) {
+                this.proxy.OnOnPickUpReceived(new object[] {
+                            gameId,
+                            looserId});
             }
         }
     }

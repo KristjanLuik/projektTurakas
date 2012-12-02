@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using System.Text;
 using Windows.UI.Xaml.Media.Animation;
-using Turakas.classes;
 using Turakas.ViewModel;
 using System.ComponentModel;
 using System.Collections.Specialized;
@@ -223,9 +222,9 @@ namespace Turakas.Views
             return result;
         }
 
-        private void btnEndGame_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void btnEndGame_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            int id = _view.endPressed();
+            int id = await _view.endPressed();
             if (id == 0)
                 Frame.Navigate(typeof(OptionsPage), _view.CurrentPlayer.Name);
             else
@@ -367,6 +366,11 @@ namespace Turakas.Views
         private void gameAreaTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
 
+        }
+
+        private void msgButtonTapped(object sender, TappedRoutedEventArgs e)
+        {
+            
         }
 
        

@@ -1,5 +1,5 @@
 <configuration>
-    <configSections>
+  <configSections>
       <appSettings>
         <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
         <add key="ClientSettingsProvider.ServiceUri" value="" />
@@ -22,29 +22,20 @@
   app.config file. System.Configuration does not support config files for libraries. -->
       <system.serviceModel>
         <services>
-          <service name="TurakasServiceLibrary.Teenus">
+          <service name="TurakasServiceLibrary.ServiceInterface">
+            <endpoint address="" binding="netTcpBinding" bindingConfiguration="TestNetTcpBinding"
+              contract="TurakasServiceLibrary.IServiceInterface">
+              <identity>
+                <dns value="localhost" />
+              </identity>
+            </endpoint>
+            <endpoint address="net.tcp://localhost:9001/mex" binding="customBinding"
+              bindingConfiguration="TestMexBinding" contract="IMetadataExchange" />
             <host>
               <baseAddresses>
                 <add baseAddress="net.tcp://localhost:11/Service1.svc" />
               </baseAddresses>
             </host>
-            <!-- Service Endpoints -->
-            <!-- Unless fully qualified, address is relative to base address supplied above -->
-            <!--endpoint address="" binding="netTcpBinding" bindingConfiguration="Binding1" contract="MessageServiceLibrary.IMessage"-->
-            <endpoint address="" binding="netTcpBinding" bindingConfiguration="TestNetTcpBinding" contract="TurakasServiceLibrary.ITeenus">
-              <!-- 
-              Upon deployment, the following identity element should be removed or replaced to reflect the 
-              identity under which the deployed service runs.  If removed, WCF will infer an appropriate identity 
-              automatically.
-          -->
-              <identity>
-                <dns value="localhost" />
-              </identity>
-            </endpoint>
-            <endpoint address="net.tcp://localhost:9001/mex" binding="customBinding" bindingConfiguration="TestMexBinding" contract="IMetadataExchange" />
-            <!-- Metadata Endpoints -->
-            <!-- The Metadata Exchange endpoint is used by the service to describe itself to clients. -->
-            <!-- This endpoint does not use a secure binding and should be secured or removed before deployment -->
           </service>
         </services>
         <bindings>
@@ -79,5 +70,6 @@
       <connectionStrings>
         <add name="DefaultConnection" connectionString="Data Source = |SQL/CE|" />
       </connectionStrings>
-    </configSections>
+  </configSections>
 </configuration>
+    

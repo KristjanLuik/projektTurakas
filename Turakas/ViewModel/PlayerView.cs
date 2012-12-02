@@ -10,19 +10,18 @@ using System.Threading.Tasks;
 using TurakasLibrary;
 using Turakas.Views;
 using Windows.UI.Xaml;
-using Turakas.classes;
 using Windows.UI;
+using Turakas.ServiceReference1;
 
 namespace Turakas.ViewModel
 {
 
-    public class PlayerView:IServiceCallbackInterface, INotifyPropertyChanged, INotifyCollectionChanged
+    public class PlayerView : INotifyPropertyChanged, INotifyCollectionChanged, IServiceInterfaceCallback
     {
         private ObservableCollection<Card> _cardsOnTable;
         private ObservableCollection<string> _messages;
         private List<Player> _otherPlayers;
         private Player _currentPlayer;
-        public IServiceInterface _interfaceUsed;
         private int _gameId;
         private Card _trump;
         private int _moveIndex;//player to make next move
@@ -31,9 +30,13 @@ namespace Turakas.ViewModel
         public MainPage pageRef;
         private Windows.UI.Xaml.Visibility _endframe = Visibility.Collapsed;
         private string _looser;
+        private ServiceInterfaceClient _client;
+        private ObservableCollection<Game> _gameList;
+        private ObservableCollection<ServiceUser> _joinersList;
 
-       
+        
 
+        
         
         #region ProperyChangedEvent members
         public event PropertyChangedEventHandler PropertyChanged;
@@ -63,14 +66,34 @@ namespace Turakas.ViewModel
             this._currentPlayer = new Player(viewerName);
             this._otherPlayers = new List<Player>();
             this._cardsOnTable = new ObservableCollection<Card>();
-            this._interfaceUsed = new MockService();
-            this._interfaceUsed.setCallbackInterface(this);
+            //this._interfaceUsed = new Teenus();
+            //this._interfaceUsed.setCallbackInterface(this);
             this._moveNr = 1;
+            this._client = new ServiceInterfaceClient();
+            _joinersList = new ObservableCollection<ServiceUser>();
         }
 
         #endregion
 
         #region propertid
+        public ObservableCollection<ServiceUser> JoinersList
+        {
+            get { return _joinersList; }
+            set { _joinersList = value; }
+        }
+        public ObservableCollection<Game> GameList
+        {
+            get { return _gameList; }
+            set { _gameList = value; }
+        }
+
+        public ServiceInterfaceClient Client
+        {
+            get { //return _client == null ? new ServiceInterfaceClient() : _client;
+                return _client;
+            }
+            set { _client = value; }
+        }
         public string Looser
         {
             get { return _looser; }
@@ -173,41 +196,52 @@ namespace Turakas.ViewModel
 
         #region game logic
 
-        public List<ServiceUser> getOtherApplyers(Game g)
+        public Task< ObservableCollection<ServiceUser>> getOtherApplyers(Game g)
         {
-            List<ServiceUser> potentialPlayers = _interfaceUsed.getJoinCandidates(g.Id);
+            Task<ObservableCollection<ServiceUser>> potentialPlayers =  Client.getJoinCandidatesAsync(g.Id);
             return potentialPlayers;
         }
 
-        public List<ServiceUser> getJoiners()
+        public async void getJoiners()
         {
-            _gameId = _interfaceUsed.createGame(_currentPlayer.Name);
-            List<ServiceUser> potentialPlayers = _interfaceUsed.getJoinersList(_gameId);
-            return potentialPlayers;
-        }
-        public ObservableCollection<Game> getGames()
-        {
-            //TODO ensure that list will be refreshed after a period of time
-            ObservableCollection<Game> unstartedGames = new ObservableCollection<Game>();
-            Game[] res = _interfaceUsed.sendGameList();
-            foreach (Game g in res) {
-                unstartedGames.Add(g);
+            if (_client.State.Equals( System.ServiceModel.CommunicationState.Closed))
+                throw new Exception("yhendus suletud");
+            if (_client.State.Equals(System.ServiceModel.CommunicationState.Faulted ))
+                throw new Exception("yhendus  faulted state: disaini options page ümber, loo uus view");
+            await Client.SubscribeAsync(_currentPlayer.Name);
+            bool gameExists = await Client.doesGameExistAsync(_currentPlayer.Name);
+            
+            if (!gameExists) {
+                Task<int> id = Client.createGameAsync(_currentPlayer.Name);
+                _gameId = await id;
             }
-            return unstartedGames;
+            if (_gameId == 0)
+                throw new Exception("Game id did not get value from service");
+            //await Client.setSubscriberGameRefAsync(_gameId);
+            Task<ObservableCollection<ServiceUser>> potentialPlayers = Client.getJoinersListAsync(_gameId);
+            ObservableCollection<ServiceUser> tmp = await potentialPlayers;
+            _joinersList = tmp;
+        }
+        public async void getGames()
+        {
+            //TODO test somehow to see if joiners are displayed
+            Task<ObservableCollection<Game>> task = Client.sendGameListAsync();
+            ObservableCollection<Game> res = await task;
+            _gameList = res;
         }
 
-        public void addNewPlayer(List<ServiceUser> players)
+        public async void addNewPlayer(ObservableCollection<ServiceUser> players)
         {
             this._currentPlayer.Id = 0;
             if (players == null)
                 return;
             if (_otherPlayers.Count + players.Count <= 5)
             {
-                ServiceUser[] playersWithId = _interfaceUsed.addPlayersToGame(_gameId, players.ToArray());
+                ObservableCollection<ServiceUser> playersWithId = await Client.addPlayersToGameAsync(_gameId, players);
 
-                foreach (Player p in serviceUserToPlayer(playersWithId))
+                foreach (ServiceUser p in playersWithId)
                 {
-                    _otherPlayers.Add(p);
+                    _otherPlayers.Add(serviceUserToPlayer(p));
                 }
                 
             }
@@ -215,21 +249,25 @@ namespace Turakas.ViewModel
         }
 
         public void applyForSelectedGame(string candidateName, Game g) {
-            _interfaceUsed.registerPlayerCandidate(g.Id, candidateName);
+            Client.registerPlayerCandidateAsync(g.Id, candidateName);
         }
         public void initGame() {
-            _interfaceUsed.initGameDeck(_gameId);
-            _interfaceUsed.shuffle(_gameId);
+            Client.initGameDeckAsync(_gameId);
+            Client.shuffleAsync(_gameId);
             deal();
         }
 
         public void deal() {
-            _interfaceUsed.dealCards(_gameId);
-            _interfaceUsed.notifyFirstMove(_gameId);
+            Client.dealCardsAsync(_gameId);
+            Client.notifyFirstMoveAsync(_gameId);
         }
-        public int endPressed()
+
+        public async Task<int> endPressed()
         {
-           int id = _interfaceUsed.removeFromGame(_gameId,new ServiceUser(_currentPlayer.Name, _currentPlayer.Id)) ;
+            ServiceUser u = new ServiceUser();
+            u.Name = _currentPlayer.Name;
+            u.Id = _currentPlayer.Id;
+           int id = await Client.removeFromGameAsync(_gameId,u) ;
            if (id != 0)
            {
                _otherPlayers.RemoveAt(id-1);
@@ -238,13 +276,13 @@ namespace Turakas.ViewModel
         }
 
         public void moveMade(Card c) {
-            _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
+            Client.notifyMoveAsync(cardToServiceCard(c), _currentPlayer.Id, _gameId);
             _currentPlayer.makeMove(c);
         }
 
         public void hitMade(Card c)
         {
-            _interfaceUsed.notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
+            Client.notifyMoveAsync(cardToServiceCard(c), _currentPlayer.Id, _gameId);
             _currentPlayer.makeMove(c);
         }
 
@@ -278,25 +316,22 @@ namespace Turakas.ViewModel
         }
         public ServiceCard cardToServiceCard(Card c)
         {
-            ServiceCard ret = new ServiceCard((int)c.Rank, (int)c.Kind);
+            ServiceCard ret = new ServiceCard();
+            ret.Rank = (int)c.Rank;
+            ret.Kind = (int)c.Kind;
             return ret;
         }
-        public List<Player> serviceUserToPlayer(ServiceUser[] u)
+        public Player serviceUserToPlayer(ServiceUser u)
         {
-            List<Player> ret = new List<Player>();
-            ServiceUser s;
-            int i;
-            for (i = 0; i < u.Length; i++)
-            {
-                s = u[i];
-                if (s != null)
+                if (u != null)
                 {
-                    Player p = new Player(s.Name, s.Id);
-                    ret.Add(p);
-                }
+                    Player p = new Player(u.Name, u.Id);
+                    return p;
+                }else 
+                    return null;
             }
-            return ret;
-        }
+
+
         public ServiceUser[] playerToserviceUser(List<Player> u)
         {
             ServiceUser[] ret = new ServiceUser[u.Count];
@@ -304,7 +339,9 @@ namespace Turakas.ViewModel
             for (int i = 0; i < u.Count; i++)
             {
                 s = u[i];
-                ServiceUser p = new ServiceUser(s.Name, s.Id);
+                ServiceUser p = new ServiceUser();
+                p.Name = s.Name;
+                p.Id = s.Id;
                 ret[i] = p;
             }
             return ret;
@@ -327,7 +364,7 @@ namespace Turakas.ViewModel
 
         #region callback methods
 
-        public void OnDeal(ServiceCard[] cards, ServiceCard trump, int playerId, int GameId)
+        public void OnDeal(ObservableCollection<ServiceCard> cards, ServiceCard trump, int playerId, int GameId)
         {
             if (_gameId == GameId)
             {
@@ -386,7 +423,7 @@ namespace Turakas.ViewModel
                 _moveIndex = newMoveId;
                 _hitIndex = newHitId;
                 setPlayerActionColor();
-                _interfaceUsed.dealRound(_gameId);
+                Client.dealRoundAsync(_gameId);
             }
         }
 

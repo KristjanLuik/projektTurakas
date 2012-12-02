@@ -1,111 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" />
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:element name="getSubscribers">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="game" nillable="true" type="q1:ServiceGame" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getSubscribersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="getSubscribersResult" nillable="true" type="q2:ArrayOfServicePlayer" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getNewGameAndPlayerId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="p" nillable="true" type="q3:ServicePlayer" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getNewGameAndPlayerIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getNewGameAndPlayerIdResult" nillable="true" type="q4:ArrayOfint" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="addPlayerToGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="game" nillable="true" type="q5:ServiceGame" />
-        <xs:element minOccurs="0" name="newPlayer" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="addPlayerToGameResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="hit">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="target" nillable="true" type="q6:ServiceCard" />
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="hit" nillable="true" type="q7:ServiceCard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="hitResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="hitResult" nillable="true" type="q8:ServiceCard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="move">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="card_rank" type="xs:int" />
-        <xs:element minOccurs="0" name="card_kind" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="moveResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="moveResult" nillable="true" type="q9:ServiceCard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="subscribeTogame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="game" type="xs:int" />
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="subscribeTogameResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="subscribeTogameResult" nillable="true" type="q10:ServiceCard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="sendChatMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="gameId" type="xs:int" />
-        <xs:element minOccurs="0" name="fromID" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="sendChatMessageResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="Subscribe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -114,52 +13,308 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Unsubscribe">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UnsubscribeResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="gameEnded">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="gameEndedResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="onChatMessage">
+  <xs:element name="setSubscriberGameRef">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="from" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="onGetContacts">
+  <xs:element name="setSubscriberGameRefResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getJoinersList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="contacts" nillable="true" type="q11:ArrayOfstring" />
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="onHit">
+  <xs:element name="getJoinersListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="hit" nillable="true" type="q12:ServiceCard" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="getJoinersListResult" nillable="true" type="q1:ArrayOfServiceUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="onMove">
+  <xs:element name="createGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="card" nillable="true" type="q13:ServiceCard" />
+        <xs:element minOccurs="0" name="gameOwner" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="createGameResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doesGameExist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameOwner" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doesGameExistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="doesGameExistResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sendGameList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sendGameListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="sendGameListResult" nillable="true" type="q2:ArrayOfGame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addPlayersToGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="pl" nillable="true" type="q3:ArrayOfServiceUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addPlayersToGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="addPlayersToGameResult" nillable="true" type="q4:ArrayOfServiceUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registerPlayerCandidate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Gameid" type="xs:int" />
+        <xs:element minOccurs="0" name="candidateName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registerPlayerCandidateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getJoinCandidates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getJoinCandidatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="getJoinCandidatesResult" nillable="true" type="q5:ArrayOfServiceUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shuffle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shuffleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initGameDeck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initGameDeckResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealCards">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealCardsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealRound">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealRoundResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeFromGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="player" nillable="true" type="q6:ServiceUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeFromGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="removeFromGameResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyFirstMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyFirstMoveResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="cardMoved" nillable="true" type="q7:ServiceCard" />
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyMoveResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setNextMoveAndHitId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setNextMoveAndHitIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyHitMade">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="movedCard" nillable="true" type="q8:ServiceCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notifyHitMadeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pickUp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pickUpResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnNotifyFirstMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="firstId" type="xs:int" />
+        <xs:element minOccurs="0" name="hitId" type="xs:int" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnDeal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="cards" nillable="true" type="q9:ArrayOfServiceCard" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="trump" nillable="true" type="q10:ServiceCard" />
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnNotifyMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="movedCard" nillable="true" type="q11:ServiceCard" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
+        <xs:element minOccurs="0" name="nextHit" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnPlayerFinished">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnGameOver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="loserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnHitMade">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" minOccurs="0" name="movedCard" nillable="true" type="q12:ServiceCard" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnRoundOver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="newMoveId" type="xs:int" />
+        <xs:element minOccurs="0" name="newHitId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnPickUp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
+        <xs:element minOccurs="0" name="looserId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

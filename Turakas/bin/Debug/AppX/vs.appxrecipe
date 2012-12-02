@@ -5,7 +5,7 @@
     <WindowsUser>katrepaabo</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>71870FB47984D082742460D03BD0774A35359A1DC5A6CAFCFAFB6B4758715471</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>60BA7553170B941827B036037FF6C9540957AFD750733F526F9CCEFDD979A7ED</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>3cb4b099-75b7-4814-8c8e-5c8eefc7dce1_1.0.0.0_neutral__5ga64h8pk30tg</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>3cb4b099-75b7-4814-8c8e-5c8eefc7dce1_5ga64h8pk30tg!App</RegisteredUserModeAppID>
     <RegisteredPackageID>3cb4b099-75b7-4814-8c8e-5c8eefc7dce1</RegisteredPackageID>
@@ -16,25 +16,25 @@
     <AppXManifest Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-23T21:35:41.487</Modified>
+      <Modified>2012-11-24T18:43:08.017</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.exe">
       <PackagePath>Turakas.exe</PackagePath>
-      <Modified>2012-11-23T22:07:15.218</Modified>
+      <Modified>2012-11-24T20:17:00.393</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Turakas.pdb">
       <PackagePath>Turakas.pdb</PackagePath>
-      <Modified>2012-11-23T22:07:15.198</Modified>
+      <Modified>2012-11-24T20:17:00.374</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.pdb">
       <PackagePath>TurakasLibrary.pdb</PackagePath>
-      <Modified>2012-11-23T21:35:26.720</Modified>
+      <Modified>2012-11-24T17:05:23.218</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\bin\Debug\TurakasLibrary.dll">
       <PackagePath>TurakasLibrary.dll</PackagePath>
-      <Modified>2012-11-23T21:35:26.732</Modified>
+      <Modified>2012-11-24T17:05:23.228</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\Assets\help.png">
       <PackagePath>Assets\help.png</PackagePath>
@@ -290,11 +290,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\MainPage.xaml">
       <PackagePath>Views\MainPage.xaml</PackagePath>
-      <Modified>2012-11-23T22:07:06.060</Modified>
+      <Modified>2012-11-23T23:36:14.577</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\OptionsPage.xaml">
       <PackagePath>Views\OptionsPage.xaml</PackagePath>
-      <Modified>2012-11-18T21:24:12.212</Modified>
+      <Modified>2012-11-24T15:51:21.234</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\Views\StartPage.xaml">
       <PackagePath>Views\StartPage.xaml</PackagePath>
@@ -302,7 +302,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\katrepaabo\Desktop\Turakas\Turakas\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2012-11-23T21:35:28.873</Modified>
+      <Modified>2012-11-24T17:05:25.704</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

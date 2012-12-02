@@ -32,7 +32,7 @@
         
         <!--Button Name ="btnDisplay" Content="Deal" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Click="btnDisplay_Click" Grid.Row="0" Visibility="Collapsed" /-->
         <StackPanel  Grid.Row="0"  Grid.Column="0">
-        <Button x:ConnectionId='3' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
+        <Button x:ConnectionId='4' Name ="btnEndGame" Content="End" HorizontalAlignment="Left"  VerticalAlignment="Top"                          />
         <Viewbox x:Name="vbxTrump" Stretch="Uniform" >
             <Image x:Name="imgTrump"   HorizontalAlignment="Right" ></Image>
             </Viewbox>
@@ -283,7 +283,7 @@
             <TextBlock Name="player1name" Grid.Row="0"  Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="player 1" FontSize="36" VerticalAlignment="Top"/>
             <Rectangle x:Name="rect1Action" Grid.Row="1"  Grid.ColumnSpan="2"  IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Fill="{Binding Color}" ></Rectangle>
             
-            <GridView x:ConnectionId='2' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
+            <GridView x:ConnectionId='3' x:Name="gwPl1Hand" Grid.Row="2"  Grid.ColumnSpan="2"  ManipulationMode="All"   BorderThickness="0,0,2,0" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch"                    
                       AllowDrop="True" CanDragItems="True" HorizontalContentAlignment="Center"  >
                 <GridView.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -304,7 +304,7 @@
         <AppBar IsOpen="True" Grid.Row="3" Grid.ColumnSpan="3">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource MessageAppBarButtonStyle}" 
+                    <Button x:ConnectionId='2' x:Name="btnMsg" Style="{StaticResource MessageAppBarButtonStyle}"                          
                     />
                 </StackPanel>
             </Grid>

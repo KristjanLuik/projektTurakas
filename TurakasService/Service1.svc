@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TurakasServiceLibrary.Teenus" CodeBehind="Teenus.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TurakasServiceLibrary.ServiceInterface" CodeBehind="ServiceInterface.cs" %>

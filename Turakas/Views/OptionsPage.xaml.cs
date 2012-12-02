@@ -14,9 +14,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
-using Turakas.classes;
 using Turakas.ViewModel;
 using System.Collections.ObjectModel;
+using Turakas.ServiceReference1;
 
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -62,20 +62,19 @@ namespace Turakas.Views
             Frame.Navigate(typeof(HelpPage));
         }
 
-        private async void stkStart_Click(object sender, RoutedEventArgs e)
+        private  void stkStart_Click(object sender, RoutedEventArgs e)
         {
             frameMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             frameStart.Visibility = Windows.UI.Xaml.Visibility.Visible;
             frameJoin.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             //Frame.Navigate(typeof(MainPage), _playerName);
-            view = new PlayerView(_playerName);
-            ObservableCollection<ServiceUser> joiners = new ObservableCollection<ServiceUser>();
-            List<ServiceUser> listJoin = view.getJoiners();
-            foreach (ServiceUser p in listJoin)
+            if (view == null || !view.CurrentPlayer.Name.Equals(_playerName))
             {
-                joiners.Add(p);
+                view = new PlayerView(_playerName);
             }
-            lbxAddToGame.DataContext =joiners;
+            ObservableCollection<ServiceUser> joiners = new ObservableCollection<ServiceUser>();
+            view.getJoiners();
+            lbxAddToGame.ItemsSource = view.JoinersList;
             //populate joiners list
             
         }
@@ -91,8 +90,9 @@ namespace Turakas.Views
             {
                 view = new PlayerView(_playerName);
             }
-            ObservableCollection<Game> games = view.getGames();
-            lbxJoinGame.DataContext = games;
+            view.getGames();
+            frameJoin.DataContext = view;
+            lbxJoinGame.ItemsSource = view.GameList;
         }
 
        
@@ -130,11 +130,12 @@ namespace Turakas.Views
         {
 
         }
+      
         private void btnPick_Click(object sender, RoutedEventArgs e)
         {
             if (lbxAddToGame.SelectedItems.Count != 0)
             {
-                List<ServiceUser> selected = new List<ServiceUser>();
+                ObservableCollection<ServiceUser> selected = new ObservableCollection<ServiceUser>();
                 for (int i = lbxAddToGame.SelectedItems.Count - 1; i >= 0; i--)
                 {
                     selected.Add(lbxAddToGame.SelectedItems[i] as ServiceUser);
@@ -147,7 +148,7 @@ namespace Turakas.Views
             else {
                 /////////////////////////////////////////////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //DELETE IF PROJECT IS FINISHED!
-                throw new ArgumentException("For some reason listbox items did not get selected");
+                //throw new ArgumentException("For some reason listbox items did not get selected");
             }
 
         }
@@ -164,9 +165,6 @@ namespace Turakas.Views
             }
             else
             {
-                /////////////////////////////////////////////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //DELETE IF PROJECT IS FINISHED!
-                throw new ArgumentException("For some reason listbox items did not get selected");
             }
         }
 

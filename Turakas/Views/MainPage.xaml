@@ -304,7 +304,7 @@
         <AppBar IsOpen="True" Grid.Row="3" Grid.ColumnSpan="3">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource MessageAppBarButtonStyle}" 
+                    <Button x:Name="btnMsg" Style="{StaticResource MessageAppBarButtonStyle}" Tapped="msgButtonTapped" 
                     />
                 </StackPanel>
             </Grid>
