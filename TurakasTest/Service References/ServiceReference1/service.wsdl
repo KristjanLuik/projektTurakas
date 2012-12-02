@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceInterface" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IServiceInterface_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/TurakasServiceLibrary" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceInterface_Subscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_Subscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_setSubscriberGameRef_InputMessage">
+    <wsdl:part name="parameters" element="tns:setSubscriberGameRef" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_setSubscriberGameRef_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setSubscriberGameRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_getJoinersList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getJoinersList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_getJoinersList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getJoinersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_createGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:createGame" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_createGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_doesGameExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:doesGameExist" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_doesGameExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doesGameExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_sendGameList_InputMessage">
+    <wsdl:part name="parameters" element="tns:sendGameList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_sendGameList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sendGameListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_addPlayersToGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:addPlayersToGame" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_addPlayersToGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addPlayersToGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_registerPlayerCandidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:registerPlayerCandidate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_registerPlayerCandidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:registerPlayerCandidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_getJoinCandidates_InputMessage">
+    <wsdl:part name="parameters" element="tns:getJoinCandidates" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_getJoinCandidates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getJoinCandidatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_shuffle_InputMessage">
+    <wsdl:part name="parameters" element="tns:shuffle" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_shuffle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:shuffleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_initGameDeck_InputMessage">
+    <wsdl:part name="parameters" element="tns:initGameDeck" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_initGameDeck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:initGameDeckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_dealCards_InputMessage">
+    <wsdl:part name="parameters" element="tns:dealCards" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_dealCards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:dealCardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_dealRound_InputMessage">
+    <wsdl:part name="parameters" element="tns:dealRound" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_dealRound_OutputMessage">
+    <wsdl:part name="parameters" element="tns:dealRoundResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_removeFromGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeFromGame" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_removeFromGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeFromGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyFirstMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:notifyFirstMove" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyFirstMove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:notifyFirstMoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:notifyMove" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyMove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:notifyMoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_setNextMoveAndHitId_InputMessage">
+    <wsdl:part name="parameters" element="tns:setNextMoveAndHitId" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_setNextMoveAndHitId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setNextMoveAndHitIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyHitMade_InputMessage">
+    <wsdl:part name="parameters" element="tns:notifyHitMade" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_notifyHitMade_OutputMessage">
+    <wsdl:part name="parameters" element="tns:notifyHitMadeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_pickUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:pickUp" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_pickUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:pickUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnNotifyFirstMove_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnNotifyFirstMove" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnDeal_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnDeal" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnNotifyMove_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnNotifyMove" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnPlayerFinished_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnPlayerFinished" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnGameOver_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnGameOver" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnHitMade_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnHitMade" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnRoundOver_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnRoundOver" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInterface_OnPickUp_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnPickUp" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceInterface">
+    <wsdl:operation name="Subscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/Subscribe" message="tns:IServiceInterface_Subscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/SubscribeResponse" message="tns:IServiceInterface_Subscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setSubscriberGameRef">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/setSubscriberGameRef" message="tns:IServiceInterface_setSubscriberGameRef_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/setSubscriberGameRefResponse" message="tns:IServiceInterface_setSubscriberGameRef_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getJoinersList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/getJoinersList" message="tns:IServiceInterface_getJoinersList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/getJoinersListResponse" message="tns:IServiceInterface_getJoinersList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/createGame" message="tns:IServiceInterface_createGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/createGameResponse" message="tns:IServiceInterface_createGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doesGameExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/doesGameExist" message="tns:IServiceInterface_doesGameExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/doesGameExistResponse" message="tns:IServiceInterface_doesGameExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sendGameList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/sendGameList" message="tns:IServiceInterface_sendGameList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/sendGameListResponse" message="tns:IServiceInterface_sendGameList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addPlayersToGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/addPlayersToGame" message="tns:IServiceInterface_addPlayersToGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/addPlayersToGameResponse" message="tns:IServiceInterface_addPlayersToGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="registerPlayerCandidate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/registerPlayerCandidate" message="tns:IServiceInterface_registerPlayerCandidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/registerPlayerCandidateResponse" message="tns:IServiceInterface_registerPlayerCandidate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getJoinCandidates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/getJoinCandidates" message="tns:IServiceInterface_getJoinCandidates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/getJoinCandidatesResponse" message="tns:IServiceInterface_getJoinCandidates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="shuffle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/shuffle" message="tns:IServiceInterface_shuffle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/shuffleResponse" message="tns:IServiceInterface_shuffle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="initGameDeck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/initGameDeck" message="tns:IServiceInterface_initGameDeck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/initGameDeckResponse" message="tns:IServiceInterface_initGameDeck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="dealCards">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/dealCards" message="tns:IServiceInterface_dealCards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/dealCardsResponse" message="tns:IServiceInterface_dealCards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="dealRound">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/dealRound" message="tns:IServiceInterface_dealRound_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/dealRoundResponse" message="tns:IServiceInterface_dealRound_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeFromGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/removeFromGame" message="tns:IServiceInterface_removeFromGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/removeFromGameResponse" message="tns:IServiceInterface_removeFromGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="notifyFirstMove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/notifyFirstMove" message="tns:IServiceInterface_notifyFirstMove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/notifyFirstMoveResponse" message="tns:IServiceInterface_notifyFirstMove_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="notifyMove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/notifyMove" message="tns:IServiceInterface_notifyMove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/notifyMoveResponse" message="tns:IServiceInterface_notifyMove_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setNextMoveAndHitId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/setNextMoveAndHitId" message="tns:IServiceInterface_setNextMoveAndHitId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/setNextMoveAndHitIdResponse" message="tns:IServiceInterface_setNextMoveAndHitId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="notifyHitMade">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/notifyHitMade" message="tns:IServiceInterface_notifyHitMade_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/notifyHitMadeResponse" message="tns:IServiceInterface_notifyHitMade_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="pickUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInterface/pickUp" message="tns:IServiceInterface_pickUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/pickUpResponse" message="tns:IServiceInterface_pickUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnNotifyFirstMove">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnNotifyFirstMove" message="tns:IServiceInterface_OnNotifyFirstMove_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnDeal">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnDeal" message="tns:IServiceInterface_OnDeal_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnNotifyMove">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnNotifyMove" message="tns:IServiceInterface_OnNotifyMove_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnPlayerFinished">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnPlayerFinished" message="tns:IServiceInterface_OnPlayerFinished_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnGameOver">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnGameOver" message="tns:IServiceInterface_OnGameOver_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnHitMade">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnHitMade" message="tns:IServiceInterface_OnHitMade_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnRoundOver">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnRoundOver" message="tns:IServiceInterface_OnRoundOver_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnPickUp">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInterface/OnPickUp" message="tns:IServiceInterface_OnPickUp_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IServiceInterface" type="tns:IServiceInterface">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServiceInterface_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Subscribe">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/Subscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setSubscriberGameRef">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/setSubscriberGameRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getJoinersList">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/getJoinersList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createGame">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/createGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doesGameExist">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/doesGameExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendGameList">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/sendGameList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPlayersToGame">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/addPlayersToGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerPlayerCandidate">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/registerPlayerCandidate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getJoinCandidates">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/getJoinCandidates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="shuffle">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/shuffle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="initGameDeck">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/initGameDeck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dealCards">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/dealCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dealRound">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/dealRound" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeFromGame">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/removeFromGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notifyFirstMove">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/notifyFirstMove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notifyMove">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/notifyMove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setNextMoveAndHitId">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/setNextMoveAndHitId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notifyHitMade">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/notifyHitMade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pickUp">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/pickUp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnNotifyFirstMove">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnNotifyFirstMove" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnDeal">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnDeal" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnNotifyMove">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnNotifyMove" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnPlayerFinished">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnPlayerFinished" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnGameOver">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnGameOver" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnHitMade">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnHitMade" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnRoundOver">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnRoundOver" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnPickUp">
+      <soap12:operation soapAction="http://tempuri.org/IServiceInterface/OnPickUp" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceInterface">
+    <wsdl:port name="NetTcpBinding_IServiceInterface" binding="tns:NetTcpBinding_IServiceInterface">
+      <soap12:address location="net.tcp://localhost:11/Service1.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:11/Service1.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

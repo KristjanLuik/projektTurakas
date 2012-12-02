@@ -1,0 +1,108 @@
+﻿<Page x:Class="TurakasTest.SelectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="SelectPage"
+      Loaded="OnLoaded"
+       >
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" /-->
+            <TextBlock x:Name="pageTitle" Text="WPF TURAKAS" Grid.Column="1" HorizontalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <TextBlock x:Name="username" Grid.Column="1" HorizontalAlignment="Left" Margin="723,10,0,0" TextWrapping="Wrap" Text="TextBlock" FontSize="36" Height="120" Width="513" FontWeight="Bold" VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" Foreground="#FFF31414"/>
+
+        </Grid>
+        <Grid  x:Name="lobby" Grid.Column="1" Grid.Row="1" >
+            <Grid.Background>
+                <ImageBrush/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--lobby sisu: help, start came, join came-->
+
+
+            <Button x:Name="btnhelp"  Grid.Column="0" Grid.Row="0" Click="btnhelp_Click"  >
+                <Image Source="Assets/help.png" Stretch="fill"/>
+            </Button>
+            <Button x:Name="stkStart" Grid.Column="0" Grid.Row="1"   Click="stkStart_Click" >
+                <Image Source="Assets/start.png" Stretch="fill" />
+            </Button>
+            <Button x:Name="stkJoin" Grid.Column="0" Grid.Row="2"  Click="stkJoin_Click">
+                <Image Source="Assets/join.png" Stretch="fill" />
+            </Button>
+            <StackPanel x:Name="frameMain" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed">
+                <StackPanel x:Name="stkPicture" >
+                    <Viewbox x:Name="vbxPicture" Height="419">
+                        <Image Source="Assets/images/jr.png" Stretch="None"/>
+                    </Viewbox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel x:Name="frameStart" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Collapsed" Margin="0,0,0,10">
+                <StackPanel>
+                    <ListBox x:Name="lbxAddToGame" SelectionMode="Multiple"  ItemsSource="{Binding}" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="btnPick" Content="Choose" Click="btnPick_Click"/>
+                    <!--<ListBox x:Name="lbxAdded" SelectionMode="Multiple"  ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox >-->
+                </StackPanel>
+            </StackPanel>
+            <StackPanel x:Name="frameJoin" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Visible" Margin="0,0,0,10">
+                <StackPanel>
+                    <ListBox x:Name="lbxJoinGame" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Owner}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="btnPickGame" Content="Choose" Click="btnPickGame_Click" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel x:Name="frameWait" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Visible" Margin="0,0,0,10">
+                <StackPanel>
+                    <ListBox x:Name="lbxWait" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+
+    </Grid>
+</Page>

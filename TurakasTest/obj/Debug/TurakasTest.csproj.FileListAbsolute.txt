@@ -1,0 +1,42 @@
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\bin\Debug\TurakasTest.exe.config
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\bin\Debug\TurakasTest.exe
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\bin\Debug\TurakasTest.pdb
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.csprojResolveAssemblyReference.cache
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\LoginPage.baml
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\MainPage.baml
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\MainWindow.baml
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\SelectPage.baml
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\LoginPage.g.cs
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\MainPage.g.cs
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\MainWindow.g.cs
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\SelectPage.g.cs
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\App.g.cs
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest_MarkupCompile.cache
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.g.resources
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.Properties.Resources.resources
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.csproj.GenerateResource.Cache
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.exe
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\obj\Debug\TurakasTest.pdb
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\bin\Debug\TurakasServiceLibrary.dll
+C:\Users\toomasv\Documents\Visual Studio 2012\Projects\Turakas\TurakasTest\bin\Debug\TurakasServiceLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.csprojResolveAssemblyReference.cache
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\LoginPage.baml
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\MainPage.baml
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\MainWindow.baml
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\SelectPage.baml
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\LoginPage.g.cs
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\MainPage.g.cs
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\MainWindow.g.cs
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\SelectPage.g.cs
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\App.g.cs
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest_MarkupCompile.cache
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.g.resources
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.Properties.Resources.resources
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.csproj.GenerateResource.Cache
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\bin\Debug\TurakasTest.exe.config
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\bin\Debug\TurakasTest.exe
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\bin\Debug\TurakasTest.pdb
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\bin\Debug\TurakasServiceLibrary.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\bin\Debug\TurakasServiceLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.exe
+C:\Users\katrepaabo\Desktop\Turakas\TurakasTest\obj\Debug\TurakasTest.pdb
