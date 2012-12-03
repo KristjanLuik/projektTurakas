@@ -134,6 +134,11 @@ namespace TurakasTest
                 }
             }
         }
+
+        public string toString()
+        {
+            return this._name;
+        }
         /// <summary>
         /// Checks wether player is to hit and if so allowes to pick up by clearing the game area.
         /// </summary>
@@ -168,6 +173,8 @@ namespace TurakasTest
         {
             return false;
         }
+
+
 
     }
 }

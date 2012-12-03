@@ -36,7 +36,7 @@ namespace TurakasTest
         private string _looser;
         private ServiceInterfaceClient _client;
         private ObservableCollection<Game> _gameList;
-        private ObservableCollection<ServiceUser> _joinersList;
+        private ObservableCollection<Player> _joinersList;
         private SynchronizationContext _uiSyncContext = null;
         private int _raisePropertyChanged;
         private SelectPage _sp;
@@ -84,7 +84,7 @@ namespace TurakasTest
             this._client.connect();
             long i = _client.Subscribe(viewerName);
             _currentPlayer.Id = i;
-            _joinersList = new ObservableCollection<ServiceUser>();
+            _joinersList = new ObservableCollection<Player>();
             Trace.WriteLine("VIEW: Client created!");
         }
 
@@ -111,7 +111,7 @@ namespace TurakasTest
                  }
         }
 
-        public ObservableCollection<ServiceUser> JoinersList
+        public ObservableCollection<Player> JoinersList
         {
             get { return _joinersList; }
             set { _joinersList = value; }
@@ -252,7 +252,7 @@ namespace TurakasTest
             List<ServiceUser> potentialPlayers = Client.getServiceInterface().getJoinersList(_gameId);
             _joinersList.Clear();
             foreach(ServiceUser su in potentialPlayers) {
-                _joinersList.Add(su);
+                _joinersList.Add(serviceUserToPlayer(su));
             }
         }
 
@@ -263,20 +263,16 @@ namespace TurakasTest
             _gameList = res;
         }
 
-        public void addNewPlayer(ServiceUser[] players)
+        public void addNewPlayer(List<Player> players)
         {
-            this._currentPlayer.Id = 0;
+            //this._currentPlayer.Id = 0;
             if (players == null)
                 return;
-            if (_otherPlayers.Count + players.Length <= 5)
+            if (_otherPlayers.Count + players.Count <= 5)
             {
-                ServiceUser[] playersWithId = Client.getServiceInterface().addPlayersToGame(_gameId, players);
+                ServiceUser[] arg = playerToserviceUser( players);
+                Client.getServiceInterface().addPlayersToGame(_gameId, arg);
 
-                foreach (ServiceUser p in playersWithId)
-                {
-                    _otherPlayers.Add(serviceUserToPlayer(p));
-                }
-                
             }
             else { return; }
         }
@@ -614,8 +610,25 @@ namespace TurakasTest
            
         }
 
+        public void OnPlayersAdded(int gameId, ServiceUser[] players)
+        {
+            _gameId = gameId;
+            foreach (ServiceUser u in players) {
+                if (u != null) { 
+                    Player p = serviceUserToPlayer(u);
+                    if (!p.Name.Equals(_currentPlayer.Name) && !p.Id.Equals(_currentPlayer.Id))
+                    {
+                        _otherPlayers.Add(p);
+                    }
+                }
+            }
+        }
+
         #endregion callback methods
 
 
+
+
+        
     }
 }

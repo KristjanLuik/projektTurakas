@@ -69,7 +69,6 @@ namespace TurakasTest
                 view = new ViewModel(_playerName);
                 view.Sp = this;
             }
-            ObservableCollection<ServiceUser> joiners = new ObservableCollection<ServiceUser>();
             view.getJoiners();
             lbxAddToGame.ItemsSource = view.JoinersList;
             //populate joiners list
@@ -96,12 +95,12 @@ namespace TurakasTest
         {
             if (lbxAddToGame.SelectedItems.Count != 0)
             {
-                List<ServiceUser> selected = new List<ServiceUser>();
+                List<Player> selected = new List<Player>();
                 for (int i = lbxAddToGame.SelectedItems.Count - 1; i >= 0; i--)
                 {
-                    selected.Add(lbxAddToGame.SelectedItems[i] as ServiceUser);
+                    selected.Add(lbxAddToGame.SelectedItems[i] as Player);
                 }
-                view.addNewPlayer(selected.ToArray());
+                view.addNewPlayer(selected);
                 // lbxAdded.DataContext = view.OtherPlayers;
                 view.initGame();
                 view.Client.getServiceInterface().turnPage(view.GameId);
