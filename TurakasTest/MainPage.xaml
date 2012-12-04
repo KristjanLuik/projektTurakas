@@ -163,23 +163,24 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+           
             <StackPanel
                     x:Name="stkpMove1"
                     Grid.Column="0"
                     Grid.Row="0" >
-                <Image x:Name="move1" ></Image>
+                <Image x:Name="move1"></Image>
             </StackPanel>
             <StackPanel
                     x:Name="stkpMove11"
                     Grid.Column="0"
                     Grid.Row="1" >
-                <Image x:Name="hit1" ></Image>
+                <Image x:Name="hit1"  ></Image>
             </StackPanel>
             <StackPanel
                     x:Name="stkpMove2"
                     Grid.Column="1"
                     Grid.Row="0">
-                <Image x:Name="move2" ></Image>
+                <Image x:Name="move2"  ></Image>
             </StackPanel>
             <StackPanel
                     x:Name="stkpMove21"

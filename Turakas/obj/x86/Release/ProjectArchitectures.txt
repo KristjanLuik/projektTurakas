@@ -1,0 +1,2 @@
+C:\Users\katrepaabo\Desktop\Turakas\Turakas\Turakas.csproj;x86
+C:\Users\katrepaabo\Desktop\Turakas\TurakasLibrary\TurakasLibrary.csproj;x86

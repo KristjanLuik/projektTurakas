@@ -94,16 +94,6 @@ namespace TurakasServiceLibrary
             newGame.Count = 1;
             newGame.Owner = gameOwner;
             newGame.Joiners = new List<ServiceUser>();
-
-            /////////////////////////////////////////////////////////
-            //ServiceUser mock1 = new ServiceUser();
-            //mock1.Name = "roosa";
-            //ServiceUser mock2 = new ServiceUser();
-            //mock2.Name = "panter";
-            //newGame.Joiners.Add(mock1);
-            //newGame.Joiners.Add(mock2);
-
-            ////////////////////////////////////////////////////////////////
             listOfGames.Add(newGame);
             return newGame.Id;
         }
@@ -251,21 +241,30 @@ namespace TurakasServiceLibrary
 
         public void dealRound(int gameId)
         {
+            
             Game g = listOfGames.ElementAt(gameId - 1);
-
-            for (int i = 0; i < g.Count; i++)
+            Subscriber sb = GetMe();
+            Trace.WriteLine("SEVICE: dealRound called by "+sb.nickname);
+            if (sb.Id == g.Players[0].Id)
             {
-                List<ServiceCard> cards = new List<ServiceCard>();
-                int index = (g.Count - g.MovesIndex - i) % g.Count;
-                ServiceUser u = g.Players[index];
-                while (u.CardsInHand < 6 && g.TopCardIndex >= 0)
+                for (int i = 0; i < g.Count; i++)
                 {
-                    cards.Add(g.Deck[g.TopCardIndex]);
-                    g.TopCardIndex -= 1;
+                    List<ServiceCard> cards = new List<ServiceCard>();
+                    int index = (g.Count - g.MovesIndex - i) % g.Count;
+                    ServiceUser u = g.Players[index];
+                    while (u.CardsInHand < 6 && g.TopCardIndex >= 0)
+                    {
+                        cards.Add(g.Deck[g.TopCardIndex]);
+                        g.TopCardIndex -= 1;
+                        u.CardsInHand += 1;
+                    }
+                    Subscriber s = getSubscriberById(u.Id);
+                    IServiceCallback cb = s.callback;
+                    Trace.WriteLine("SEVICE: calling onDeal after dealRound ");
+                    Trace.WriteLine("SEVICE: calling to " + s.nickname + " with id " + g.Players[index].Id);
+                    Trace.WriteLine("SEVICE: sending " + cards.Count+" cards");
+                    cb.OnDeal(cards.ToArray(), g.Deck[0], g.Players[index].Id, gameId);  
                 }
-                Subscriber s = getSubscriberById(u.Id);
-                IServiceCallback cb = s.callback;
-                cb.OnDeal(cards.ToArray(), g.Deck[0], index, gameId);   //////????????????????????????????????????
             }
         }
 
@@ -381,7 +380,7 @@ namespace TurakasServiceLibrary
                         IServiceCallback cb = s.callback;
 
                         cb.OnPlayerFinished(gameId, playerId);
-                        Trace.WriteLine("SERVICE: Calling back to notify first move!");
+                        Trace.WriteLine("SERVICE: Calling back to notify player finished!");
                     }
                 }
                     
@@ -393,7 +392,7 @@ namespace TurakasServiceLibrary
                 IServiceCallback cb = s.callback;
 
                 cb.OnNotifyMove(cardMoved, gameId, playerId, g.Players[g.HitsIndex].Id);//seepärast peakski teenusele lisaks olema back endis veel üks klass
-                Trace.WriteLine("SERVICE: Calling back to notify first move!");
+                Trace.WriteLine("SERVICE: Calling back to notify move done!");
             }
             
             
@@ -423,12 +422,13 @@ namespace TurakasServiceLibrary
 
         public int getNextActivePlayerIndex(Game g, int start)
         {
-            int next = start;
-            for (int i = next; i < 6; i++)
+            while(true)
             {
-                ServiceUser u = g.Players[i] != null ? g.Players[i] : g.Players[i - g.Count];
+                int index = (start + 1) % g.Count;
+                ServiceUser u = g.Players[index];
                 if (u.Finished == false)
-                    return i;
+                    return index;
+                start += 1;
             }
             throw new ArgumentOutOfRangeException("Game is not ended, but could not find active players");
         }
@@ -510,6 +510,8 @@ namespace TurakasServiceLibrary
                     Subscriber s = getSubscriberById(g.Players[i].Id);
                     IServiceCallback cb = s.callback;
                     Trace.WriteLine("SERVICE: calling round over");
+                    Trace.WriteLine("SERVICE: hit index" +g.HitsIndex+" moveIndex "+g.MovesIndex);
+                    cb.OnHitMade(movedCard, gameId, g.Players[g.HitsIndex].Id);
                     cb.OnRoundOver(gameId, g.Players[g.MovesIndex].Id, g.Players[g.HitsIndex].Id);
                 }
                 

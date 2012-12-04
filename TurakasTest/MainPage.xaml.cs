@@ -48,7 +48,6 @@ namespace TurakasTest
             GameAreaGrid.IsEnabled = true;
             GameAreaGrid.AllowDrop = true;
             frameGameEnd.Visibility = System.Windows.Visibility.Collapsed;
-
         }
 
         /// <summary>
@@ -325,6 +324,12 @@ namespace TurakasTest
                 case "RaisePropertyChanged":
                     updateView();
                     break;
+                case "DealEvent":
+                    setHandDisplay();
+                    break;
+                case "CardsOnTable":
+                    resetGameArea();
+                    break;
                 case "Endframe":
                     toEndView();
                     break;
@@ -335,6 +340,15 @@ namespace TurakasTest
         {
             frameGameEnd.Visibility = System.Windows.Visibility.Visible;
             
+        }
+
+        private void resetGameArea() {
+            for (int i = 1; i < 13; i++ )
+            {
+                StackPanel s = getNextSlot(i);
+                Image im = firstOrDefault(s);
+                im.ClearValue(Image.SourceProperty);
+            }
         }
 
         private void updateView()
@@ -377,7 +391,7 @@ namespace TurakasTest
             }
         }
 
-        private void updateGameArea(Card c)
+        private void addCardToGameArea(Card c)
         {
 
             addImageToCard(c);
@@ -390,7 +404,7 @@ namespace TurakasTest
         public static void notifyGameAreaUpdate(Card card, MainPage element)
         {
 
-            element.updateGameArea(card);
+            element.addCardToGameArea(card);
         }
 
         private void Card_Clicked(object sender, MouseButtonEventArgs e)

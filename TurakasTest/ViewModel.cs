@@ -39,6 +39,8 @@ namespace TurakasTest
         private ObservableCollection<Player> _joinersList;
         private SynchronizationContext _uiSyncContext = null;
         private int _raisePropertyChanged;
+        private int _dealEvent;
+
         private SelectPage _sp;
 
         
@@ -91,6 +93,14 @@ namespace TurakasTest
         #endregion
 
         #region propertid
+        public int DealEvent
+        {
+            get { return _dealEvent; }
+            set { _dealEvent = value;
+            NotifyPropertyChanged("DealEvent");
+            }
+        }
+
         public SelectPage Sp
         {
             get { return _sp; }
@@ -311,6 +321,7 @@ namespace TurakasTest
         {
             Client.getServiceInterface().notifyHitMade(_gameId, cardToServiceCard(c));
             _currentPlayer.makeMove(c);
+           
         }
 
         public void pickUp() { 
@@ -404,7 +415,6 @@ namespace TurakasTest
         }
 
         private void setPlayerActionColor() {
-            Trace.WriteLine("VIEW: setPlayerActionColor()");
             foreach (Player p in _otherPlayers)
             {
                 if (p.Id == _moveIndex)
@@ -465,7 +475,9 @@ namespace TurakasTest
                     {
                         _currentPlayer.Hand.Add(serviseCardToCard(sc));
                     }
+                    DealEvent += 1;
                 }
+               
             }
         }
 
@@ -529,15 +541,12 @@ namespace TurakasTest
         public void OnRoundOver_UI(int gameId, long newMoveId, long newHitId)
         {
             Trace.WriteLine("VIEW: OnRoundOver called ");
-            if (gameId == _gameId)
-            {
-                _cardsOnTable = new ObservableCollection<Card>();
+                CardsOnTable = new ObservableCollection<Card>();
                 _moveNr = 1;
                 _moveIndex = newMoveId;
                 _hitIndex = newHitId;
                 setPlayerActionColor();
                 Client.getServiceInterface().dealRound(_gameId);
-            }
         }
 
         public void OnNotifyMove(ServiceCard movedCard, int gameId, long playerId, long nextHit)

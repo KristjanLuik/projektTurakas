@@ -1,0 +1,9 @@
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\TurakasService.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\TurakasService.pdb
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\Microsoft.WindowsAzure.Diagnostics.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\Microsoft.WindowsAzure.StorageClient.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\bin\Microsoft.WindowsAzure.Diagnostics.xml
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\obj\Debug\TurakasService.csprojResolveAssemblyReference.cache
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\obj\Debug\TurakasService.dll
+C:\Users\katrepaabo\Desktop\Turakas\TurakasService\obj\Debug\TurakasService.pdb
