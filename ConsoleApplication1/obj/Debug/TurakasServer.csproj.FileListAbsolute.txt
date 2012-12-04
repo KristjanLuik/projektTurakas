@@ -1,0 +1,16 @@
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\obj\Debug\TurakasServer.csprojResolveAssemblyReference.cache
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\bin\Debug\TurakasServiceLibrary.dll
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\bin\Debug\TurakasServiceLibrary.pdb
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\toomasv\documents\visual studio 2012\Projects\Turakas\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Debug\TurakasServiceLibrary.dll
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Debug\TurakasServiceLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\obj\Debug\TurakasServer.csprojResolveAssemblyReference.cache
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

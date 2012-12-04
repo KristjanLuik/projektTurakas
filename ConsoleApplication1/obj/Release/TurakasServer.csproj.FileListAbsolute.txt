@@ -1,0 +1,7 @@
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Release\TurakasServiceLibrary.dll
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\bin\Release\TurakasServiceLibrary.pdb
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\katrepaabo\Desktop\Turakas\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
