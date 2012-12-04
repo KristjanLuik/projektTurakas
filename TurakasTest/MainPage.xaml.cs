@@ -29,6 +29,7 @@ namespace TurakasTest
             this.InitializeComponent();
             _view = model;
             _view.PropertyChanged += new PropertyChangedEventHandler(PropertyChangedInPlayerView);
+            _view.firstMove();
         }
         
         void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
@@ -234,14 +235,11 @@ namespace TurakasTest
 
         private void btnEndGame_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            long id = _view.endPressed();
-            if (id == 0)
-            {
+            _view.endPressed();
+            
                 SelectPage back = new SelectPage(_view.CurrentPlayer.Name);
                 NavigationService.Navigate(back);
-            }
-            else
-                return;
+            
         }
 
         public void setCurrentPlayersSettings()
@@ -327,52 +325,52 @@ namespace TurakasTest
                 case "RaisePropertyChanged":
                     updateView();
                     break;
+                case "Endframe":
+                    toEndView();
+                    break;
             }
+        }
+
+        private void toEndView()
+        {
+            frameGameEnd.Visibility = System.Windows.Visibility.Visible;
+            
         }
 
         private void updateView()
         {
-            
-            if (_view.HitIndex != _view.CurrentPlayer.Id)
-            {
-                int j = _view.findPlayerIndexById(_view.HitIndex);
-                SolidColorBrush brush = new SolidColorBrush();
-                brush.Color = Colors.HotPink;
-                getRectByNumber(j).Fill = brush;
-            }
-            else
-            {
-                SolidColorBrush brush = new SolidColorBrush();
+             SolidColorBrush brush = new SolidColorBrush();
                 brush.Color = _view.CurrentPlayer.Color;
                 rect1Action.Fill = brush;
-            }
-            if (_view.MoveIndex != _view.CurrentPlayer.Id)
+
+
+                if (_view.MoveIndex != _view.CurrentPlayer.Id )
             {
-                int j = _view.findPlayerIndexById(_view.HitIndex);
-                SolidColorBrush brush = new SolidColorBrush();
-                brush.Color = Colors.Green;
-                getRectByNumber(j).Fill = brush;
+                int j = _view.findPlayerIndexById(_view.MoveIndex);
+                SolidColorBrush brush2 = new SolidColorBrush();
+                brush2.Color = _view.OtherPlayers.ElementAt(j).Color;
+                getRectByNumber(j).Fill = brush2;
             }
-            else
-            {
-                SolidColorBrush brush = new SolidColorBrush();
-                brush.Color = _view.CurrentPlayer.Color;
-                rect1Action.Fill = brush;
-            }
+                if (_view.HitIndex != _view.CurrentPlayer.Id)
+                {
+                    int j = _view.findPlayerIndexById(_view.HitIndex);
+                    SolidColorBrush brush2 = new SolidColorBrush();
+                    brush2.Color = _view.OtherPlayers.ElementAt(j).Color;
+                    getRectByNumber(j).Fill = brush2;
+                }
+           
         }
 
         private Rectangle getRectByNumber(int index) {
             switch (index)
             {
                 case 0:
-                    return rect1Action;
-                case 1:
                     return rect2Action;
-                case 2:
+                case 1:
                     return rect3Action;
-                case 3:
+                case 2:
                     return rect4Action;
-                case 4:
+                case 3:
                     return rect5Action;
                 default:
                     return rect6Action;

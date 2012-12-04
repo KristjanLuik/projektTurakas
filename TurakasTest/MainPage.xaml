@@ -132,7 +132,7 @@
             </Grid.RowDefinitions>
             <TextBlock Name="player6name"   Grid.Row="0" HorizontalAlignment="Left" Margin="71,65,0,0" TextWrapping="Wrap" Text="player 6" VerticalAlignment="Top" FontSize="36"/>
             <Rectangle x:Name="rect6Action"  Grid.Row="1" ></Rectangle>
-            <Image x:Name="pl6CardImage" Source="{Binding Uri}" Visibility="{Binding Visible}" HorizontalAlignment="Right" ></Image>
+            <Image x:Name="pl6CardImage" Visibility="{Binding Visible}" HorizontalAlignment="Right" Source="Assets/images/b2fh.png" ></Image>
             <StackPanel Grid.RowSpan="2" Visibility="{Binding Finished}" >
                 <TextBlock Text="Player has finished the game!!!!!!"></TextBlock>
             </StackPanel>

@@ -289,26 +289,16 @@ namespace TurakasTest
 
         public void deal() {
             Client.getServiceInterface().dealCards(_gameId);
-            Client.getServiceInterface().notifyFirstMove(_gameId);
         }
 
-        public long endPressed()
+        public void firstMove() { 
+            Client.getServiceInterface().notifyFirstMove(_gameId); 
+        }
+
+        public void endPressed()
         {
-            ServiceUser u = new ServiceUser();
-            u.Name = _currentPlayer.Name;
-            u.Id = _currentPlayer.Id;
-            long id = Client.getServiceInterface().removeFromGame(_gameId, u);
-           if (id != 0)
-           {
-               foreach (Player p in _otherPlayers) {
-                   if (p.Id == id)
-                   {
-                       _otherPlayers.Remove(p);
-                       break;
-                   }
-               }
-           }
-           return id;
+            Client.getServiceInterface().removeFromGame(_gameId, _currentPlayer.Id);
+           
         }
 
         public void moveMade(Card c) {
@@ -319,7 +309,7 @@ namespace TurakasTest
 
         public void hitMade(Card c)
         {
-            Client.getServiceInterface().notifyMove(cardToServiceCard(c), _currentPlayer.Id, _gameId);
+            Client.getServiceInterface().notifyHitMade(_gameId, cardToServiceCard(c));
             _currentPlayer.makeMove(c);
         }
 
@@ -412,7 +402,9 @@ namespace TurakasTest
             }
             return ret;
         }
+
         private void setPlayerActionColor() {
+            Trace.WriteLine("VIEW: setPlayerActionColor()");
             foreach (Player p in _otherPlayers)
             {
                 if (p.Id == _moveIndex)
@@ -422,10 +414,10 @@ namespace TurakasTest
             }
             if (_currentPlayer.Id == _moveIndex)
                 _currentPlayer.Color = Colors.Green;
-            if (_currentPlayer.Id == _hitIndex)
+            else if (_currentPlayer.Id == _hitIndex)
                 _currentPlayer.Color = Colors.Red;
             
-            RaisePropertyChanged = 1;
+            RaisePropertyChanged += 1;
         }
 
         #endregion
@@ -474,19 +466,6 @@ namespace TurakasTest
                         _currentPlayer.Hand.Add(serviseCardToCard(sc));
                     }
                 }
-                //else
-                //{
-                //    foreach (Player p in _otherPlayers)
-                //    {
-                //        if (p.Id == playerId)
-                //        {
-                //            foreach (ServiceCard sc in cards)
-                //            {
-                //                p.Hand.Add(serviseCardToCard(sc));
-                //            }
-                //        }
-                //    }
-                //}
             }
         }
 
@@ -538,6 +517,18 @@ namespace TurakasTest
 
         public void OnRoundOver(int gameId, long newMoveId, long newHitId)
         {
+            SendOrPostCallback callback = new SendOrPostCallback(
+                delegate(object state)
+                {
+                    OnRoundOver_UI(gameId, newMoveId, newHitId);
+                }
+            );
+            _uiSyncContext.Post(callback, "");
+        }
+
+        public void OnRoundOver_UI(int gameId, long newMoveId, long newHitId)
+        {
+            Trace.WriteLine("VIEW: OnRoundOver called ");
             if (gameId == _gameId)
             {
                 _cardsOnTable = new ObservableCollection<Card>();
@@ -586,16 +577,27 @@ namespace TurakasTest
                 p.Finished = Visibility.Visible;
             }
         }
-
         public void OnGameOver(int gameId, long looserId)
         {
-            if (gameId == _gameId) {
+            SendOrPostCallback callback = new SendOrPostCallback(
+               delegate(object state)
+               {
+                   OnGameOver_UI(gameId, looserId);
+               }
+           );
+            _uiSyncContext.Post(callback, "");
+        }
+
+        public void OnGameOver_UI(int gameId, long looserId)
+        {
+            Trace.WriteLine("VIEW: OnGameOver called()");
                 Player looser = getPlayerById(looserId);
                 Looser = looser.Name;
+                _moveIndex = _hitIndex = -1;
                 Endframe = Visibility.Visible;
                 
                 //SAVE LOOSERS IN DATABASE?????
-            }
+            
         }
 
         public void OnPickUp(int gameId, long playerId)

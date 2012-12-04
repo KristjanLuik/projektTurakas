@@ -17,7 +17,7 @@ namespace TurakasTest
         private string _message;
         public event PropertyChangedEventHandler PropertyChanged;
         private Color _color;
-        private string _uri = "ms-appx:///Assets/images/b2fv.png";
+        //private string _uri = "///Assets/images/b2fv.png";
         private System.Windows.Visibility _visible = System.Windows.Visibility.Visible;
         private System.Windows.Visibility _finished = System.Windows.Visibility.Collapsed;
 
@@ -46,11 +46,11 @@ namespace TurakasTest
             }
         }
 
-        public string Uri
-        {
-            get { return _uri; }
-            set { _uri = value; }
-        }
+        //public string Uri
+        //{
+        //    get { return _uri; }
+        //    set { _uri = value; }
+        //}
 
         private void NotifyPropertyChanged(string propertyName)
         {
